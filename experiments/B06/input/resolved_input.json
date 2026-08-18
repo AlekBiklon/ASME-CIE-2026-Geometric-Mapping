@@ -1,0 +1,14 @@
+{
+    "experiment_id": "B06",
+    "dataset_index": 33,
+    "request_id": "ZK22J6VYRKQ2RTFD_1758875163.609787",
+    "request_type": "edit",
+    "file_name": "24537_fusion-360-151130-8363-cb10a4e7-bracke_v1 v1",
+    "instruction": "Add 0.2 mm chamfer to the hole edges to improve fitting.",
+    "instruction_source": "row.request_text",
+    "source_start_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\ZK22J6VYRKQ2RTFD_1758875194.249227.step",
+    "local_start_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B06\\input\\B06_start.step",
+    "video_path": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\videos\\ZK22J6VYRKQ2RTFD_1758875163.609787_30_720_audio.mp4",
+    "request_events": [],
+    "request_event_count": 0
+}

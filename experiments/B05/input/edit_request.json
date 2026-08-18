@@ -1,0 +1,22 @@
+{
+    "experiment_id": "B05",
+    "dataset_index": 45,
+    "request_id": "4S7JQK6ZQMAD25GL_1758863141.735564",
+    "instruction": "Add a 2 millimetre fillet to the edges of the scrolling wheel slot to ensure a smooth surface.",
+    "instruction_source": "row.request_text",
+    "operation": "FILLET",
+    "parameters": {
+        "radius_mm": 2.0
+    },
+    "target": {
+        "entity_type": "EDGES",
+        "edge_ids": [
+            "E0005",
+            "E0001",
+            "E0008",
+            "E0011"
+        ],
+        "selection_count": 4,
+        "source": "USER_3D_SELECTION"
+    }
+}

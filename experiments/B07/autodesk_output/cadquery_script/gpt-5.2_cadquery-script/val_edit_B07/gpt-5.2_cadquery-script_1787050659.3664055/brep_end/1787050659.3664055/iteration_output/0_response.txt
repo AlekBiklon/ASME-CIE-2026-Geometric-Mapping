@@ -1,0 +1,190 @@
+Thinking text:
+**Creating fillet function**
+
+I need to create a function that applies fillets to the model’s edges: 2mm on the four outer edges and 1mm on the four inner edges. I’ll locate these edges by using selectors, possibly utilizing the bounding box or the edges on the inner square cutout, considering the model resembles a bracket or plate with a square hole. The top view shows a central square cavity within a circular ring, while the bottom shows a square frustum. The fillets should likely be on that frustum, but I need to confirm the units used in the step file.
+**Inspecting edges and bounding boxes**
+
+I’ll start by loading the model and printing details like the bounding box size and the edges count. It seems like the outer edges are likely aligned with the square frustum, judging by the given coordinates. The outer edges are vertical, with dimensions about 0.5 in length along the Y-axis. The inner edges show a constant X and Z at 0.3 and 0.225, suggesting the top of the inner rectangular hole. I’ll use these bounding box coordinates to select edges for applying the fillets.
+**Identifying edges by length**
+
+I'm considering another approach to identify edges based on their lengths. The outer edges are around 0.5 units, while the inner edges measure approximately 0.69. There are four of each, and I think filtering for straight edges within these length ranges is a good idea. I can analyze all edges, compute their lengths, and classify them based on their positions. It seems like the outer edges correspond to the top perimeter of the frustum, while the inner edges relate to the hole's inner perimeter. I’ll focus on filleting the corners of the outer rectangle edges.
+**Planning edge selection**
+
+The images show the edges of the rectangular frustum, and I see four edges with an additional set. I’ll start by loading the shape and identifying all the linear edges. I want to select those at the top of the protruding frustum or those within the central opening. It seems both sets of edges could be on the same plane. To simplify things, I’ll use bounding box selection relative to the model’s center. The outer edges have coordinates around 0.46 and 0.405, while the inner edges are about 0.3 and 0.225. I can check the midpoints of these edges for detection and convert the units accordingly.
+**Filtering vertical edges and applying fillet**
+
+I think it’s better to filter edges based on their direction, focusing on those that align vertically along the Y-axis. To determine this, I’ll compute the direction vector using the positions of the edge vertices. I plan to classify edges as vertical if their direction's Y component is greater than 0.9. I’ll also assess their midpoints to distinguish between outer and inner edges. To narrow it down, I could look for vertical edges with certain radius values and group them based on their proximity to the model center. Finally, I’ll apply sequential fillets using CadQuery methods while ensuring that edge selections remain valid throughout the process.
+**Building edge selection and scaling radii**
+
+I’ll start by retrieving the shape values, focusing on the edges to separate them into outer and inner categories based on their properties. I’ll implement a method to calculate the bounding box to determine the appropriate units and scales for radii. I need to be careful about conversion factors; if the maximum dimension exceeds certain thresholds, I must choose the right units. 
+
+To filter vertical edges, I’ll assess their direction, and using geometric properties, I’ll analyze their centers and classify them based on specific criteria to narrow down to the target edges for filleting. Then I plan to cluster radii to identify groups of edges to apply fillets effectively.
+**Refining edge selection and filleting**
+
+I need to analyze the linear vertical edges to identify groups corresponding to rectangular features, focusing on those that count to four. For the outer and inner edges, I’ll establish criteria based on their respective bins of radii. Once I sort and filter these edges, I’ll apply fillets sequentially. 
+
+I’m considering whether to apply the inner or outer fillets first. It's probably safer to do outer filleting first and then reselect inner edges after adjusting the shape to prevent any invalid references. I'll implement helper functions to streamline edge selection and ensure the histogram tracks only linear edges. Finally, I’ll retain debug prints to confirm the process specifics as I go along.
+
+Generated script:
+def my_cad_function(args):
+    import cadquery as cq
+    import os, math
+
+    if "input_file" not in args:
+        print("No input_file provided")
+        return None
+
+    step_path = os.path.expanduser(args["input_file"])
+    shape_wp = cq.importers.importStep(step_path)
+    shape = shape_wp.val() if hasattr(shape_wp, "val") else shape_wp
+
+    # --- basic diagnostics (first iteration helpful) ---
+    bb = shape.BoundingBox()
+    max_dim = max(bb.xlen, bb.ylen, bb.zlen)
+    print(f"Loaded STEP: {step_path}")
+    print(f"BBox lens: x={bb.xlen:.6f}, y={bb.ylen:.6f}, z={bb.zlen:.6f}, max_dim={max_dim:.6f}")
+    print(f"Edge count: {len(shape.Edges())}, Face count: {len(shape.Faces())}")
+
+    # --- infer working units to convert mm -> model units ---
+    # Heuristic: many dataset parts come in inches-sized coords (overall size a few units)
+    # If very small (<1), treat as meters. If <10, treat as inches. Otherwise treat as mm.
+    if max_dim < 1.0:
+        unit = "m"
+        mm_to_u = 0.001
+    elif max_dim < 10.0:
+        unit = "in"
+        mm_to_u = 1.0 / 25.4
+    else:
+        unit = "mm"
+        mm_to_u = 1.0
+
+    r_outer = 2.0 * mm_to_u
+    r_inner = 1.0 * mm_to_u
+    print(f"Assumed units: {unit}, mm_to_u={mm_to_u:.6f}; r_outer={r_outer:.6f}, r_inner={r_inner:.6f}")
+
+    def _edge_dir_is_y(edge, tol=0.90):
+        vs = edge.Vertices()
+        if len(vs) < 2:
+            return False
+        p1 = cq.Vector(*vs[0].toTuple())
+        p2 = cq.Vector(*vs[-1].toTuple())
+        d = p2 - p1
+        n = d.Length
+        if n < 1e-9:
+            return False
+        d = d / n
+        return abs(d.y) > tol
+
+    def _collect_vertical_line_edges(s):
+        out = []
+        for e in s.Edges():
+            try:
+                if e.geomType() != "LINE":
+                    continue
+            except Exception:
+                # fallback: if geomType missing, skip
+                continue
+            if not _edge_dir_is_y(e):
+                continue
+            c = e.Center()
+            r = math.sqrt(c.x * c.x + c.z * c.z)
+            out.append((e, r, c.y, e.Length()))
+        return out
+
+    def _bin_by_r(edge_infos, bin_size):
+        bins = {}
+        for (e, r, cy, L) in edge_infos:
+            k = round(r / bin_size) * bin_size
+            bins.setdefault(k, []).append((e, r, cy, L))
+        return bins
+
+    def _pick_two_4edge_bins(edge_infos, bin_size):
+        bins = _bin_by_r(edge_infos, bin_size)
+        keys4 = sorted([k for k, v in bins.items() if len(v) == 4])
+        return bins, keys4
+
+    # --- Find the two groups of 4 vertical linear edges (outer & inner) on the original shape ---
+    vlines = _collect_vertical_line_edges(shape)
+    print(f"Vertical LINE edges found: {len(vlines)}")
+
+    # choose a small bin size relative to overall size
+    bin_size = max(1e-6, 0.01 * max_dim)
+    bins0, keys4_0 = _pick_two_4edge_bins(vlines, bin_size)
+    print(f"R-bins with exactly 4 vertical LINE edges (bin_size={bin_size:.6f}): {keys4_0}")
+
+    outer_target_r = None
+    inner_target_r = None
+    outer_edges = []
+
+    if len(keys4_0) >= 2:
+        inner_k = keys4_0[-2]
+        outer_k = keys4_0[-1]
+        outer_target_r = outer_k
+        inner_target_r = inner_k
+        outer_edges = [t[0] for t in bins0[outer_k]]
+        print(f"Selected OUTER bin k={outer_k:.6f} (4 edges) and INNER bin k={inner_k:.6f} (4 edges)")
+    elif len(keys4_0) == 1:
+        # fallback: take that as outer, inner will be determined after outer fillet
+        outer_k = keys4_0[-1]
+        outer_target_r = outer_k
+        outer_edges = [t[0] for t in bins0[outer_k]]
+        print(f"Only one 4-edge bin found, using it as OUTER: k={outer_k:.6f}")
+    else:
+        # last-resort fallback: pick the 4 vertical line edges with largest r but still near center
+        vlines_sorted = sorted(vlines, key=lambda x: x[1])
+        # keep central half radius
+        central = [t for t in vlines_sorted if t[1] < 0.6 * max_dim]
+        outer_pick = central[-4:] if len(central) >= 4 else vlines_sorted[-4:]
+        outer_edges = [t[0] for t in outer_pick]
+        outer_target_r = sum(t[1] for t in outer_pick) / max(1, len(outer_pick))
+        print(f"No 4-edge bins found; fallback OUTER edges count={len(outer_edges)}, outer_target_r~{outer_target_r:.6f}")
+
+    # --- Apply outer fillet (2mm) ---
+    try:
+        shape1 = shape.fillet(r_outer, outer_edges)
+        print(f"Applied outer fillet on {len(outer_edges)} edges")
+    except Exception as e:
+        print(f"Outer fillet failed: {e}")
+        shape1 = shape
+
+    # --- Re-select inner edges on the modified shape and apply inner fillet (1mm) ---
+    vlines1 = _collect_vertical_line_edges(shape1)
+    bins1 = _bin_by_r(vlines1, bin_size)
+
+    # candidates with exactly 4 edges
+    keys4_1 = [k for k, v in bins1.items() if len(v) == 4]
+    keys4_1_sorted = sorted(keys4_1)
+    print(f"After outer fillet, 4-edge bins: {keys4_1_sorted}")
+
+    inner_edges = []
+    if inner_target_r is not None and len(keys4_1_sorted) > 0:
+        best_k = min(keys4_1_sorted, key=lambda k: abs(k - inner_target_r))
+        inner_edges = [t[0] for t in bins1[best_k]]
+        print(f"Selected INNER bin closest to target: target={inner_target_r:.6f}, chosen={best_k:.6f} (4 edges)")
+    elif len(keys4_1_sorted) > 0:
+        # fallback: take the smallest-radius 4-edge bin as inner
+        best_k = keys4_1_sorted[0]
+        inner_edges = [t[0] for t in bins1[best_k]]
+        print(f"Selected INNER bin (fallback smallest): chosen={best_k:.6f} (4 edges)")
+    else:
+        # last-resort: pick 4 vertical line edges with moderate r (exclude very small / very large)
+        v_sorted = sorted(vlines1, key=lambda x: x[1])
+        mid = [t for t in v_sorted if (0.15 * max_dim) < t[1] < (0.55 * max_dim)]
+        pick = mid[:4] if len(mid) >= 4 else v_sorted[:4]
+        inner_edges = [t[0] for t in pick]
+        print(f"No 4-edge bins after outer fillet; fallback INNER edges count={len(inner_edges)}")
+
+    try:
+        shape2 = shape1.fillet(r_inner, inner_edges)
+        print(f"Applied inner fillet on {len(inner_edges)} edges")
+    except Exception as e:
+        print(f"Inner fillet failed: {e}")
+        shape2 = shape1
+
+    return shape2
+
+
+Program output:
+stdout: Loading function from: c:\PROGRAMING_PYTHON\2026-08-14_ASME_Hackathon_2026\experiments\B07\autodesk_output\cadquery_script\gpt-5.2_cadquery-script\val_edit_B07\gpt-5.2_cadquery-script_1787050659.3664055\brep_end\1787050659.3664055\temp_script.py
+No input_file provided
+Script completed.

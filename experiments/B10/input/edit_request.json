@@ -1,0 +1,42 @@
+{
+    "experiment_id": "B10",
+    "dataset_index": 162,
+    "request_id": "3YH2WFSRM22W7DKT_1770125357.5670888",
+    "instruction": "I fillet these edges of the part by radius 5 millimeters and here the divisible edge respectively to create the part easy to handle and safe to handle so to avoid the injuries.",
+    "instruction_source": "request_transcript",
+    "operation": "FILLET",
+    "parameters": {
+        "radius_mm": 5.0
+    },
+    "target": {
+        "entity_type": "EDGES",
+        "edge_ids": [
+            "E0019",
+            "E0018",
+            "E0005",
+            "E0006",
+            "E0008",
+            "E0016",
+            "E0017",
+            "E0007",
+            "E0009",
+            "E0015",
+            "E0014",
+            "E0042",
+            "E0045",
+            "E0012",
+            "E0036",
+            "E0004",
+            "E0032",
+            "E0041",
+            "E0040",
+            "E0002",
+            "E0037",
+            "E0039",
+            "E0034",
+            "E0038"
+        ],
+        "selection_count": 24,
+        "source": "USER_3D_SELECTION"
+    }
+}

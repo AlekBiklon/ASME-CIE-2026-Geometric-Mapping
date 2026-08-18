@@ -1,0 +1,185 @@
+Thinking text:
+**Implementing file discovery process**
+
+I’m thinking about how to handle cases where `input_file` is missing. Should I search the arguments for any key containing 'step' or fallback to a known local path? I can’t access task info directly, but we can infer it might be in the working directory. 
+
+I could use `os.listdir` to find `.step` files either in the current directory or the specified `output_dir`. My approach will be to ensure robust file discovery based on the presence of `input_file` and other candidate directories.
+**Gathering potential step paths**
+
+I’m considering that the file might be in the same directory as the function file, though I'm not entirely sure. My plan is to gather potential step paths like this:
+
+1. Check `args.get("input_file")`.
+2. Look for any values in `args` that end with `.step` and exist.
+3. Search recursively from the function directory up to three levels for files with `.step` extensions, preferring the newest or a specific one if it matches.
+4. Keep the search limited for efficiency.
+
+Once I’ve found the files, I’ll apply a chamfer of 0.2mm to all circular edges at the openings of the bracket holes.
+**Building edge selection for chamfering**
+
+I’m planning to build a selection by identifying edges that are circular and serve as boundaries between internal cylinders and other faces. I think I can start by collecting all circular edges from internal cylinder faces, including both ends and intersections with fillets. However, I need to avoid chamfering external cylinders.
+
+To improve my approach, I’m considering using the face's orientation to determine if it’s concave regarding the solid. Since outward normals point into the hole void, I’ll check if the face normal points inward by sampling it slightly along the normal. This will help ensure I’m only selecting the right edges.
+**Clarifying internal surface normals**
+
+I’m realizing that for internal surfaces, the outward normal actually points into the solid material, while for an internal cavity, it points into the cavity itself. For holes, the cavity is outside the solid region, meaning the outward normal points into the void, which is toward the solid's interior. This leads me to think that checking adjacency won’t help distinguish internal faces. Instead, I’ll use `solid.isInside(point)` after moving slightly opposite to the normal to determine if the face is indeed internal, as this should move deeper into the material.
+**Defining chamfer application**
+
+I’m deciding to allow the application of chamfer on edges as long as they aren't empty. It's important to ensure that I return either a compound or a single shape. I need to make sure I’m returning the correct types, either Workplane or Shape, since they'll handle the step export. Additionally, I should provide a clean function string in JSON format and set 'complete' to false for the first iteration. This will lay the groundwork for clear and manageable output.
+
+Generated script:
+def my_cad_function(args):
+    import os
+    import cadquery as cq
+
+    def _expand(p):
+        return os.path.expanduser(p) if isinstance(p, str) else p
+
+    def _find_step_path():
+        # 1) direct input_file
+        p = _expand(args.get("input_file", ""))
+        if p and os.path.exists(p) and p.lower().endswith(".step"):
+            return p
+
+        # 2) any arg value that looks like a step path
+        for k, v in (args or {}).items():
+            if isinstance(v, str) and v.lower().endswith(".step"):
+                pv = _expand(v)
+                if os.path.exists(pv):
+                    print(f"Found STEP from args[{k!r}]: {pv}")
+                    return pv
+
+        # 3) search nearby directories
+        dirs = set()
+        dirs.add(os.getcwd())
+        out_dir = _expand(args.get("output_dir", ""))
+        if out_dir:
+            dirs.add(out_dir)
+        func_file = _expand(args.get("function_file", ""))
+        if func_file:
+            dirs.add(os.path.dirname(func_file))
+
+        # add common breps folders relative to known dirs
+        extra_dirs = set()
+        for d in list(dirs):
+            for rel in ["breps", "..\\breps", "..\\..\\breps", "..\\..\\..\\breps", "..\\..\\..\\..\\breps",
+                        "../breps", "../../breps", "../../../breps", "../../../../breps"]:
+                extra_dirs.add(os.path.normpath(os.path.join(d, rel)))
+        dirs |= extra_dirs
+
+        found = []
+        for d in sorted(dirs):
+            if os.path.isdir(d):
+                try:
+                    for name in os.listdir(d):
+                        if name.lower().endswith(".step"):
+                            fp = os.path.join(d, name)
+                            found.append(fp)
+                except Exception:
+                    pass
+
+        if not found:
+            return ""
+
+        # Prefer most recently modified
+        found.sort(key=lambda x: os.path.getmtime(x), reverse=True)
+        print("STEP discovery: found candidate STEP files (newest first):")
+        for fp in found[:10]:
+            try:
+                print(f"  {fp} (mtime={os.path.getmtime(fp)})")
+            except Exception:
+                print(f"  {fp}")
+        return found[0]
+
+    step_path = _find_step_path()
+    if not step_path or not os.path.exists(step_path):
+        print(f"ERROR: Could not locate a STEP file. args keys: {list((args or {}).keys())}")
+        return None
+
+    print(f"Loading STEP: {step_path}")
+    model = cq.importers.importStep(step_path)
+
+    # Extract solids
+    try:
+        solids = model.solids().vals()
+    except Exception:
+        solids = []
+
+    if not solids:
+        v = model.val() if hasattr(model, "val") else model
+        try:
+            solids = v.Solids()
+        except Exception:
+            solids = []
+
+    if not solids:
+        print("WARNING: No solids found; returning imported model as-is.")
+        return model
+
+    def _is_closed_circle_edge(e):
+        try:
+            if str(e.geomType()).upper() != "CIRCLE":
+                return False
+        except Exception:
+            return False
+        try:
+            if hasattr(e, "isClosed"):
+                return bool(e.isClosed())
+        except Exception:
+            pass
+        try:
+            # OCC wrapped fallback
+            return bool(e.wrapped.Closed())
+        except Exception:
+            return False
+
+    def _chamfer_hole_edges(solid, size=0.2):
+        # Heuristic: chamfer all *closed* circular edges (typically hole mouths)
+        edges = []
+        try:
+            for e in solid.Edges():
+                if _is_closed_circle_edge(e):
+                    edges.append(e)
+        except Exception:
+            edges = []
+
+        print(f"Closed circular edges selected for chamfer: {len(edges)}")
+        if not edges:
+            return solid
+
+        try:
+            wp = cq.Workplane(obj=solid).newObject(edges)
+            wp = wp.chamfer(size)
+            return wp.val()
+        except Exception as e:
+            print(f"Chamfer failed on solid: {e}")
+            return solid
+
+    out_solids = []
+    for i, s in enumerate(solids):
+        try:
+            print(f"Processing solid {i+1}/{len(solids)}")
+            out_solids.append(_chamfer_hole_edges(s, size=0.2))
+        except Exception as e:
+            print(f"Failed processing solid {i}: {e}")
+            out_solids.append(s)
+
+    if len(out_solids) == 1:
+        return out_solids[0]
+
+    try:
+        return cq.Compound.makeCompound(out_solids)
+    except Exception:
+        # fallback: union via Workplane
+        res = cq.Workplane(obj=out_solids[0])
+        for s in out_solids[1:]:
+            try:
+                res = res.union(cq.Workplane(obj=s))
+            except Exception:
+                pass
+        return res.val()
+
+
+Program output:
+stdout: Loading function from: c:\PROGRAMING_PYTHON\2026-08-14_ASME_Hackathon_2026\experiments\B06\autodesk_output\cadquery_script\gpt-5.2_cadquery-script\val_edit_B06\gpt-5.2_cadquery-script_1786990391.1841419\brep_end\1786990391.1841419\temp_script.py
+ERROR: Could not locate a STEP file. args keys: ['output_dir', 'function_file']
+Script completed.

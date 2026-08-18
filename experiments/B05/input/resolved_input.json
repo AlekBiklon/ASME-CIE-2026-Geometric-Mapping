@@ -1,0 +1,14 @@
+{
+    "experiment_id": "B05",
+    "dataset_index": 45,
+    "request_id": "4S7JQK6ZQMAD25GL_1758863141.735564",
+    "request_type": "edit",
+    "file_name": "20805_fusion-360-151130-9746-40217704-mouse-_v1",
+    "instruction": "Add a 2 millimetre fillet to the edges of the scrolling wheel slot to ensure a smooth surface.",
+    "instruction_source": "row.request_text",
+    "source_start_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\4S7JQK6ZQMAD25GL_1758863189.5437753.step",
+    "local_start_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B05\\input\\B05_start.step",
+    "video_path": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\videos\\4S7JQK6ZQMAD25GL_1758863141.735564_30_720_audio.mp4",
+    "request_events": [],
+    "request_event_count": 0
+}

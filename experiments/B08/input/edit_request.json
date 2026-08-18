@@ -1,0 +1,28 @@
+{
+    "experiment_id": "B08",
+    "dataset_index": 180,
+    "request_id": "B7A2N74ZJBF9MZHU_1770169445.8914912",
+    "instruction": "Add chamfer to main/biggest cylindrical section of Heatbreak body/component. The chamfer should be same size as present on top of the part, but should be added to the lower edge of the cylinder. This should allow easier insertion of the part during assembly.",
+    "instruction_source": "row.request_text",
+    "operation": "CHAMFER",
+    "parameters": {
+        "distance_source": "REFERENCE_GEOMETRY"
+    },
+    "reference": {
+        "entity_type": "EXISTING_CHAMFER_EDGE",
+        "edge_ids": [
+            "E2125"
+        ],
+        "selection_count": 1,
+        "source": "USER_3D_SELECTION"
+    },
+    "target": {
+        "entity_type": "EDGES",
+        "selection_semantics": "USER_SELECTED_TARGET_EDGES",
+        "source": "USER_3D_SELECTION",
+        "selection_count": 1,
+        "edge_ids": [
+            "E2128"
+        ]
+    }
+}

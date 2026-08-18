@@ -1,0 +1,106 @@
+{
+    "experiment_id": "B10",
+    "request_id": "3YH2WFSRM22W7DKT_1770125357.5670888",
+    "method": "GEOMETRIC_MAPPING",
+    "operation": "FILLET",
+    "operation_status": "ADAPTIVE_SUCCESS",
+    "cad_edit": {
+        "runtime_s": 235.4906758000143,
+        "step_success": true,
+        "result_valid_report": true,
+        "valid_brep": true,
+        "reimport_valid": true,
+        "export_reimport_success": true,
+        "reimport_volume_delta_mm3": 158.44131766608916
+    },
+    "geometry": {
+        "start": {
+            "valid": true,
+            "solids": 1,
+            "faces": 17,
+            "edges": 45,
+            "volume_mm3": 799986.8624130149,
+            "bounding_box_mm": {
+                "x": 275.0,
+                "y": 150.00000000000003,
+                "z": 100.00000000000001,
+                "diagonal": 328.8236609491476
+            }
+        },
+        "result": {
+            "valid": true,
+            "solids": 1,
+            "faces": 45,
+            "edges": 97,
+            "volume_mm3": 790214.812453959,
+            "bounding_box_mm": {
+                "x": 275.00000009999997,
+                "y": 150.0000001,
+                "z": 100.00000020000002,
+                "diagonal": 328.8236611392191
+            }
+        },
+        "change": {
+            "solids_delta": 0,
+            "faces_delta": 28,
+            "edges_delta": 52,
+            "volume_delta_mm3": -9772.049959055847,
+            "absolute_volume_change_mm3": 9772.049959055847,
+            "relative_volume_change": 0.012215263047670852
+        }
+    },
+    "operation_details": {
+        "operation": "FILLET",
+        "operation_status": "ADAPTIVE_SUCCESS",
+        "fillet": {
+            "radius_mm": null,
+            "edge_ids": [
+                "E0019",
+                "E0018",
+                "E0005",
+                "E0006",
+                "E0008",
+                "E0016",
+                "E0017",
+                "E0007",
+                "E0009",
+                "E0015",
+                "E0014",
+                "E0042",
+                "E0045",
+                "E0012",
+                "E0036",
+                "E0004",
+                "E0032",
+                "E0041",
+                "E0040",
+                "E0002",
+                "E0037",
+                "E0039",
+                "E0034",
+                "E0038"
+            ]
+        }
+    },
+    "ground_truth": {
+        "status": "NOT_CONFIRMED",
+        "reason": "The next available B-Rep state for the same CAD model is geometrically identical to the experiment START STEP.",
+        "step": null,
+        "geometry": null
+    },
+    "gt_metrics": {
+        "available": false,
+        "chamfer_distance": null,
+        "voxel_iou": null,
+        "difference_f1": null,
+        "note": "Ground Truth is not confirmed; GT-dependent metrics are N/A."
+    },
+    "success": {
+        "operation_success": true,
+        "strict_operation_success": true,
+        "valid_brep": true,
+        "solid_count_preserved": true,
+        "export_reimport_success": true
+    },
+    "metrics_module_runtime_s": 0.5161995000089519
+}

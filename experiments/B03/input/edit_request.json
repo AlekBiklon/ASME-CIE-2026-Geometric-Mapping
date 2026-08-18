@@ -1,0 +1,23 @@
+{
+    "experiment_id": "B03",
+    "dataset_index": 137,
+    "request_id": "B7A2N74ZJBF9MZHU_1770156927.436414",
+    "instruction": "I add chamfer, 1mm chamfer to this hole from both sides to prevent any sharp edges on the opening which should be meant for inlet valve of a tire.",
+    "operation": "CHAMFER",
+    "parameters": {
+        "distance_mm": 1.0
+    },
+    "target": {
+        "entity_type": "EDGES",
+        "edge_ids": [
+            "E0011",
+            "E0010",
+            "E0009",
+            "E0007",
+            "E0012",
+            "E0013"
+        ],
+        "selection_count": 6,
+        "source": "USER_3D_SELECTION"
+    }
+}

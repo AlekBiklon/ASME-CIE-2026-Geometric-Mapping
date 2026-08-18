@@ -1,0 +1,23 @@
+{
+    "experiment_id": "B02",
+    "method": "AUTODESK",
+    "status": "NOT_AVAILABLE",
+    "reason": "Ground Truth is not confirmed. Benchmark metrics were not calculated.",
+    "start_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B02\\input\\B02_start.step",
+    "result_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B02\\autodesk_output\\cadquery_script\\gpt-5.2_cadquery-script\\val_edit_B02\\gpt-5.2_cadquery-script_1786973084.497887\\brep_end\\1786973084.497887\\tmp.step",
+    "ground_truth_status": "NOT_CONFIRMED",
+    "ground_truth_step": null,
+    "metrics": {
+        "volumetric_precision": null,
+        "volumetric_recall": null,
+        "volumetric_f1": null,
+        "voxel_iou": null,
+        "difference_precision": null,
+        "difference_recall": null,
+        "difference_f1": null,
+        "added_f1": null,
+        "removed_f1": null,
+        "chamfer_distance_mm": null,
+        "chamfer_similarity": null
+    }
+}

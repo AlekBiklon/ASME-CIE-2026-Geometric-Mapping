@@ -1,0 +1,72 @@
+{
+    "experiment_id": "B07",
+    "method": "GEOMETRIC_MAPPING",
+    "module": "CAD_EDIT",
+    "operation": "FILLET",
+    "parameters": {
+        "radius_mm": 2.0,
+        "fillet_groups": [
+            {
+                "group_index": 1,
+                "label": "OUTER_EDGES",
+                "radius_mm": 2.0
+            },
+            {
+                "group_index": 2,
+                "label": "INNER_EDGES",
+                "radius_mm": 1.0
+            }
+        ]
+    },
+    "target": {
+        "entity_type": "EDGE_GROUPS",
+        "selection_semantics": "USER_SELECTED_FILLET_GROUPS",
+        "source": "USER_3D_SELECTION",
+        "selection_count": 8,
+        "edge_groups": [
+            {
+                "group_index": 1,
+                "label": "OUTER_EDGES",
+                "radius_mm": 2.0,
+                "edge_ids": [
+                    "E0218",
+                    "E0216",
+                    "E0156",
+                    "E0154"
+                ],
+                "selection_count": 4,
+                "source": "USER_3D_SELECTION"
+            },
+            {
+                "group_index": 2,
+                "label": "INNER_EDGES",
+                "radius_mm": 1.0,
+                "edge_ids": [
+                    "E0226",
+                    "E0200",
+                    "E0201",
+                    "E0198"
+                ],
+                "selection_count": 4,
+                "source": "USER_3D_SELECTION"
+            }
+        ]
+    },
+    "reference": {},
+    "input_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B07\\input\\B07_start.step",
+    "edit_request": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B07\\input\\edit_request.json",
+    "output_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B07\\our_method_output\\B07_result.step",
+    "engine_report": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B07\\our_method_output\\B07_edit_report.json",
+    "status": "SUCCESS",
+    "runtime_seconds": 3.737009600037709,
+    "output_exists": true,
+    "engine_report_exists": true,
+    "step_success": true,
+    "input_valid": true,
+    "result_valid": true,
+    "reimport_valid": true,
+    "input_solids": 8,
+    "output_solids": 8,
+    "volume_change": -10.379422762875038,
+    "error": null
+}

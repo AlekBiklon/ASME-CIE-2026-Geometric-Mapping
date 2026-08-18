@@ -1,0 +1,141 @@
+Thinking text:
+**Implementing CAD function**
+
+I need to implement my CAD function to load a STEP file and add a 2mm fillet to the edges of the scrolling wheel slot. First, I’ll identify the slot edges, probably in the interior cutout of the top shell where the scroll wheel is located. I plan to use `cq.importers.importStep` and check the number of solids, as well as the faces and the bounding box. After that, I’ll select the edges around the slot and apply the fillet.
+**Finding slot edges**
+
+I need a reliable method to locate the edges of the "scrolling wheel slot," likely along the middle length axis of the mouse. To start, I’ll use the bounding box of the entire model to estimate its position. I'm thinking the slot is at the top center, perhaps around a specific x-coordinate. Once I get the bounding box extents, I’ll check the model's orientation. First, I'll load the shape and convert it to a Workplane, then proceed from there.
+**Selecting edges for fillet**
+
+I see that I'll be working with `cq.Workplane`, so first, I’ll set the model as `shape`. I need to identify candidate edges: those close to the top surface, meaning their z-coordinate is greater than the bounding box's maximum z-value minus a small buffer. I want to avoid outer perimeter edges, so I'll consider a margin of about 10mm. I’ll focus on edges with a smaller length for the fillet. For implementation, using `Workplane("XY")` seems appropriate, then using edge selectors to filter with a bounding box selector.
+**Computing the selection box**
+
+I plan to create a selection box around the slot, estimating its dimensions since it's likely small—maybe 20mm in length and 8mm in width. I’ll base this on the bounding box measurements: lengthX, widthY, and height. Since the slot is at the top center, I can set a box around this center with some extents. For simplicity, I’ll focus on edges within the x and y center regions, ensuring z is greater than a portion of the bounding box's height. Then, I’ll apply the fillet.
+**Creating the edge selection**
+
+I’ll use `BoxSelector` to create a selection box around the slot, setting it to utilize the edge bounding box. To avoid including outer edges, I’ll reduce the span to 0.2 times the slot's length and width. After implementing the selection, I’ll want to print the edges to confirm how many I have, but I need to manage the output to avoid clutter. I also plan to check for vertical edges around the z-axis, refining the selections accordingly. Lastly, I’ll handle the input file correctly, using the provided path or a default if necessary.
+
+Generated script:
+def my_cad_function(args):
+    import os
+    import cadquery as cq
+
+    # Load STEP
+    input_path = args.get("input_file", "")
+    if not input_path:
+        raise ValueError("No input_file provided in args")
+    input_path = os.path.expanduser(input_path)
+    model_wp = cq.importers.importStep(input_path)
+
+    # Get the underlying OCC shape
+    base_shape = model_wp.val() if hasattr(model_wp, "val") else model_wp
+
+    # Debug info (first iteration)
+    try:
+        bb = base_shape.BoundingBox()
+        cx, cy, cz = bb.center.x, bb.center.y, bb.center.z
+        print(f"Loaded STEP: {input_path}")
+        print(f"Is Valid: {base_shape.isValid()}")
+        print(f"Num solids: {len(base_shape.Solids())}")
+        print(f"Bbox: xlen={bb.xlen:.3f}, ylen={bb.ylen:.3f}, zlen={bb.zlen:.3f}")
+        print(f"Bbox center: ({cx:.3f}, {cy:.3f}, {cz:.3f})")
+    except Exception as e:
+        print(f"Debug: error computing bbox/validity: {e}")
+        bb = None
+
+    wp = cq.Workplane("XY").newObject([base_shape])
+
+    # Attempt to fillet edges of the scroll-wheel slot.
+    # Heuristic selection: vertical-ish edges near the top and near the XY center of the model.
+    fillet_r = 2.0
+
+    if bb is None:
+        # Fallback: just return model if we can't analyze
+        return wp
+
+    xlen, ylen, zlen = bb.xlen, bb.ylen, bb.zlen
+    cx, cy = bb.center.x, bb.center.y
+    z_top = bb.zmax
+
+    # Tune these windows if needed based on rendering feedback
+    x_window = 0.18 * xlen
+    y_window = 0.18 * ylen
+    z_min = z_top - 0.40 * zlen
+    max_edge_len = 0.30 * max(xlen, ylen)
+
+    def is_scroll_slot_edge(e):
+        c = e.Center()
+        # Near center in XY, and in the upper portion of the mouse
+        if abs(c.x - cx) > x_window:
+            return False
+        if abs(c.y - cy) > y_window:
+            return False
+        if c.z < z_min:
+            return False
+        # Avoid long perimeter edges
+        try:
+            if e.Length() > max_edge_len:
+                return False
+        except Exception:
+            pass
+        return True
+
+    cand = wp.edges("|Z").filter(is_scroll_slot_edge)
+    try:
+        edges = cand.vals()
+        print(f"Candidate scroll-slot edges selected for fillet: {len(edges)}")
+        if len(edges) > 0:
+            # Print a few sample edges for tuning
+            for i, e in enumerate(edges[:12]):
+                cc = e.Center()
+                try:
+                    el = e.Length()
+                except Exception:
+                    el = float('nan')
+                print(f"  edge[{i}]: len={el:.3f}, center=({cc.x:.3f},{cc.y:.3f},{cc.z:.3f})")
+    except Exception as e:
+        print(f"Debug: error listing candidate edges: {e}")
+
+    # Apply fillet
+    try:
+        result = cand.fillet(fillet_r)
+        return result
+    except Exception as e:
+        print(f"Fillet attempt failed with heuristic selection: {e}")
+        # As a fallback, try a tighter selection near the top center
+        x_window2 = 0.12 * xlen
+        y_window2 = 0.12 * ylen
+        z_min2 = z_top - 0.30 * zlen
+
+        def is_scroll_slot_edge_tight(e):
+            c = e.Center()
+            if abs(c.x - cx) > x_window2:
+                return False
+            if abs(c.y - cy) > y_window2:
+                return False
+            if c.z < z_min2:
+                return False
+            try:
+                if e.Length() > 0.22 * max(xlen, ylen):
+                    return False
+            except Exception:
+                pass
+            return True
+
+        cand2 = wp.edges("|Z").filter(is_scroll_slot_edge_tight)
+        try:
+            print(f"Fallback candidate edges: {len(cand2.vals())}")
+        except Exception:
+            pass
+        try:
+            return cand2.fillet(fillet_r)
+        except Exception as e2:
+            print(f"Fallback fillet also failed: {e2}")
+            # Return original model if all attempts fail
+            return wp
+
+
+Program output:
+stdout: Loading function from: c:\PROGRAMING_PYTHON\2026-08-14_ASME_Hackathon_2026\experiments\B05\autodesk_output\cadquery_script\gpt-5.2_cadquery-script\val_edit_B05\gpt-5.2_cadquery-script_1786989193.7681894\brep_end\1786989193.7681894\temp_script.py
+Error executing LLM-provided function: No input_file provided in args
+Script completed.

@@ -1,0 +1,127 @@
+{
+    "experiment_id": "B07",
+    "request_id": "SUJ2G2UMJQR7PMBX_1757575242.90517",
+    "dataset_index": 54,
+    "file_name": "20229_fusion-360-151130-4481-877ac05a-projec_v1",
+    "instruction": "I add a fillet of 2 mm to the four outer edges and fillet of 1 mm to all the four inner edges to improve aesthetics.",
+    "status": "NOT_CONFIRMED",
+    "reason": "The next available B-Rep state for the same CAD model is geometrically identical to the experiment START STEP.",
+    "start_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B07\\input\\B07_start.step",
+    "dataset_start_step": "breps/SUJ2G2UMJQR7PMBX_1757575268.303395.step",
+    "dataset_start_timestamp": 1757575268.303395,
+    "start_geometry": {
+        "valid": true,
+        "solids": 8,
+        "faces": 157,
+        "edges": 358,
+        "volume": 3249.906327241035,
+        "bbox_x": 31.25,
+        "bbox_y": 14.25,
+        "bbox_z": 26.5
+    },
+    "history": [
+        {
+            "dataset_index": 54,
+            "request_id": "SUJ2G2UMJQR7PMBX_1757575242.90517",
+            "instruction": "I add a fillet of 2 mm to the four outer edges and fillet of 1 mm to all the four inner edges to improve aesthetics.",
+            "step_relative": "breps/SUJ2G2UMJQR7PMBX_1757575268.303395.step",
+            "step_absolute": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\SUJ2G2UMJQR7PMBX_1757575268.303395.step",
+            "step_timestamp": 1757575268.303395,
+            "step_exists": true
+        },
+        {
+            "dataset_index": 56,
+            "request_id": "SUJ2G2UMJQR7PMBX_1757603819.6229792",
+            "instruction": "Here, create knurling to all four circles for metal insert. For that, draw a triangle of 0.15 mm here, extruded completely to the bottom. Using circular pattern, repeat it for 12 times and finally mirror the knurling to all 4 holes.",
+            "step_relative": "breps/SUJ2G2UMJQR7PMBX_1757603878.3386667.step",
+            "step_absolute": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\SUJ2G2UMJQR7PMBX_1757603878.3386667.step",
+            "step_timestamp": 1757603878.3386667,
+            "step_exists": true
+        },
+        {
+            "dataset_index": 55,
+            "request_id": "SUJ2G2UMJQR7PMBX_1757604173.826423",
+            "instruction": "I am going to add extra support to these two pillar structure. For that I am going to remove all these chamfer on the four sides. Then extrude this face and this to one millimeter. create a mid-axis for this pillar, then draw a line of 0.5 millimeter and 1 millimeter here, join two lines and revolve it to 15 degrees. Repeat it six times along this circle. Then mirror it to the other pillar. Finally, add the four chamfers.",
+            "step_relative": "breps/SUJ2G2UMJQR7PMBX_1757604277.6066277.step",
+            "step_absolute": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\SUJ2G2UMJQR7PMBX_1757604277.6066277.step",
+            "step_timestamp": 1757604277.6066277,
+            "step_exists": true
+        }
+    ],
+    "candidates": [
+        {
+            "rank": 1,
+            "dataset_index": 56,
+            "request_id": "SUJ2G2UMJQR7PMBX_1757603819.6229792",
+            "instruction": "Here, create knurling to all four circles for metal insert. For that, draw a triangle of 0.15 mm here, extruded completely to the bottom. Using circular pattern, repeat it for 12 times and finally mirror the knurling to all 4 holes.",
+            "step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\SUJ2G2UMJQR7PMBX_1757603878.3386667.step",
+            "step_timestamp": 1757603878.3386667,
+            "time_delta_from_start_s": 28610.035271644592,
+            "geometry": {
+                "valid": true,
+                "solids": 8,
+                "faces": 157,
+                "edges": 358,
+                "volume": 3249.906327241035,
+                "bbox_x": 31.25,
+                "bbox_y": 14.25,
+                "bbox_z": 26.5
+            },
+            "comparison_to_start": {
+                "volume_delta": 0.0,
+                "solids_delta": 0,
+                "faces_delta": 0,
+                "edges_delta": 0,
+                "bbox_delta": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "same_volume": true,
+                "same_solids": true,
+                "same_faces": true,
+                "same_edges": true,
+                "same_bbox": true,
+                "geometrically_identical_basic": true
+            }
+        },
+        {
+            "rank": 2,
+            "dataset_index": 55,
+            "request_id": "SUJ2G2UMJQR7PMBX_1757604173.826423",
+            "instruction": "I am going to add extra support to these two pillar structure. For that I am going to remove all these chamfer on the four sides. Then extrude this face and this to one millimeter. create a mid-axis for this pillar, then draw a line of 0.5 millimeter and 1 millimeter here, join two lines and revolve it to 15 degrees. Repeat it six times along this circle. Then mirror it to the other pillar. Finally, add the four chamfers.",
+            "step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\SUJ2G2UMJQR7PMBX_1757604277.6066277.step",
+            "step_timestamp": 1757604277.6066277,
+            "time_delta_from_start_s": 29009.30323266983,
+            "geometry": {
+                "valid": true,
+                "solids": 8,
+                "faces": 157,
+                "edges": 358,
+                "volume": 3249.906327241035,
+                "bbox_x": 31.25,
+                "bbox_y": 14.25,
+                "bbox_z": 26.5
+            },
+            "comparison_to_start": {
+                "volume_delta": 0.0,
+                "solids_delta": 0,
+                "faces_delta": 0,
+                "edges_delta": 0,
+                "bbox_delta": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "same_volume": true,
+                "same_solids": true,
+                "same_faces": true,
+                "same_edges": true,
+                "same_bbox": true,
+                "geometrically_identical_basic": true
+            }
+        }
+    ],
+    "confirmed_ground_truth": null,
+    "ground_truth_step": null
+}

@@ -1,0 +1,154 @@
+Thinking text:
+**Considering hole placement**
+
+I’m mulling over the placement of the hole—should it be at the face center? If the user clicked on the face, they likely want the hole at that specific spot, but we only have the centroid data. So, I'll make a 2mm hole there. 
+
+I think it'll be best to use the face plane for the start point. However, if the target point is already on the plane, the projection remains the same. To verify the hole exists, maybe I should show the edges? I'll need to adjust my approach using the workplane with the projected origin setting.
+**Assessing hole visibility**
+
+I’m considering whether the 2mm hole is too small to see in the rendering. The image resolution might not capture it well on a large face. Although enlarging the hole could make it more visible, I want to stick to the specification of 2mm.
+
+The user requested a hole on the side face, but it might just appear as a tiny circle. I wonder if chamfering could help visibility, but that wasn't requested. Instead, I'll ensure the hole's presence by checking edge counts or volume differences before and after the cut. I’ll compute and print the volume change to confirm!
+**Finalizing computations and adjustments**
+
+After the cut, I'll need to compute the volume again and print the delta. It might also be useful to calculate the distance from a point to the face and the face normal, which I'll handle through a function string.
+
+I have to decide on the completion flag; since I can't confirm the hole's visibility from the last output, I can't mark it as complete just yet. So, I'll set that to false and craft updated code that enhances the volume delta debug process. I'll find the step path, load the shape, and stick with the previously determined scale of 10 while ensuring the chosen face is optimal based on area and distance calculations.
+**Determining face and creating the cut**
+
+I’m looking to compute the plane of the chosen face, which I think might be best done using the underlying surface. In CadQuery, I could use the `_geomAdaptor`, but I have a better idea. 
+
+I’ll create a workplane on the selected face and retrieve its plane and normal direction. After that, I'll project the target point onto this plane.
+
+To create the cut, I'll make a cylinder and position it correctly using the projected point. I'll then perform the cut on the shape and check the volume, considering it might be a compound shape, so I’ll need to sum the volumes as necessary. Time to implement this!
+
+Generated script:
+def my_cad_function(args):
+    import os
+    import cadquery as cq
+
+    # --- locate STEP path ---
+    step_path = None
+    if isinstance(args, dict):
+        for k in ["input_file", "brep_start_path_step", "step_file", "step_path"]:
+            if k in args and args[k]:
+                step_path = os.path.expanduser(str(args[k]))
+                break
+    if not step_path:
+        step_path = r"C:/PROGRAMING_PYTHON/2026-08-14_ASME_Hackathon_2026/neuralCAD-Edit-data/edit_192_external/breps/SUJ2G2UMJQR7PMBX_1757677066.6712623.step"
+
+    if not os.path.exists(step_path):
+        print("STEP path does not exist:", step_path)
+        return None
+
+    wp = cq.importers.importStep(step_path)
+    shape = wp.val() if hasattr(wp, "val") else wp
+
+    # --- Fusion selection event data (likely cm + cm^2); model is in mm ---
+    raw_pt = cq.Vector(-0.9689042506737217, -0.040016009795494537, 1.75)
+    raw_area = 2.5201549772318073
+
+    # Convert cm -> mm
+    s = 10.0
+    target_pt = cq.Vector(raw_pt.x * s, raw_pt.y * s, raw_pt.z * s)
+    target_area = raw_area * (s ** 2)
+
+    # --- choose face closest to target point and matching the reported area ---
+    faces = shape.Faces()
+
+    try:
+        from OCP.BRepExtrema import BRepExtrema_DistShapeShape
+        have_extrema = True
+    except Exception:
+        BRepExtrema_DistShapeShape = None
+        have_extrema = False
+
+    chosen_face = None
+    chosen_dist = None
+    best_score = 1e99
+
+    if have_extrema:
+        vtx = cq.Vertex.makeVertex(target_pt.x, target_pt.y, target_pt.z)
+        for f in faces:
+            try:
+                dss = BRepExtrema_DistShapeShape(vtx.wrapped, f.wrapped)
+                dss.Perform()
+                d = float(dss.Value())
+            except Exception:
+                continue
+
+            try:
+                a = float(f.Area())
+                area_term = abs(a - target_area)
+            except Exception:
+                # If area fails, don't use it
+                area_term = 0.0
+
+            # Strongly prioritize being on/near the face, then area match
+            score = d * 1e6 + area_term
+            if score < best_score:
+                best_score = score
+                chosen_face = f
+                chosen_dist = d
+
+    if chosen_face is None:
+        # Fallback (less reliable)
+        chosen_face = cq.Workplane(obj=shape).faces(cq.selectors.NearestToPointSelector(target_pt)).val()
+        chosen_dist = None
+
+    fc = chosen_face.Center()
+    try:
+        fa = float(chosen_face.Area())
+    except Exception:
+        fa = None
+
+    print(f"Loaded STEP: {step_path}")
+    print(f"Target point (mm): ({target_pt.x:.4f},{target_pt.y:.4f},{target_pt.z:.4f})")
+    if chosen_dist is not None:
+        print(f"Chosen face dist to target: {chosen_dist:.6f} mm")
+    print(f"Chosen face center: ({fc.x:.4f},{fc.y:.4f},{fc.z:.4f})" + (f" area={fa:.3f} mm^2" if fa is not None else ""))
+
+    # Re-select the face robustly by its center
+    face_wp = cq.Workplane(obj=shape).faces(cq.selectors.NearestToPointSelector(fc))
+    wp_on = face_wp.workplane(centerOption="CenterOfMass")
+    pl = wp_on.plane
+
+    # Plane normal and origin
+    n = cq.Vector(pl.zDir.x, pl.zDir.y, pl.zDir.z)
+    o = cq.Vector(pl.origin.x, pl.origin.y, pl.origin.z)
+
+    # Project target point to the plane (in case it's slightly off)
+    v = target_pt - o
+    dist_to_plane = v.dot(n)
+    proj_pt = target_pt - n.multiply(dist_to_plane)
+
+    # Long cutting cylinder along the face normal (2mm diameter)
+    bb = shape.BoundingBox()
+    diag = (bb.xlen ** 2 + bb.ylen ** 2 + bb.zlen ** 2) ** 0.5
+    cut_len = max(80.0, diag * 3.0)
+
+    start_pt = proj_pt - n.multiply(cut_len / 2.0)
+    cyl = cq.Solid.makeCylinder(1.0, cut_len, pnt=start_pt, dir=n)  # r=1mm => Ø2mm
+
+    # Debug volume change to confirm the cut happened
+    try:
+        v0 = float(shape.Volume())
+    except Exception:
+        v0 = None
+
+    result = shape.cut(cyl)
+
+    try:
+        v1 = float(result.Volume())
+    except Exception:
+        v1 = None
+
+    if v0 is not None and v1 is not None:
+        print(f"Volume before: {v0:.3f} mm^3  after: {v1:.3f} mm^3  delta: {v1 - v0:.3f} mm^3")
+
+    print("Added 2.0mm diameter reset-button access hole.")
+    return result
+
+
+Program output:
+stdout: 

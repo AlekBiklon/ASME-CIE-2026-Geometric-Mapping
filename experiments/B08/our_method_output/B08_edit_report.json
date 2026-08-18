@@ -1,0 +1,101 @@
+{
+    "method": "Semi-Automatic Geometric Mapping + Robust Deterministic CAD Editing",
+    "operation": "CHAMFER",
+    "operation_status": "FULL_SUCCESS",
+    "input_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B08\\input\\B08_start.step",
+    "edit_request": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B08\\input\\edit_request.json",
+    "output_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B08\\our_method_output\\B08_result.step",
+    "input_valid": true,
+    "result_valid": true,
+    "step_success": true,
+    "reimport_valid": true,
+    "input_solids": 9,
+    "output_solids": 9,
+    "reimport_solids": 9,
+    "input_faces": 1278,
+    "output_faces": 1279,
+    "input_edges": 3513,
+    "output_edges": 3515,
+    "input_volume": 33916.706432618936,
+    "output_volume": 33915.8628251401,
+    "volume_change": -0.8436074788332917,
+    "reimport_volume": 33916.09142074819,
+    "reimport_volume_delta": 0.22859560808865353,
+    "operation_report": {
+        "operation": "CHAMFER",
+        "distance_source": "REFERENCE_GEOMETRY",
+        "reference_geometry": {
+            "reference_edge_ids": [
+                "E2125"
+            ],
+            "estimated_distance_mm": 0.28284271247461845,
+            "selected_candidate": {
+                "distance_mm": 0.28284271247461845,
+                "reference_edge_id": "E2125",
+                "owner_solid": 3,
+                "face_index": 11,
+                "face_type": "CONE",
+                "method": "CHAMFER_FACE_BOUNDARY_SEPARATION"
+            },
+            "all_candidates": [
+                {
+                    "distance_mm": 0.28284271247461845,
+                    "reference_edge_id": "E2125",
+                    "owner_solid": 3,
+                    "face_index": 11,
+                    "face_type": "CONE",
+                    "method": "CHAMFER_FACE_BOUNDARY_SEPARATION"
+                }
+            ]
+        },
+        "requested_distance_mm": 0.28284271247461845,
+        "edge_ids": [
+            "E2128"
+        ],
+        "selected_edge_count": 1,
+        "owner_solid_count": 1,
+        "status": "FULL_SUCCESS",
+        "owner_results": [
+            {
+                "solid_index": 3,
+                "input_volume": 511.4631834550414,
+                "output_volume": 510.6195759762084,
+                "volume_change": -0.8436074788330075,
+                "input_faces": 39,
+                "output_faces": 40,
+                "input_edges": 100,
+                "output_edges": 102,
+                "contours": [
+                    {
+                        "edge_ids": [
+                            "E2128"
+                        ],
+                        "requested_distance_mm": 0.28284271247461845,
+                        "applied_distance_mm": 0.28284271247461845,
+                        "status": "FULL_SUCCESS",
+                        "attempts": [
+                            {
+                                "distance_mm": 0.28284271247461845,
+                                "success": true,
+                                "reason": null
+                            }
+                        ],
+                        "skipped_edges": [],
+                        "mapping": [
+                            {
+                                "edge_id": "E2128",
+                                "local_edge_index": 40,
+                                "match_score": 0.0,
+                                "type": "CIRCLE",
+                                "length": 21.676989309769574
+                            }
+                        ],
+                        "volume_before": 511.4631834550414,
+                        "volume_after": 510.6195759762084,
+                        "volume_change": -0.8436074788330075
+                    }
+                ]
+            }
+        ]
+    }
+}

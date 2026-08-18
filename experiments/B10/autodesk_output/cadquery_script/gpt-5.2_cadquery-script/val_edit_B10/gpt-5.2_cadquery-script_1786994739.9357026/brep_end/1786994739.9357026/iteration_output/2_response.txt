@@ -1,0 +1,105 @@
+Thinking text:
+**Clarifying filleting requirements**
+
+I need to edit the fillet on the highlighted edges to a radius of 5. The current model has heavy filleting on many edges, including maybe too many inner hole edges where I think chamfering is happening. I should match the instruction, which isn’t completely clear. The highlighted edges in the screenshot seem to focus on the outer edges of the base plate and vertical lug edges — specifically the sharp outer top edges they want to fillet.
+**Refining edge selection for filleting**
+
+I’ve noticed that the current method is grabbing outer wires from all faces, leading to unintended fillets on internal edges. I’m counting 81 edges when there should only be 45, which suggests duplicate edges from seams. I need to refine the selection, focusing on edges with a convex angle, and possibly only the top side. The bounding box indicates a vertical orientation, and the rendered view suggests the plate is vertical with angles adjusting the base. This needs careful consideration to avoid errors!
+**Filtering edges by location for filleting**
+
+I need to filter the edges based on their location, potentially selecting those with high curvature on the silhouette. Computing edge tangents and normals could help, but another option is to use the Workplane to fillet edges that aren’t in specific coordinates. The clear instruction mentions applying a 5-millimeter radius, likely focused on the sharp external edges indicated in the painting. It seems they want to fillet the outer edges, excluding the cylindrical hole edges, since those might have been rounded unintentionally.
+**Excluding circular edges for selection**
+
+I need to make sure to exclude edges that bound cylindrical holes, which are circular. The outer-wire method should ideally exclude inner ones, but it looks like the cylindrical surface faces do include these circular edges. To refine the selection, I should exclude any edges that are categorized as circles, leaving only non-circular outer edges. I also might want to consider excluding edges on the bottom, though I'm not entirely sure about that yet. I'll iterate over all edges, checking their curvature type and removing circles and ellipses from the selection.
+**Selecting and filleting edges carefully**
+
+I need to figure out how to select edges that are specifically on one face. Typically, boundary edges connect two faces, while internal edges may connect more. I should exclude circular edges that connect cylindrical and planar surfaces. Since we're focusing on "sharp" edges, I'm considering using dihedral angles to identify these. Although CadQuery doesn’t make that easy, I can leverage adjacent faces to help identify edge types.
+
+For now, my plan is to gather candidate edges, ensuring we exclude circles and ellipses, and focusing on longer edges to avoid potential issues with smaller fillets. My aim is to only fillet the outer edges, which could include bottom edges as well. I think I’ll go ahead and implement this selection process and handle exceptions carefully. Before finalizing, I’ll ensure to validate and debug, making sure we're not inadvertently including unwanted edges.
+
+Generated script:
+def my_cad_function(args):
+    import os
+    import cadquery as cq
+
+    # Resolve STEP path
+    step_path = None
+    if isinstance(args, dict):
+        step_path = args.get("input_file")
+        if step_path:
+            step_path = os.path.expanduser(step_path)
+
+    if (not step_path) or (not os.path.exists(step_path)):
+        step_path = r"C:/PROGRAMING_PYTHON/2026-08-14_ASME_Hackathon_2026/neuralCAD-Edit-data/edit_192_external/breps/3YH2WFSRM22W7DKT_1770125393.3132772.step"
+
+    if not os.path.exists(step_path):
+        print(f"STEP file not found: {step_path}")
+        return None
+
+    model = cq.importers.importStep(step_path)
+    solid = model.val() if hasattr(model, "val") else model
+
+    # Debug info
+    try:
+        bb = solid.BoundingBox()
+        c = bb.center
+        print(f"Loaded STEP: {os.path.basename(step_path)}")
+        print(f"Valid: {solid.isValid()}")
+        print(f"Faces: {len(solid.Faces())}, Edges: {len(solid.Edges())}")
+        print(
+            f"BBox: x[{bb.xmin:.3f},{bb.xmax:.3f}] y[{bb.ymin:.3f},{bb.ymax:.3f}] z[{bb.zmin:.3f},{bb.zmax:.3f}] center=({c.x:.3f},{c.y:.3f},{c.z:.3f})"
+        )
+    except Exception as e:
+        print(f"Debug bbox failed: {e}")
+
+    # Goal: fillet the highlighted *outer handling* edges, but avoid rounding hole-mouth circles.
+    # So: select all non-circular/non-elliptic edges and fillet them.
+    edges_all = list(solid.Edges())
+
+    type_counts = {}
+    candidates = []
+    for e in edges_all:
+        try:
+            gt = e.geomType()
+        except Exception:
+            gt = "UNKNOWN"
+        type_counts[gt] = type_counts.get(gt, 0) + 1
+
+        # Exclude round hole edges
+        if gt in ("CIRCLE", "ELLIPSE"):
+            continue
+
+        # Skip extremely small edges (numerical noise)
+        try:
+            if e.Length() < 0.5:
+                continue
+        except Exception:
+            pass
+
+        candidates.append(e)
+
+    print(f"Edge geomType counts: {type_counts}")
+    print(f"Fillet candidates (non-circular): {len(candidates)} / {len(edges_all)}")
+
+    wp = cq.Workplane("XY").add(solid)
+
+    try:
+        return wp.newObject(candidates).fillet(5.0)
+    except Exception as e:
+        print(f"Fillet(5.0) on non-circular edges failed: {e}")
+        import traceback
+        traceback.print_exc()
+        return wp
+
+
+Program output:
+stdout: Loading function from: c:\PROGRAMING_PYTHON\2026-08-14_ASME_Hackathon_2026\experiments\B10\autodesk_output\cadquery_script\gpt-5.2_cadquery-script\val_edit_B10\gpt-5.2_cadquery-script_1786994739.9357026\brep_end\1786994739.9357026\temp_script.py
+Loaded STEP: 3YH2WFSRM22W7DKT_1770125393.3132772.step
+Valid: True
+Faces: 17, Edges: 45
+BBox: x[-137.500,137.500] y[0.000,150.000] z[-50.000,50.000] center=(0.000,75.000,0.000)
+Edge geomType counts: {'LINE': 27, 'CIRCLE': 18}
+Fillet candidates (non-circular): 27 / 45
+Exported shape to: c:\PROGRAMING_PYTHON\2026-08-14_ASME_Hackathon_2026\experiments\B10\autodesk_output\cadquery_script\gpt-5.2_cadquery-script\val_edit_B10\gpt-5.2_cadquery-script_1786994739.9357026\brep_end\1786994739.9357026\tmp.step
+Exported PNG image to: c:\PROGRAMING_PYTHON\2026-08-14_ASME_Hackathon_2026\experiments\B10\autodesk_output\cadquery_script\gpt-5.2_cadquery-script\val_edit_B10\gpt-5.2_cadquery-script_1786994739.9357026\brep_end\1786994739.9357026\tmp.png
+Script completed.

@@ -1,0 +1,386 @@
+Thinking text:
+**Evaluating chamfering function**
+
+I need to create a function to add a 1mm chamfer on both sides of the valve hole. In the past, one iteration succeeded with a bulk chamfer, but I think there might have been issues with the edges. Another attempt failed due to chamfering errors, and the latest output shows an error after the first sequential chamfer. I’ll work on robustly selecting the correct edges and chamfers by identifying the valve hole cylindrical face and its boundary wires.
+**Analyzing chamfering methods**
+
+In the import step, it looks like the edges are BSPLINE due to elliptic intersections with the chamfer. I think it’d be better to obtain edges at the cylinder ends since they have a constant axis coordinate close to the min/max of the cylinder face bounding box. There was some clustering before, but chamfer failures could be from choosing multiple edges, including seam edges, or possibly smooth edges. Since the task is to add a 1mm chamfer to a small hole on both entrances, I need to apply it carefully around the hole openings.
+**Identifying edges for chamfering**
+
+I can find the edges by locating the cylindrical face of the hole wall, then identifying its outer boundary edges, which are the two loops to chamfer. However, I should apply the chamfer to the edges on the adjacent faces instead of the cylinder face. The goal is to remove sharpness at the intersection where the cylinder meets the outer surface. If chamfering fails, it might be due to non-manifold or wire edges, or perhaps the size is too large for convex edges. I need to consider that since the hole has a concave edge, applying the chamfer there might be problematic.
+**Investigating chamfer failures**
+
+The chamfer failure might stem from selecting multiple edges that aren't co-planar or include seam edges. Ideally, I should only apply the chamfer to the two edges of the hole opening—avoiding the seam edges from the cylinder. It seems that during earlier debugging, I noted seven edges on the hole face, but the selected edge pair appears mismatched since one is long and the other short. While the chamfer succeeded, it likely wasn’t on the correct edges. In the latest run, axis clustering suggests that the edges at the second end could be problematic.
+**Refining chamfering strategy**
+
+I should chamfer edges based on their adjacency to the cylinder face and ensure they don’t tangent with the outer surface. The boundary between the cylinder face and outer surface is an edge, which may consist of multiple edges due to face splitting. Instead of identifying separate ends, I'll focus on edges that belong to the hole face and aren’t seam edges. 
+
+Finding the nearest edge to the event point and using it as a seed to gather connected edges around the hole will be my approach. Additionally, the valve hole goes through the barrel thickness in a radial direction, not along the wheel axis. I'll determine the hole axis from the cylinder face itself for better accuracy.
+**Determining cylinder axis direction**
+
+To find the cylinder axis direction in CadQuery, I’ll project edge centers along the cylinder axis instead of the wheel axis. I plan to determine the axis direction from the bounding box of the cylinder face, selecting the dimension with the greatest length, likely around the wall thickness. 
+
+Next, I'll compute the direction between the centers of the two end edges of the hole opening. I'll group edges by their centers, find the largest separation between groups, and ensure that the selected edges are circumferential, avoiding seam edges. This way, I can effectively identify the edges required for chamfering.
+**Filtering edges for chamfering**
+
+I need to filter edges based on length, specifically between 0.5 and 100, while ignoring seam edges based on the t criteria. My plan is to try a bulk chamfer on all selected edges with a size of 1.0. If it fails, I’ll attempt chamfering each end separately or narrow the selection. 
+
+I’ll ensure I choose the correct cylinder face for the hole wall, utilizing the event point to identify the seed edge. For edge selection, the adjacency of other faces will be considered to avoid seam edges, ensuring effective chamfering across both ends. Let's implement these steps!
+**Implementing chamfering strategy**
+
+I'm looking to perform a chamfer on edges, so first I need to compute their bounding box center and length. I suspect that trying to chamfer edges on both ends simultaneously might fail, so I’ll focus on one end at a time. After the first chamfer, I'll reselect edges for the second end since the topology will have changed.
+
+I plan to store points near each end and use them to find the nearest edges. As the model updates after each operation, I'll carefully select edges based on their proximity to those stored points, avoiding old references. This way, I should ensure a successful operation for both ends. Let's go ahead and implement this!
+**Crafting the main solid function**
+
+I’m developing a function to get the main solid from a workplane. The first step is to convert a point by using midpoints from the selected edge and scaling accordingly. I’ll determine the nearest seed edge and the corresponding hole face that's a cylinder with a radius between 2 and 20 while keeping a fallback option if not found.
+
+Next, I’ll compute endpoints from candidate boundary edges and their projections. Then, I’ll collect edges into groups based on their positions. The goal is to chamfer both ends, ideally in one go to maintain a smooth blend, but if that fails, I can do it one-by-one. I’ll ensure to handle solids appropriately post-modification while setting the function to be incomplete for now. Let's finalize this code!
+
+Generated script:
+def my_cad_function(args):
+    import os
+    import cadquery as cq
+
+    # --- Load STEP ---
+    step_fallback = r"C:/PROGRAMING_PYTHON/2026-08-14_ASME_Hackathon_2026/neuralCAD-Edit-data/edit_192_external/breps/B7A2N74ZJBF9MZHU_1770156951.5787919.step"
+    step_path = os.path.expanduser(args.get("input_file", step_fallback))
+    wp_all = cq.importers.importStep(step_path)
+
+    solids = wp_all.solids().vals()
+    if not solids:
+        print("No solids found; returning imported object")
+        return wp_all
+
+    def safe_vol(s):
+        try:
+            return float(s.Volume())
+        except Exception:
+            return 0.0
+
+    main_solid = max(solids, key=safe_vol)
+    other_solids = [s for s in solids if not s.wrapped.IsSame(main_solid.wrapped)]
+
+    print(f"Loaded: {step_path}")
+    print(f"Solids: {len(solids)} (editing largest)")
+
+    # --- Fusion event: selected edge bbox center (likely on valve hole opening) ---
+    # event bbox ~ x:[3.8717,4.7401], y:[19.1491,19.6947], z:[18.8708,20.0708]
+    p_evt = cq.Vector(
+        (3.8717106819 + 4.7400818107) / 2.0,
+        (19.1491185817 + 19.6947210244) / 2.0,
+        (18.8707622528 + 20.0707622528) / 2.0,
+    )
+
+    # Pre-collect edge info for nearest-neighbor lookup
+    edge_info = []
+    for e in main_solid.Edges():
+        try:
+            edge_info.append((e.BoundingBox().center, float(e.Length()), e.geomType(), e))
+        except Exception:
+            pass
+
+    def nearest_edge_to_point(pt, max_len=300.0):
+        best = None
+        for c, L, gt, e in edge_info:
+            if L > max_len:
+                continue
+            d = c.sub(pt).Length
+            if best is None or d < best[0]:
+                best = (d, e, L, gt, c)
+        return best
+
+    # Determine coordinate scale (Fusion captures sometimes in cm)
+    scale_candidates = [1.0, 10.0, 25.4]
+    best_scale = None
+    best_d = 1e99
+    for s in scale_candidates:
+        pt = cq.Vector(p_evt.x * s, p_evt.y * s, p_evt.z * s)
+        hit = nearest_edge_to_point(pt, max_len=300.0)
+        if hit:
+            d = hit[0]
+            if d < best_d:
+                best_d = d
+                best_scale = s
+
+    if best_scale is None:
+        print("Could not determine event scale; returning original")
+        return wp_all
+
+    p_target = cq.Vector(p_evt.x * best_scale, p_evt.y * best_scale, p_evt.z * best_scale)
+    hit0 = nearest_edge_to_point(p_target, max_len=300.0)
+    if not hit0:
+        print("Could not locate seed edge near event point; returning original")
+        return wp_all
+
+    d0, seed_edge0, L0, gt0, _c0 = hit0
+    print(f"Using scale={best_scale:g}; seed edge d={d0:.4f}, L={L0:.3f}, type={gt0}")
+
+    # ---- OCC helpers to get cylinder axis/radius robustly ----
+    def cyl_axis_and_radius(face):
+        try:
+            from OCP.BRepAdaptor import BRepAdaptor_Surface
+            from OCP.GeomAbs import GeomAbs_Cylinder
+        except Exception:
+            return None
+        try:
+            ad = BRepAdaptor_Surface(face.wrapped, True)
+            if ad.GetType() != GeomAbs_Cylinder:
+                return None
+            cyl = ad.Cylinder()
+            ax = cyl.Axis()  # gp_Ax1
+            loc = ax.Location()
+            dire = ax.Direction()
+            axis_loc = cq.Vector(loc.X(), loc.Y(), loc.Z())
+            axis_dir = cq.Vector(dire.X(), dire.Y(), dire.Z())
+            r = float(cyl.Radius())
+            return axis_loc, axis_dir, r
+        except Exception:
+            return None
+
+    def faces_containing_edge(solid, edge):
+        out = []
+        for f in solid.Faces():
+            try:
+                for fe in f.Edges():
+                    if fe.wrapped.IsSame(edge.wrapped):
+                        out.append(f)
+                        break
+            except Exception:
+                pass
+        return out
+
+    def face_area(f):
+        try:
+            return float(f.Area())
+        except Exception:
+            return 1e99
+
+    def pick_hole_cylinder_face(solid, seed_edge):
+        cfaces = faces_containing_edge(solid, seed_edge)
+        cyls = []
+        for f in cfaces:
+            data = cyl_axis_and_radius(f)
+            if not data:
+                continue
+            _axis_loc, _axis_dir, r = data
+            if 2.0 <= r <= 20.0:
+                cyls.append((face_area(f), r, f))
+        if cyls:
+            cyls.sort(key=lambda t: (t[0], t[1]))
+            return cyls[0][2]
+        # fallback: smallest face among containing faces
+        if cfaces:
+            return min(cfaces, key=face_area)
+        return None
+
+    def boundary_edges_of_face_on_solid(solid, face):
+        # Keep edges that are shared between face and at least one *different* face
+        edges = []
+        for e in face.Edges():
+            try:
+                other_face_found = False
+                for f2 in solid.Faces():
+                    try:
+                        if f2.wrapped.IsSame(face.wrapped):
+                            continue
+                        for e2 in f2.Edges():
+                            if e2.wrapped.IsSame(e.wrapped):
+                                other_face_found = True
+                                break
+                        if other_face_found:
+                            break
+                    except Exception:
+                        continue
+                if other_face_found:
+                    edges.append(e)
+            except Exception:
+                pass
+        return edges
+
+    def end_groups_for_cyl_face(solid, cyl_face):
+        data = cyl_axis_and_radius(cyl_face)
+        if not data:
+            return None
+        axis_loc, axis_dir, r = data
+        # normalize axis_dir
+        try:
+            axis_dir = axis_dir.normalized()
+        except Exception:
+            # manual
+            L = (axis_dir.x**2 + axis_dir.y**2 + axis_dir.z**2) ** 0.5
+            if L < 1e-9:
+                return None
+            axis_dir = cq.Vector(axis_dir.x / L, axis_dir.y / L, axis_dir.z / L)
+
+        cand_edges = boundary_edges_of_face_on_solid(solid, cyl_face)
+        # Filter out tiny slivers
+        filt = []
+        for e in cand_edges:
+            try:
+                L = float(e.Length())
+                if L < 0.5:
+                    continue
+                c = e.BoundingBox().center
+                t = c.sub(axis_loc).dot(axis_dir)
+                filt.append((t, L, c, e))
+            except Exception:
+                pass
+
+        if len(filt) < 2:
+            return None
+
+        t_vals = [t for t, _L, _c, _e in filt]
+        t_min = min(t_vals)
+        t_max = max(t_vals)
+        t_span = t_max - t_min
+        tol = max(0.20, 0.08 * t_span)
+
+        gmin = [(_t, _L, _c, _e) for (_t, _L, _c, _e) in filt if abs(_t - t_min) <= tol]
+        gmax = [(_t, _L, _c, _e) for (_t, _L, _c, _e) in filt if abs(_t - t_max) <= tol]
+
+        # If clustering too broad/narrow, tighten slightly
+        if not gmin or not gmax:
+            tol = max(0.10, 0.04 * t_span)
+            gmin = [(_t, _L, _c, _e) for (_t, _L, _c, _e) in filt if abs(_t - t_min) <= tol]
+            gmax = [(_t, _L, _c, _e) for (_t, _L, _c, _e) in filt if abs(_t - t_max) <= tol]
+
+        if not gmin or not gmax:
+            return None
+
+        def avg_center(group):
+            sx = sy = sz = 0.0
+            for _t, _L, c, _e in group:
+                sx += c.x
+                sy += c.y
+                sz += c.z
+            n = float(len(group))
+            return cq.Vector(sx / n, sy / n, sz / n)
+
+        return {
+            "axis_loc": axis_loc,
+            "axis_dir": axis_dir,
+            "radius": r,
+            "t_min": t_min,
+            "t_max": t_max,
+            "group_min": [e for _t, _L, _c, e in gmin],
+            "group_max": [e for _t, _L, _c, e in gmax],
+            "p_min": avg_center(gmin),
+            "p_max": avg_center(gmax),
+        }
+
+    def chamfer_edges_on_wp(wp, edges_to_chamfer, size=1.0):
+        # Try bulk, then fallback to per-edge
+        if not edges_to_chamfer:
+            return wp
+
+        def is_target(ed):
+            try:
+                return any(ed.wrapped.IsSame(te.wrapped) for te in edges_to_chamfer)
+            except Exception:
+                return False
+
+        try:
+            return wp.edges().filter(is_target).chamfer(size)
+        except Exception as e:
+            print(f"  Bulk chamfer failed ({e}); trying per-edge...")
+            out = wp
+            for te in edges_to_chamfer:
+                try:
+                    out = out.edges().filter(lambda ed, te=te: ed.wrapped.IsSame(te.wrapped)).chamfer(size)
+                except Exception:
+                    # keep going
+                    pass
+            return out
+
+    def chamfer_one_end(wp, p_ref, end_hint=None):
+        solid = wp.val() if hasattr(wp, "val") else wp
+
+        # Find nearest edge to p_ref in current solid
+        best = None
+        for e in solid.Edges():
+            try:
+                c = e.BoundingBox().center
+                L = float(e.Length())
+                if L > 300.0:
+                    continue
+                d = c.sub(p_ref).Length
+                if best is None or d < best[0]:
+                    best = (d, e)
+            except Exception:
+                pass
+        if not best:
+            return wp
+
+        _d, seed_edge = best
+        cyl_face = pick_hole_cylinder_face(solid, seed_edge)
+        if not cyl_face:
+            return wp
+
+        groups = end_groups_for_cyl_face(solid, cyl_face)
+        if not groups:
+            return wp
+
+        axis_loc = groups["axis_loc"]
+        axis_dir = groups["axis_dir"]
+        t_ref = p_ref.sub(axis_loc).dot(axis_dir)
+
+        # Choose which end to chamfer
+        t_min = groups["t_min"]
+        t_max = groups["t_max"]
+        choose_min = abs(t_ref - t_min) <= abs(t_ref - t_max)
+        if end_hint == "min":
+            choose_min = True
+        elif end_hint == "max":
+            choose_min = False
+
+        edges_end = groups["group_min"] if choose_min else groups["group_max"]
+        return chamfer_edges_on_wp(wp, edges_end, size=1.0)
+
+    # --- Identify both ends from the original (unmodified) model ---
+    hole_face0 = pick_hole_cylinder_face(main_solid, seed_edge0)
+    if not hole_face0:
+        print("Could not find valve-hole cylindrical face; returning original")
+        return wp_all
+
+    groups0 = end_groups_for_cyl_face(main_solid, hole_face0)
+    if not groups0:
+        print("Could not determine valve-hole end groups; returning original")
+        return wp_all
+
+    p_end_min = groups0["p_min"]
+    p_end_max = groups0["p_max"]
+    print(
+        f"Valve-hole cyl radius≈{groups0['radius']:.3f}mm; end points: "
+        f"min=({p_end_min.x:.3f},{p_end_min.y:.3f},{p_end_min.z:.3f}), "
+        f"max=({p_end_max.x:.3f},{p_end_max.y:.3f},{p_end_max.z:.3f})"
+    )
+
+    # --- Apply 1mm chamfer on BOTH ends (sequential, re-detecting topology) ---
+    wp_main = cq.Workplane(obj=main_solid)
+    wp_main = chamfer_one_end(wp_main, p_end_min, end_hint="min")
+    wp_main = chamfer_one_end(wp_main, p_end_max, end_hint="max")
+
+    # --- Recombine other solids unchanged ---
+    result = wp_main
+    for s in other_solids:
+        try:
+            result = result.union(cq.Workplane(obj=s))
+        except Exception:
+            try:
+                result = cq.Compound.makeCompound([result.val(), s])
+            except Exception:
+                pass
+
+    return result
+
+
+Program output:
+stdout: Loading function from: c:\PROGRAMING_PYTHON\2026-08-14_ASME_Hackathon_2026\experiments\B03\autodesk_output\cadquery_script\gpt-5.2_cadquery-script\val_edit_B03\gpt-5.2_cadquery-script_1786973990.403392\brep_end\1786973990.403392\temp_script.py
+Loaded: C:/PROGRAMING_PYTHON/2026-08-14_ASME_Hackathon_2026/neuralCAD-Edit-data/edit_192_external/breps/B7A2N74ZJBF9MZHU_1770156951.5787919.step
+Solids: 1 (editing largest)
+Using scale=10; seed edge d=0.0005, L=23.580, type=BSPLINE
+Valve-hole cyl radius≈6.000mm; end points: min=(48.313,188.807,194.708), max=(43.059,194.219,194.708)
+Exported shape to: c:\PROGRAMING_PYTHON\2026-08-14_ASME_Hackathon_2026\experiments\B03\autodesk_output\cadquery_script\gpt-5.2_cadquery-script\val_edit_B03\gpt-5.2_cadquery-script_1786973990.403392\brep_end\1786973990.403392\tmp.step
+Exported PNG image to: c:\PROGRAMING_PYTHON\2026-08-14_ASME_Hackathon_2026\experiments\B03\autodesk_output\cadquery_script\gpt-5.2_cadquery-script\val_edit_B03\gpt-5.2_cadquery-script_1786973990.403392\brep_end\1786973990.403392\tmp.png
+Script completed.

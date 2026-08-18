@@ -1,0 +1,14 @@
+{
+    "experiment_id": "B08",
+    "dataset_index": 180,
+    "request_id": "B7A2N74ZJBF9MZHU_1770169445.8914912",
+    "request_type": "edit",
+    "file_name": "120221_dXJuOmFkc2sud2lwcHJvZDpmcy5maWxlOnZmL",
+    "instruction": "Add chamfer to main/biggest cylindrical section of Heatbreak body/component. The chamfer should be same size as present on top of the part, but should be added to the lower edge of the cylinder. This should allow easier insertion of the part during assembly.",
+    "instruction_source": "row.request_text",
+    "source_start_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\B7A2N74ZJBF9MZHU_1770169581.2959814.step",
+    "local_start_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B08\\input\\B08_start.step",
+    "video_path": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\videos\\B7A2N74ZJBF9MZHU_1770169445.8914912_30_720_audio.mp4",
+    "request_events": [],
+    "request_event_count": 0
+}

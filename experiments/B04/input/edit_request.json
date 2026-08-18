@@ -1,0 +1,22 @@
+{
+    "experiment_id": "B04",
+    "dataset_index": 63,
+    "request_id": "ZK22J6VYRKQ2RTFD_1758276114.349288",
+    "instruction": "Add a 2 mm hole to the bottle's nipple to make it easier for a baby to suck from.",
+    "operation": "ADD_HOLE",
+    "parameters": {
+        "diameter_mm": 2.0
+    },
+    "target": {
+        "entity_type": "POINT_ON_FACE",
+        "face_id": "F0357",
+        "point_xyz": [
+            0.021734707385114405,
+            163.5598692846118,
+            -0.13723996485197176
+        ],
+        "surface_type": "BSPLINE",
+        "brep_match_distance_mm": 0.013094723941133887,
+        "source": "USER_3D_SELECTION"
+    }
+}

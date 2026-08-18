@@ -1,0 +1,33 @@
+{
+    "experiment_id": "B02",
+    "method": "GEOMETRIC_MAPPING",
+    "module": "CAD_EDIT",
+    "operation": "FILLET",
+    "parameters": {
+        "radius_mm": 0.2
+    },
+    "target": {
+        "entity_type": "EDGE",
+        "edge_ids": [
+            "E0370"
+        ],
+        "selection_count": 1,
+        "source": "USER_3D_SELECTION"
+    },
+    "input_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B02\\input\\B02_start.step",
+    "edit_request": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B02\\input\\edit_request.json",
+    "output_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B02\\our_method_output\\B02_result.step",
+    "engine_report": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B02\\our_method_output\\B02_edit_report.json",
+    "status": "SUCCESS",
+    "runtime_seconds": 13.069512499962002,
+    "output_exists": true,
+    "engine_report_exists": true,
+    "step_success": true,
+    "input_valid": true,
+    "result_valid": true,
+    "reimport_valid": true,
+    "input_solids": 12,
+    "output_solids": 12,
+    "volume_change": -0.3052496523814625,
+    "error": null
+}

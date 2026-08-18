@@ -1,0 +1,64 @@
+{
+    "experiment_id": "B10",
+    "request_id": "3YH2WFSRM22W7DKT_1770125357.5670888",
+    "method": "AUTODESK",
+    "baseline": "neuralCAD-Edit",
+    "model": "gpt-5.2",
+    "harness": "cadquery_script",
+    "status": "SUCCESS",
+    "runtime": {
+        "sec": 429.42028522491455,
+        "min": 7.157004753748576
+    },
+    "agent": {
+        "vlm_responses": 4,
+        "visual_feedback_renders": 3,
+        "input_tokens": null,
+        "output_tokens": null,
+        "total_tokens": null,
+        "cost_estimate_usd": null
+    },
+    "step": {
+        "success": true,
+        "path": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B10\\autodesk_output\\cadquery_script\\gpt-5.2_cadquery-script\\val_edit_B10\\gpt-5.2_cadquery-script_1786994739.9357026\\brep_end\\1786994739.9357026\\tmp.step",
+        "valid_brep": true,
+        "solid_count_preserved": null
+    },
+    "geometry": {
+        "start": null,
+        "result": {
+            "valid": true,
+            "solids": 1,
+            "faces": 47,
+            "edges": 103,
+            "volume_mm3": 790131.0313638629,
+            "bounding_box_mm": {
+                "x": 275.0,
+                "y": 150.0,
+                "z": 100.0000002,
+                "diagonal": 328.8236610099705
+            }
+        },
+        "change": null
+    },
+    "ground_truth": {
+        "status": "NOT_EVALUATED",
+        "reason": "ground_truth_report.json not found.",
+        "geometry": null
+    },
+    "gt_metrics": {
+        "chamfer_distance": null,
+        "voxel_iou": null,
+        "volumetric_precision": null,
+        "volumetric_recall": null,
+        "volumetric_f1": null,
+        "difference_precision": null,
+        "difference_recall": null,
+        "difference_f1": null,
+        "added_f1": null,
+        "removed_f1": null,
+        "note": "Ground Truth is not confirmed; GT-dependent metrics are N/A."
+    },
+    "success": true,
+    "metrics_module_runtime_s": 1.178374300012365
+}

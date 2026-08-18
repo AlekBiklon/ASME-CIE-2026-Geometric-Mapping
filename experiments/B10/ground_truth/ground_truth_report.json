@@ -1,0 +1,127 @@
+{
+    "experiment_id": "B10",
+    "request_id": "3YH2WFSRM22W7DKT_1770125357.5670888",
+    "dataset_index": 162,
+    "file_name": "24037_fusion-360-151130-5290-07e58172-untitl_v1",
+    "instruction": "I fillet these edges of the part by radius 5 millimeters and here the divisible edge respectively to create the part easy to handle and safe to handle so to avoid the injuries.",
+    "status": "NOT_CONFIRMED",
+    "reason": "The next available B-Rep state for the same CAD model is geometrically identical to the experiment START STEP.",
+    "start_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B10\\input\\B10_start.step",
+    "dataset_start_step": "breps/3YH2WFSRM22W7DKT_1770125393.3132772.step",
+    "dataset_start_timestamp": 1770125393.3132772,
+    "start_geometry": {
+        "valid": true,
+        "solids": 1,
+        "faces": 17,
+        "edges": 45,
+        "volume": 799986.8624130149,
+        "bbox_x": 275.0,
+        "bbox_y": 150.00000000000003,
+        "bbox_z": 100.00000000000001
+    },
+    "history": [
+        {
+            "dataset_index": 162,
+            "request_id": "3YH2WFSRM22W7DKT_1770125357.5670888",
+            "instruction": "I fillet these edges of the part by radius 5 millimeters and here the divisible edge respectively to create the part easy to handle and safe to handle so to avoid the injuries.",
+            "step_relative": "breps/3YH2WFSRM22W7DKT_1770125393.3132772.step",
+            "step_absolute": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\3YH2WFSRM22W7DKT_1770125393.3132772.step",
+            "step_timestamp": 1770125393.3132772,
+            "step_exists": true
+        },
+        {
+            "dataset_index": 164,
+            "request_id": "3YH2WFSRM22W7DKT_1770125530.233072",
+            "instruction": "I prolong the part in this area by 100mm, remove this regular hole and add here the long hole or slotted hole to compensate the tolerances.",
+            "step_relative": "breps/3YH2WFSRM22W7DKT_1770125560.8070118.step",
+            "step_absolute": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\3YH2WFSRM22W7DKT_1770125560.8070118.step",
+            "step_timestamp": 1770125560.8070118,
+            "step_exists": true
+        },
+        {
+            "dataset_index": 163,
+            "request_id": "3YH2WFSRM22W7DKT_1770125622.516737",
+            "instruction": "I add here another part like on the left side and adjust the shape of this upper portion to the in the way that there will be a beam in between the parts so we design it in this way This beam, there will be two holes and this beam will be for hanging the towel in the bathroom.",
+            "step_relative": "breps/3YH2WFSRM22W7DKT_1770125670.993781.step",
+            "step_absolute": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\3YH2WFSRM22W7DKT_1770125670.993781.step",
+            "step_timestamp": 1770125670.993781,
+            "step_exists": true
+        }
+    ],
+    "candidates": [
+        {
+            "rank": 1,
+            "dataset_index": 164,
+            "request_id": "3YH2WFSRM22W7DKT_1770125530.233072",
+            "instruction": "I prolong the part in this area by 100mm, remove this regular hole and add here the long hole or slotted hole to compensate the tolerances.",
+            "step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\3YH2WFSRM22W7DKT_1770125560.8070118.step",
+            "step_timestamp": 1770125560.8070118,
+            "time_delta_from_start_s": 167.4937345981598,
+            "geometry": {
+                "valid": true,
+                "solids": 1,
+                "faces": 17,
+                "edges": 45,
+                "volume": 799986.8624130149,
+                "bbox_x": 275.0,
+                "bbox_y": 150.00000000000003,
+                "bbox_z": 100.00000000000001
+            },
+            "comparison_to_start": {
+                "volume_delta": 0.0,
+                "solids_delta": 0,
+                "faces_delta": 0,
+                "edges_delta": 0,
+                "bbox_delta": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "same_volume": true,
+                "same_solids": true,
+                "same_faces": true,
+                "same_edges": true,
+                "same_bbox": true,
+                "geometrically_identical_basic": true
+            }
+        },
+        {
+            "rank": 2,
+            "dataset_index": 163,
+            "request_id": "3YH2WFSRM22W7DKT_1770125622.516737",
+            "instruction": "I add here another part like on the left side and adjust the shape of this upper portion to the in the way that there will be a beam in between the parts so we design it in this way This beam, there will be two holes and this beam will be for hanging the towel in the bathroom.",
+            "step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\3YH2WFSRM22W7DKT_1770125670.993781.step",
+            "step_timestamp": 1770125670.993781,
+            "time_delta_from_start_s": 277.68050384521484,
+            "geometry": {
+                "valid": true,
+                "solids": 1,
+                "faces": 17,
+                "edges": 45,
+                "volume": 799986.8624130149,
+                "bbox_x": 275.0,
+                "bbox_y": 150.00000000000003,
+                "bbox_z": 100.00000000000001
+            },
+            "comparison_to_start": {
+                "volume_delta": 0.0,
+                "solids_delta": 0,
+                "faces_delta": 0,
+                "edges_delta": 0,
+                "bbox_delta": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "same_volume": true,
+                "same_solids": true,
+                "same_faces": true,
+                "same_edges": true,
+                "same_bbox": true,
+                "geometrically_identical_basic": true
+            }
+        }
+    ],
+    "confirmed_ground_truth": null,
+    "ground_truth_step": null
+}

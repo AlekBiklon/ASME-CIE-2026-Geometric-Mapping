@@ -1,0 +1,13 @@
+{
+    "experiment_id": "B02",
+    "dataset_index": 27,
+    "request_id": "SUJ2G2UMJQR7PMBX_1762932921.809779",
+    "request_type": "edit",
+    "file_name": "21549_fusion-360-151130-7378-d8bb534e-2-26-v_v1",
+    "instruction": "Add fillet of 0.2 mm along the sharp edges for safer handling.",
+    "source_start_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\SUJ2G2UMJQR7PMBX_1762932954.777719.step",
+    "local_start_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B02\\input\\B02_start.step",
+    "video_path": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\videos\\SUJ2G2UMJQR7PMBX_1762932921.809779_30_720_audio.mp4",
+    "request_events": [],
+    "request_event_count": 0
+}

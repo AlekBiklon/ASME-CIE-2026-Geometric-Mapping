@@ -1,0 +1,205 @@
+Thinking text:
+**Determining slot edges for filleting**
+
+I’m thinking about selecting the edges of the scrolling wheel slot. It should be a rectangular opening, and I want to detect it by finding the faces that match the opening. The slot is likely a cut in the top shell, with rounded ends. I consider adding a 2mm fillet to smooth the edges. To proceed, I’ll load the shape, compute the bounding box, and identify the top face with the slot. I might select inner edges for filleting.
+**Identifying internal edges for filleting**
+
+I’m considering how to select edges for edge filleting. I want to start with the topmost face using `wp.faces(">Z").workplane()`. However, I need to focus on internal edges adjacent to the wires and not include the outer perimeter. To find those internal edges, I'll look for shorter edges closer to the center. I’ll extract the outer and inner wires from the top face, and I think using CadQuery's built-in topology methods will be the best approach to keep it simple.
+**Locating slot edges for filleting**
+
+I’m trying to identify the slot in the top shell for the wheel, which I believe is on the top surface of the mouse. This surface may be curved, but let's look for a cut where the wheel goes. To detect the edges around the slot, I’ll focus on edges near the model center with a z value close to the top surface. I want to exclude long outer edges and any vertical edges that might miss the rim. Instead, I should select all edges near the center and at the top, regardless of their orientation.
+**Developing edge selection heuristics**
+
+I’m considering how to select edges for filleting while ensuring I only pick the right ones. First, I'll build a workplane on the shape and use the bounding box to find the center and dimensions. The candidate edges should have their center within a specific window around the center, above a certain z value, and with lengths within a given range. I want to avoid tiny or huge edges and ensure they aren't on the outer boundary. I might have to fuse multiple solids or focus on the largest one by volume for the filleting.
+**Creating edge selection and filleting logic**
+
+I’m planning how to operate on the selected solid. First, I’ll create a workplane for that solid and then filter edges using defined criteria. I want to prioritize edges on the top rim and vertical edges near the slot. If the first attempts to fillet fail, I’ll look for edges on slot faces, which should be vertical and planar. Additionally, I’ll handle potential missing input files by checking various keys. In case there are no edges, I'll adjust my selection to edges near the center, filtering based on size and location.
+
+Generated script:
+def my_cad_function(args):
+    import os
+    import cadquery as cq
+
+    def _find_step_path(a):
+        # Try common keys used by different runners
+        for k in [
+            "input_file",
+            "brep_start_path_step",
+            "brep_start_path",
+            "step_path",
+            "brep",
+        ]:
+            p = a.get(k)
+            if p:
+                return p
+
+        # If only an f3d path is provided, try swapping to .step
+        p = a.get("brep_start_path_f3d") or a.get("input_f3d")
+        if p:
+            root, ext = os.path.splitext(p)
+            return root + ".step"
+
+        return None
+
+    step_path = _find_step_path(args)
+    if not step_path:
+        print("Args keys:", sorted(list(args.keys())))
+        raise ValueError("No STEP path found in args (expected input_file or brep_start_path_step)")
+
+    step_path = os.path.expanduser(step_path)
+    print(f"Loading STEP: {step_path}")
+
+    model = cq.importers.importStep(step_path)
+    base_shape = model.val() if hasattr(model, "val") else model
+
+    # Choose the largest solid (mouse body) if multiple are present
+    solids = list(base_shape.Solids())
+    if len(solids) == 0:
+        # Could be a single solid/compound without Solids() iterable in some cases
+        solid = base_shape
+    elif len(solids) == 1:
+        solid = solids[0]
+    else:
+        solid = max(solids, key=lambda s: s.Volume())
+
+    try:
+        bb = solid.BoundingBox()
+        print(f"Is Valid: {solid.isValid()}")
+        print(f"Num solids in file: {len(solids)} (using largest)")
+        print(f"Bbox xlen={bb.xlen:.3f}, ylen={bb.ylen:.3f}, zlen={bb.zlen:.3f}")
+        print(f"Bbox center=({bb.center.x:.3f},{bb.center.y:.3f},{bb.center.z:.3f})")
+    except Exception as e:
+        print(f"Debug: bbox/validity failed: {e}")
+        bb = None
+
+    wp = cq.Workplane("XY").newObject([solid])
+
+    fillet_r = 2.0
+
+    if bb is None:
+        # Best-effort: try a conservative fillet on short edges near origin/top
+        cand = wp.edges().filter(lambda e: (abs(e.Center().x) < 30 and abs(e.Center().y) < 30 and e.Center().z > 0))
+        try:
+            print(f"Candidate edges (fallback-no-bbox): {len(cand.vals())}")
+            return cand.fillet(fillet_r)
+        except Exception as e:
+            print(f"Fillet failed (fallback-no-bbox): {e}")
+            return wp
+
+    cx, cy, cz = bb.center.x, bb.center.y, bb.center.z
+    xlen, ylen, zlen = bb.xlen, bb.ylen, bb.zlen
+    z_top = bb.zmax
+
+    # Heuristic windows for the scroll wheel slot region (near top and near XY center)
+    xw = 0.22 * xlen
+    yw = 0.22 * ylen
+    z_min_top_band = z_top - 0.40 * zlen
+
+    max_edge_len = 0.35 * max(xlen, ylen)
+    min_edge_len = 1.0
+
+    def in_scroll_slot_region(obj):
+        c = obj.Center()
+        if abs(c.x - cx) > xw:
+            return False
+        if abs(c.y - cy) > yw:
+            return False
+        if c.z < z_min_top_band:
+            return False
+        return True
+
+    def edge_ok(e):
+        if not in_scroll_slot_region(e):
+            return False
+        try:
+            L = e.Length()
+            if L < min_edge_len or L > max_edge_len:
+                return False
+        except Exception:
+            pass
+        return True
+
+    # PASS A: fillet all edges in the scroll-slot region (rim + internal) with length limits
+    candA = wp.edges().filter(edge_ok)
+    try:
+        edgesA = candA.vals()
+        print(f"PASS A candidate edges: {len(edgesA)}")
+        for i, e in enumerate(edgesA[:12]):
+            cc = e.Center()
+            try:
+                L = e.Length()
+            except Exception:
+                L = float('nan')
+            print(f"  A[{i}] len={L:.3f} center=({cc.x:.3f},{cc.y:.3f},{cc.z:.3f})")
+    except Exception as e:
+        print(f"Debug: listing PASS A edges failed: {e}")
+
+    try:
+        if len(candA.vals()) > 0:
+            return candA.fillet(fillet_r)
+    except Exception as e:
+        print(f"PASS A fillet failed: {e}")
+
+    # PASS B: target vertical-ish edges in the same region (often the slot walls)
+    candB = wp.edges("|Z").filter(edge_ok)
+    try:
+        edgesB = candB.vals()
+        print(f"PASS B candidate edges (|Z): {len(edgesB)}")
+        for i, e in enumerate(edgesB[:12]):
+            cc = e.Center()
+            try:
+                L = e.Length()
+            except Exception:
+                L = float('nan')
+            print(f"  B[{i}] len={L:.3f} center=({cc.x:.3f},{cc.y:.3f},{cc.z:.3f})")
+    except Exception as e:
+        print(f"Debug: listing PASS B edges failed: {e}")
+
+    try:
+        if len(candB.vals()) > 0:
+            return candB.fillet(fillet_r)
+    except Exception as e:
+        print(f"PASS B fillet failed: {e}")
+
+    # PASS C: find faces near the scroll slot region (likely the slot cut faces) and fillet their edges
+    face_area_max = 0.10 * (xlen * ylen)  # generous cap
+
+    def face_ok(f):
+        if not in_scroll_slot_region(f):
+            return False
+        try:
+            if f.Area() > face_area_max:
+                return False
+        except Exception:
+            pass
+        return True
+
+    candC = wp.faces().filter(face_ok).edges().filter(edge_ok)
+    try:
+        edgesC = candC.vals()
+        print(f"PASS C candidate edges (faces->edges): {len(edgesC)}")
+        for i, e in enumerate(edgesC[:12]):
+            cc = e.Center()
+            try:
+                L = e.Length()
+            except Exception:
+                L = float('nan')
+            print(f"  C[{i}] len={L:.3f} center=({cc.x:.3f},{cc.y:.3f},{cc.z:.3f})")
+    except Exception as e:
+        print(f"Debug: listing PASS C edges failed: {e}")
+
+    try:
+        if len(candC.vals()) > 0:
+            return candC.fillet(fillet_r)
+    except Exception as e:
+        print(f"PASS C fillet failed: {e}")
+
+    print("All fillet passes failed or selected zero edges; returning original solid.")
+    return wp
+
+
+Program output:
+stdout: Loading function from: c:\PROGRAMING_PYTHON\2026-08-14_ASME_Hackathon_2026\experiments\B05\autodesk_output\cadquery_script\gpt-5.2_cadquery-script\val_edit_B05\gpt-5.2_cadquery-script_1786989193.7681894\brep_end\1786989193.7681894\temp_script.py
+Args keys: ['function_file', 'output_dir']
+Error executing LLM-provided function: No STEP path found in args (expected input_file or brep_start_path_step)
+Script completed.

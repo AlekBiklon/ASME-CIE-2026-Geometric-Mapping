@@ -1,0 +1,127 @@
+{
+    "experiment_id": "B09",
+    "request_id": "F332D3FXML85WLR2_1769686175.1922078",
+    "dataset_index": 72,
+    "file_name": "41128_ee74f244_267cc67a-05bb-11ec-bc44-02030dc36019",
+    "instruction": "Hi, add one more hole which would have the same setup as these two holes, which would be in the middle between this hole and this hole.",
+    "status": "NOT_CONFIRMED",
+    "reason": "The next available B-Rep state for the same CAD model is geometrically identical to the experiment START STEP.",
+    "start_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B09\\input\\B09_start.step",
+    "dataset_start_step": "breps/F332D3FXML85WLR2_1769686191.840884.step",
+    "dataset_start_timestamp": 1769686191.840884,
+    "start_geometry": {
+        "valid": true,
+        "solids": 1,
+        "faces": 13,
+        "edges": 27,
+        "volume": 10606.910994492404,
+        "bbox_x": 4.749800000000123,
+        "bbox_y": 26.98750000000001,
+        "bbox_z": 88.9
+    },
+    "history": [
+        {
+            "dataset_index": 72,
+            "request_id": "F332D3FXML85WLR2_1769686175.1922078",
+            "instruction": "Hi, add one more hole which would have the same setup as these two holes, which would be in the middle between this hole and this hole.",
+            "step_relative": "breps/F332D3FXML85WLR2_1769686191.840884.step",
+            "step_absolute": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\F332D3FXML85WLR2_1769686191.840884.step",
+            "step_timestamp": 1769686191.840884,
+            "step_exists": true
+        },
+        {
+            "dataset_index": 74,
+            "request_id": "F332D3FXML85WLR2_1769686542.1320288",
+            "instruction": "High. Extend this surface by 25.4 centimeters in the direction of the arrow. Add a chamfer same as this one onto the edge on the other side of the part and add a pattern of holes same as the ones which I circled. apply the pattern in the direction of the extension of the surface with a spacing of 2.54 centimeters and amount of repetition should be so that the last hole should have roughly the same distance to the edge of the part as the distance in here.",
+            "step_relative": "breps/F332D3FXML85WLR2_1769686589.7365973.step",
+            "step_absolute": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\F332D3FXML85WLR2_1769686589.7365973.step",
+            "step_timestamp": 1769686589.7365973,
+            "step_exists": true
+        },
+        {
+            "dataset_index": 73,
+            "request_id": "F332D3FXML85WLR2_1769689501.084095",
+            "instruction": "High. Change the profile to an L-shaped profile, like shown in the picture, where the length of one side of an L should be 10 centimeters. The whole pattern should be repeated on the other side as well, so that in the end the part should be symmetrical along the plane that would be a mid-plane in between the two L arms. And in the end, add a stiffening element which would have a cross-section of an equilateral triangle. its upper tip would be going through the arms of an L in the in the middle of each of the arms of an L so from let's say from here to here and ensure that the wall thickness is in the end the same as in the rest of the part. Add rounds to the edges of this stiffening element so that the inner edges would have radius of a size of the wall thickness. in the end the end product should look like a sheet metal part which has a stamped stiffening element in it.",
+            "step_relative": "breps/F332D3FXML85WLR2_1769689594.097923.step",
+            "step_absolute": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\F332D3FXML85WLR2_1769689594.097923.step",
+            "step_timestamp": 1769689594.097923,
+            "step_exists": true
+        }
+    ],
+    "candidates": [
+        {
+            "rank": 1,
+            "dataset_index": 74,
+            "request_id": "F332D3FXML85WLR2_1769686542.1320288",
+            "instruction": "High. Extend this surface by 25.4 centimeters in the direction of the arrow. Add a chamfer same as this one onto the edge on the other side of the part and add a pattern of holes same as the ones which I circled. apply the pattern in the direction of the extension of the surface with a spacing of 2.54 centimeters and amount of repetition should be so that the last hole should have roughly the same distance to the edge of the part as the distance in here.",
+            "step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\F332D3FXML85WLR2_1769686589.7365973.step",
+            "step_timestamp": 1769686589.7365973,
+            "time_delta_from_start_s": 397.8957133293152,
+            "geometry": {
+                "valid": true,
+                "solids": 1,
+                "faces": 13,
+                "edges": 27,
+                "volume": 10606.910994492404,
+                "bbox_x": 4.749800000000123,
+                "bbox_y": 26.98750000000001,
+                "bbox_z": 88.9
+            },
+            "comparison_to_start": {
+                "volume_delta": 0.0,
+                "solids_delta": 0,
+                "faces_delta": 0,
+                "edges_delta": 0,
+                "bbox_delta": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "same_volume": true,
+                "same_solids": true,
+                "same_faces": true,
+                "same_edges": true,
+                "same_bbox": true,
+                "geometrically_identical_basic": true
+            }
+        },
+        {
+            "rank": 2,
+            "dataset_index": 73,
+            "request_id": "F332D3FXML85WLR2_1769689501.084095",
+            "instruction": "High. Change the profile to an L-shaped profile, like shown in the picture, where the length of one side of an L should be 10 centimeters. The whole pattern should be repeated on the other side as well, so that in the end the part should be symmetrical along the plane that would be a mid-plane in between the two L arms. And in the end, add a stiffening element which would have a cross-section of an equilateral triangle. its upper tip would be going through the arms of an L in the in the middle of each of the arms of an L so from let's say from here to here and ensure that the wall thickness is in the end the same as in the rest of the part. Add rounds to the edges of this stiffening element so that the inner edges would have radius of a size of the wall thickness. in the end the end product should look like a sheet metal part which has a stamped stiffening element in it.",
+            "step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\F332D3FXML85WLR2_1769689594.097923.step",
+            "step_timestamp": 1769689594.097923,
+            "time_delta_from_start_s": 3402.2570390701294,
+            "geometry": {
+                "valid": true,
+                "solids": 1,
+                "faces": 13,
+                "edges": 27,
+                "volume": 10606.910994492404,
+                "bbox_x": 4.749800000000123,
+                "bbox_y": 26.98750000000001,
+                "bbox_z": 88.9
+            },
+            "comparison_to_start": {
+                "volume_delta": 0.0,
+                "solids_delta": 0,
+                "faces_delta": 0,
+                "edges_delta": 0,
+                "bbox_delta": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "same_volume": true,
+                "same_solids": true,
+                "same_faces": true,
+                "same_edges": true,
+                "same_bbox": true,
+                "geometrically_identical_basic": true
+            }
+        }
+    ],
+    "confirmed_ground_truth": null,
+    "ground_truth_step": null
+}

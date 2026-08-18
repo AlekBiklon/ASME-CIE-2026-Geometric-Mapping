@@ -1,0 +1,64 @@
+# ============================================================
+# ASME CIE 2026 — Geometric Mapping
+# ============================================================
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+conda-env/
+
+# IDE
+.vscode/
+.idea/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+
+# Secrets / API credentials
+.env
+.env.*
+*.key
+secrets.json
+credentials.json
+
+# Temporary files
+*.tmp
+*.temp
+~$*
+
+# Python build files
+build/
+dist/
+*.egg-info/
+
+# Large raw neuralCAD-Edit dataset
+neuralCAD-Edit-data/
+
+# Raw videos
+*.mp4
+*.avi
+*.mov
+*.mkv
+
+# Temporary inference/cache directories
+**/tmp/
+**/cache/
+
+# Upstream Autodesk / neuralCAD-Edit baseline
+# Not redistributed here; referenced in README.
+neuralCAD-Edit/

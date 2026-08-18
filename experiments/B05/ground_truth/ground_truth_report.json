@@ -1,0 +1,127 @@
+{
+    "experiment_id": "B05",
+    "request_id": "4S7JQK6ZQMAD25GL_1758863141.735564",
+    "dataset_index": 45,
+    "file_name": "20805_fusion-360-151130-9746-40217704-mouse-_v1",
+    "instruction": "null",
+    "status": "NOT_CONFIRMED",
+    "reason": "The next available B-Rep state for the same CAD model is geometrically identical to the experiment START STEP.",
+    "start_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B05\\input\\B05_start.step",
+    "dataset_start_step": "breps/4S7JQK6ZQMAD25GL_1758863189.5437753.step",
+    "dataset_start_timestamp": 1758863189.5437753,
+    "start_geometry": {
+        "valid": true,
+        "solids": 2,
+        "faces": 15,
+        "edges": 30,
+        "volume": 127190.35128102351,
+        "bbox_x": 65.54486002996674,
+        "bbox_y": 31.899565555772718,
+        "bbox_z": 102.51873302878701
+    },
+    "history": [
+        {
+            "dataset_index": 45,
+            "request_id": "4S7JQK6ZQMAD25GL_1758863141.735564",
+            "instruction": "null",
+            "step_relative": "breps/4S7JQK6ZQMAD25GL_1758863189.5437753.step",
+            "step_absolute": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\4S7JQK6ZQMAD25GL_1758863189.5437753.step",
+            "step_timestamp": 1758863189.5437753,
+            "step_exists": true
+        },
+        {
+            "dataset_index": 47,
+            "request_id": "4S7JQK6ZQMAD25GL_1758863286.214549",
+            "instruction": "null",
+            "step_relative": "breps/4S7JQK6ZQMAD25GL_1758863329.0408635.step",
+            "step_absolute": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\4S7JQK6ZQMAD25GL_1758863329.0408635.step",
+            "step_timestamp": 1758863329.0408635,
+            "step_exists": true
+        },
+        {
+            "dataset_index": 46,
+            "request_id": "4S7JQK6ZQMAD25GL_1758863403.376244",
+            "instruction": "null",
+            "step_relative": "breps/4S7JQK6ZQMAD25GL_1758863449.911907.step",
+            "step_absolute": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\4S7JQK6ZQMAD25GL_1758863449.911907.step",
+            "step_timestamp": 1758863449.911907,
+            "step_exists": true
+        }
+    ],
+    "candidates": [
+        {
+            "rank": 1,
+            "dataset_index": 47,
+            "request_id": "4S7JQK6ZQMAD25GL_1758863286.214549",
+            "instruction": "null",
+            "step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\4S7JQK6ZQMAD25GL_1758863329.0408635.step",
+            "step_timestamp": 1758863329.0408635,
+            "time_delta_from_start_s": 139.49708819389343,
+            "geometry": {
+                "valid": true,
+                "solids": 2,
+                "faces": 15,
+                "edges": 30,
+                "volume": 127190.35128102351,
+                "bbox_x": 65.54486002996674,
+                "bbox_y": 31.899565555772718,
+                "bbox_z": 102.51873302878701
+            },
+            "comparison_to_start": {
+                "volume_delta": 0.0,
+                "solids_delta": 0,
+                "faces_delta": 0,
+                "edges_delta": 0,
+                "bbox_delta": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "same_volume": true,
+                "same_solids": true,
+                "same_faces": true,
+                "same_edges": true,
+                "same_bbox": true,
+                "geometrically_identical_basic": true
+            }
+        },
+        {
+            "rank": 2,
+            "dataset_index": 46,
+            "request_id": "4S7JQK6ZQMAD25GL_1758863403.376244",
+            "instruction": "null",
+            "step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\4S7JQK6ZQMAD25GL_1758863449.911907.step",
+            "step_timestamp": 1758863449.911907,
+            "time_delta_from_start_s": 260.36813163757324,
+            "geometry": {
+                "valid": true,
+                "solids": 2,
+                "faces": 15,
+                "edges": 30,
+                "volume": 127190.35128102351,
+                "bbox_x": 65.54486002996674,
+                "bbox_y": 31.899565555772718,
+                "bbox_z": 102.51873302878701
+            },
+            "comparison_to_start": {
+                "volume_delta": 0.0,
+                "solids_delta": 0,
+                "faces_delta": 0,
+                "edges_delta": 0,
+                "bbox_delta": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "same_volume": true,
+                "same_solids": true,
+                "same_faces": true,
+                "same_edges": true,
+                "same_bbox": true,
+                "geometrically_identical_basic": true
+            }
+        }
+    ],
+    "confirmed_ground_truth": null,
+    "ground_truth_step": null
+}

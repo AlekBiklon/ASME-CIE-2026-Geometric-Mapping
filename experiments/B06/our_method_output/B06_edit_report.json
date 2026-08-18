@@ -1,0 +1,395 @@
+{
+    "method": "Semi-Automatic Geometric Mapping + Robust Deterministic CAD Editing",
+    "operation": "CHAMFER",
+    "operation_status": "FULL_SUCCESS",
+    "input_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B06\\input\\B06_start.step",
+    "edit_request": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B06\\input\\edit_request.json",
+    "output_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B06\\our_method_output\\B06_result.step",
+    "input_valid": true,
+    "result_valid": true,
+    "step_success": true,
+    "reimport_valid": true,
+    "input_solids": 1,
+    "output_solids": 1,
+    "reimport_solids": 1,
+    "input_faces": 266,
+    "output_faces": 278,
+    "input_edges": 625,
+    "output_edges": 649,
+    "input_volume": 67.08982065469982,
+    "output_volume": 66.21006692438637,
+    "volume_change": -0.8797537303134533,
+    "reimport_volume": 66.18689603908125,
+    "reimport_volume_delta": -0.023170885305120237,
+    "operation_report": {
+        "operation": "CHAMFER",
+        "requested_distance_mm": 0.2,
+        "edge_ids": [
+            "E0188",
+            "E0191",
+            "E0182",
+            "E0185",
+            "E0163",
+            "E0174",
+            "E0164",
+            "E0175",
+            "E0187",
+            "E0190",
+            "E0181",
+            "E0184"
+        ],
+        "selected_edge_count": 12,
+        "owner_solid_count": 1,
+        "status": "FULL_SUCCESS",
+        "owner_results": [
+            {
+                "solid_index": 0,
+                "input_volume": 67.08982065469982,
+                "output_volume": 66.21006692438637,
+                "volume_change": -0.8797537303134533,
+                "input_faces": 266,
+                "output_faces": 278,
+                "input_edges": 625,
+                "output_edges": 649,
+                "contours": [
+                    {
+                        "edge_ids": [
+                            "E0188"
+                        ],
+                        "requested_distance_mm": 0.2,
+                        "applied_distance_mm": 0.2,
+                        "status": "FULL_SUCCESS",
+                        "attempts": [
+                            {
+                                "distance_mm": 0.2,
+                                "success": true,
+                                "reason": null
+                            }
+                        ],
+                        "skipped_edges": [],
+                        "mapping": [
+                            {
+                                "edge_id": "E0188",
+                                "local_edge_index": 187,
+                                "match_score": 0.0,
+                                "type": "CIRCLE",
+                                "length": 2.5132741228718283
+                            }
+                        ],
+                        "volume_before": 67.08982065469982,
+                        "volume_after": 67.03112787796498,
+                        "volume_change": -0.05869277673484419
+                    },
+                    {
+                        "edge_ids": [
+                            "E0191"
+                        ],
+                        "requested_distance_mm": 0.2,
+                        "applied_distance_mm": 0.2,
+                        "status": "FULL_SUCCESS",
+                        "attempts": [
+                            {
+                                "distance_mm": 0.2,
+                                "success": true,
+                                "reason": null
+                            }
+                        ],
+                        "skipped_edges": [],
+                        "mapping": [
+                            {
+                                "edge_id": "E0191",
+                                "local_edge_index": 69,
+                                "match_score": 0.0,
+                                "type": "CIRCLE",
+                                "length": 2.5132741228718283
+                            }
+                        ],
+                        "volume_before": 67.03112787796498,
+                        "volume_after": 66.97245961006594,
+                        "volume_change": -0.05866826789903712
+                    },
+                    {
+                        "edge_ids": [
+                            "E0182"
+                        ],
+                        "requested_distance_mm": 0.2,
+                        "applied_distance_mm": 0.2,
+                        "status": "FULL_SUCCESS",
+                        "attempts": [
+                            {
+                                "distance_mm": 0.2,
+                                "success": true,
+                                "reason": null
+                            }
+                        ],
+                        "skipped_edges": [],
+                        "mapping": [
+                            {
+                                "edge_id": "E0182",
+                                "local_edge_index": 67,
+                                "match_score": 0.0,
+                                "type": "CIRCLE",
+                                "length": 2.5132741228718345
+                            }
+                        ],
+                        "volume_before": 66.97245961006594,
+                        "volume_after": 66.91383498321107,
+                        "volume_change": -0.058624626854864914
+                    },
+                    {
+                        "edge_ids": [
+                            "E0185"
+                        ],
+                        "requested_distance_mm": 0.2,
+                        "applied_distance_mm": 0.2,
+                        "status": "FULL_SUCCESS",
+                        "attempts": [
+                            {
+                                "distance_mm": 0.2,
+                                "success": true,
+                                "reason": null
+                            }
+                        ],
+                        "skipped_edges": [],
+                        "mapping": [
+                            {
+                                "edge_id": "E0185",
+                                "local_edge_index": 65,
+                                "match_score": 0.0,
+                                "type": "CIRCLE",
+                                "length": 2.5132741228718345
+                            }
+                        ],
+                        "volume_before": 66.91383498321107,
+                        "volume_after": 66.85522778897158,
+                        "volume_change": -0.05860719423949945
+                    },
+                    {
+                        "edge_ids": [
+                            "E0163"
+                        ],
+                        "requested_distance_mm": 0.2,
+                        "applied_distance_mm": 0.2,
+                        "status": "FULL_SUCCESS",
+                        "attempts": [
+                            {
+                                "distance_mm": 0.2,
+                                "success": true,
+                                "reason": null
+                            }
+                        ],
+                        "skipped_edges": [],
+                        "mapping": [
+                            {
+                                "edge_id": "E0163",
+                                "local_edge_index": 334,
+                                "match_score": 0.0,
+                                "type": "CIRCLE",
+                                "length": 4.71238898038469
+                            }
+                        ],
+                        "volume_before": 66.85522778897158,
+                        "volume_after": 66.75259295296463,
+                        "volume_change": -0.10263483600694201
+                    },
+                    {
+                        "edge_ids": [
+                            "E0174"
+                        ],
+                        "requested_distance_mm": 0.2,
+                        "applied_distance_mm": 0.2,
+                        "status": "FULL_SUCCESS",
+                        "attempts": [
+                            {
+                                "distance_mm": 0.2,
+                                "success": true,
+                                "reason": null
+                            }
+                        ],
+                        "skipped_edges": [],
+                        "mapping": [
+                            {
+                                "edge_id": "E0174",
+                                "local_edge_index": 111,
+                                "match_score": 0.0,
+                                "type": "CIRCLE",
+                                "length": 4.712388980384696
+                            }
+                        ],
+                        "volume_before": 66.75259295296463,
+                        "volume_after": 66.64994486153155,
+                        "volume_change": -0.10264809143308185
+                    },
+                    {
+                        "edge_ids": [
+                            "E0164"
+                        ],
+                        "requested_distance_mm": 0.2,
+                        "applied_distance_mm": 0.2,
+                        "status": "FULL_SUCCESS",
+                        "attempts": [
+                            {
+                                "distance_mm": 0.2,
+                                "success": true,
+                                "reason": null
+                            }
+                        ],
+                        "skipped_edges": [],
+                        "mapping": [
+                            {
+                                "edge_id": "E0164",
+                                "local_edge_index": 67,
+                                "match_score": 0.0,
+                                "type": "CIRCLE",
+                                "length": 4.712388980384696
+                            }
+                        ],
+                        "volume_before": 66.64994486153155,
+                        "volume_after": 66.5473090051905,
+                        "volume_change": -0.10263585634105254
+                    },
+                    {
+                        "edge_ids": [
+                            "E0175"
+                        ],
+                        "requested_distance_mm": 0.2,
+                        "applied_distance_mm": 0.2,
+                        "status": "FULL_SUCCESS",
+                        "attempts": [
+                            {
+                                "distance_mm": 0.2,
+                                "success": true,
+                                "reason": null
+                            }
+                        ],
+                        "skipped_edges": [],
+                        "mapping": [
+                            {
+                                "edge_id": "E0175",
+                                "local_edge_index": 52,
+                                "match_score": 0.0,
+                                "type": "CIRCLE",
+                                "length": 4.712388980384696
+                            }
+                        ],
+                        "volume_before": 66.5473090051905,
+                        "volume_after": 66.44465998216208,
+                        "volume_change": -0.1026490230284196
+                    },
+                    {
+                        "edge_ids": [
+                            "E0187"
+                        ],
+                        "requested_distance_mm": 0.2,
+                        "applied_distance_mm": 0.2,
+                        "status": "FULL_SUCCESS",
+                        "attempts": [
+                            {
+                                "distance_mm": 0.2,
+                                "success": true,
+                                "reason": null
+                            }
+                        ],
+                        "skipped_edges": [],
+                        "mapping": [
+                            {
+                                "edge_id": "E0187",
+                                "local_edge_index": 203,
+                                "match_score": 0.0,
+                                "type": "CIRCLE",
+                                "length": 2.5132741228718283
+                            }
+                        ],
+                        "volume_before": 66.44465998216208,
+                        "volume_after": 66.38596826148456,
+                        "volume_change": -0.05869172067751549
+                    },
+                    {
+                        "edge_ids": [
+                            "E0190"
+                        ],
+                        "requested_distance_mm": 0.2,
+                        "applied_distance_mm": 0.2,
+                        "status": "FULL_SUCCESS",
+                        "attempts": [
+                            {
+                                "distance_mm": 0.2,
+                                "success": true,
+                                "reason": null
+                            }
+                        ],
+                        "skipped_edges": [],
+                        "mapping": [
+                            {
+                                "edge_id": "E0190",
+                                "local_edge_index": 19,
+                                "match_score": 0.0,
+                                "type": "CIRCLE",
+                                "length": 2.5132741228718283
+                            }
+                        ],
+                        "volume_before": 66.38596826148456,
+                        "volume_after": 66.3273004374955,
+                        "volume_change": -0.05866782398906878
+                    },
+                    {
+                        "edge_ids": [
+                            "E0181"
+                        ],
+                        "requested_distance_mm": 0.2,
+                        "applied_distance_mm": 0.2,
+                        "status": "FULL_SUCCESS",
+                        "attempts": [
+                            {
+                                "distance_mm": 0.2,
+                                "success": true,
+                                "reason": null
+                            }
+                        ],
+                        "skipped_edges": [],
+                        "mapping": [
+                            {
+                                "edge_id": "E0181",
+                                "local_edge_index": 19,
+                                "match_score": 0.0,
+                                "type": "CIRCLE",
+                                "length": 2.5132741228718345
+                            }
+                        ],
+                        "volume_before": 66.3273004374955,
+                        "volume_after": 66.26867517674863,
+                        "volume_change": -0.05862526074686514
+                    },
+                    {
+                        "edge_ids": [
+                            "E0184"
+                        ],
+                        "requested_distance_mm": 0.2,
+                        "applied_distance_mm": 0.2,
+                        "status": "FULL_SUCCESS",
+                        "attempts": [
+                            {
+                                "distance_mm": 0.2,
+                                "success": true,
+                                "reason": null
+                            }
+                        ],
+                        "skipped_edges": [],
+                        "mapping": [
+                            {
+                                "edge_id": "E0184",
+                                "local_edge_index": 19,
+                                "match_score": 0.0,
+                                "type": "CIRCLE",
+                                "length": 2.5132741228718345
+                            }
+                        ],
+                        "volume_before": 66.26867517674863,
+                        "volume_after": 66.21006692438637,
+                        "volume_change": -0.05860825236226219
+                    }
+                ]
+            }
+        ]
+    }
+}

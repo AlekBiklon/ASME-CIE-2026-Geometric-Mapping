@@ -1,0 +1,180 @@
+Thinking text:
+
+
+Generated script:
+def my_cad_function(args):
+    import os, glob
+    import cadquery as cq
+
+    def _norm(p):
+        if not p:
+            return None
+        return os.path.normpath(os.path.expanduser(p))
+
+    def _find_step_path():
+        cands = []
+        # normal runner key
+        if args.get("input_file"):
+            cands.append(args.get("input_file"))
+        # common alternates
+        for k in ("brep_start_path_step", "step_path", "model_path", "input_step"):
+            if args.get(k):
+                cands.append(args.get(k))
+
+        # fallback from task info
+        cands += [
+            r"C:/PROGRAMING_PYTHON/2026-08-14_ASME_Hackathon_2026/neuralCAD-Edit-data/edit_192_external/breps/ZK22J6VYRKQ2RTFD_1758276130.7397902.step",
+            r"C:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\ZK22J6VYRKQ2RTFD_1758276130.7397902.step",
+        ]
+
+        for c in cands:
+            p = _norm(c)
+            if p and os.path.exists(p) and p.lower().endswith((".step", ".stp")):
+                return p
+
+        # search near output_dir / cwd
+        search_dirs = []
+        if args.get("output_dir"):
+            search_dirs.append(_norm(args.get("output_dir")))
+        search_dirs.append(os.getcwd())
+
+        found = []
+        for d in [sd for sd in search_dirs if sd and os.path.isdir(sd)]:
+            found += glob.glob(os.path.join(d, "**", "*.step"), recursive=True)
+            found += glob.glob(os.path.join(d, "**", "*.stp"), recursive=True)
+
+        if found:
+            def key(p):
+                bn = os.path.basename(p)
+                return (0 if "ZK22J6VYRKQ2RTFD" in bn else 1, -os.path.getmtime(p))
+            found.sort(key=key)
+            return _norm(found[0])
+
+        return None
+
+    step_path = _find_step_path()
+    if not step_path or not os.path.exists(step_path):
+        raise FileNotFoundError(f"STEP input file not found. input_file={args.get('input_file')} resolved={step_path}")
+
+    model_wp = cq.importers.importStep(step_path)
+    shape = model_wp.val() if hasattr(model_wp, "val") else model_wp
+
+    bb = shape.BoundingBox()
+    print(f"Loaded STEP: {step_path}")
+    print(f"Overall BBox: x[{bb.xmin:.3f},{bb.xmax:.3f}] y[{bb.ymin:.3f},{bb.ymax:.3f}] z[{bb.zmin:.3f},{bb.zmax:.3f}]")
+
+    # Assume Y is vertical for this model (matches prior debug)
+    solids = list(shape.Solids() or [])
+    print(f"Solid count: {len(solids)}")
+
+    # If we can't separate solids, just cut the whole model at top center.
+    if not solids:
+        x0, z0 = bb.center.x, bb.center.z
+        y_top = bb.ymax
+        cutter = (
+            cq.Workplane("XZ", origin=(x0, y_top + 0.5, z0))
+            .circle(1.0)
+            .extrude(-((bb.ymax - bb.ymin) + 30.0))
+        )
+        return model_wp.cut(cutter)
+
+    # Pick nipple solid: among solids whose ymax is near global ymax, take smallest volume
+    top_y = bb.ymax
+    top_tol = 1.5  # mm
+    cand = []
+    for i, s in enumerate(solids):
+        sbb = s.BoundingBox()
+        if abs(sbb.ymax - top_y) <= top_tol:
+            try:
+                vol = s.Volume()
+            except Exception:
+                vol = 1e99
+            cand.append((vol, i, s, sbb))
+
+    if cand:
+        cand.sort(key=lambda t: t[0])
+        vol, idx, nipple_solid, nbb = cand[0]
+        print(f"Nipple solid: index={idx}, vol={vol:.3f}, bbox_y[{nbb.ymin:.3f},{nbb.ymax:.3f}]")
+    else:
+        nipple_solid = max(solids, key=lambda s: s.BoundingBox().ymax)
+        nbb = nipple_solid.BoundingBox()
+        print("Warning: no top candidates within tolerance; using highest-y solid as nipple fallback")
+
+    y_tip = nbb.ymax
+
+    # Determine hole XY (XZ-plane) location at the nipple tip.
+    # Prefer averaging vertices in a thin band near the very top.
+    tip_band = 0.25  # mm
+    v_near = []
+    try:
+        for v in list(nipple_solid.Vertices() or []):
+            p = v.Center()
+            if abs(p.y - y_tip) <= tip_band:
+                v_near.append(p)
+    except Exception:
+        v_near = []
+
+    if v_near:
+        x0 = sum(p.x for p in v_near) / len(v_near)
+        z0 = sum(p.z for p in v_near) / len(v_near)
+        print(f"Tip center from {len(v_near)} verts: x={x0:.3f}, y={y_tip:.3f}, z={z0:.3f}")
+    else:
+        # Fallback: try smallest top face center; else bbox center
+        faces = []
+        try:
+            faces = list(nipple_solid.Faces() or [])
+        except Exception:
+            faces = []
+
+        face_cands = []
+        for f in faces:
+            fbb = f.BoundingBox()
+            if abs(fbb.ymax - y_tip) <= 0.75:
+                try:
+                    area = f.Area()
+                except Exception:
+                    area = 1e99
+                try:
+                    cen = f.Center()
+                except Exception:
+                    cen = fbb.center
+                # prefer near solid center in XZ
+                dist2 = (cen.x - nbb.center.x) ** 2 + (cen.z - nbb.center.z) ** 2
+                face_cands.append((area, dist2, cen))
+
+        if face_cands:
+            face_cands.sort(key=lambda t: (t[0], t[1]))
+            cen = face_cands[0][2]
+            x0, z0 = cen.x, cen.z
+            print(f"Tip center from top face: x={x0:.3f}, y={y_tip:.3f}, z={z0:.3f}")
+        else:
+            x0, z0 = nbb.center.x, nbb.center.z
+            print(f"Tip center fallback (bbox center): x={x0:.3f}, y={y_tip:.3f}, z={z0:.3f}")
+
+    # 2mm diameter hole drilled downward (-Y) through the entire nipple solid
+    hole_r = 1.0
+    start_above = 0.5
+    depth = (y_tip - nbb.ymin) + 20.0  # go past the nipple base to ensure a through passage
+
+    cutter = (
+        cq.Workplane("XZ", origin=(x0, y_tip + start_above, z0))
+        .circle(hole_r)
+        .extrude(-depth)
+    )
+
+    # Cut only nipple solid, then re-compose as a compound
+    modified_nipple = cq.Workplane("XY").newObject([nipple_solid]).cut(cutter).val()
+    new_solids = [modified_nipple if s is nipple_solid else s for s in solids]
+    return cq.Compound.makeCompound(new_solids)
+
+
+Program output:
+stdout: Loading function from: c:\PROGRAMING_PYTHON\2026-08-14_ASME_Hackathon_2026\experiments\B04\autodesk_output\cadquery_script\gpt-5.2_cadquery-script\val_edit_B04\gpt-5.2_cadquery-script_1786987789.587282\brep_end\1786987789.587282\temp_script.py
+Loaded STEP: C:\PROGRAMING_PYTHON\2026-08-14_ASME_Hackathon_2026\neuralCAD-Edit-data\edit_192_external\breps\ZK22J6VYRKQ2RTFD_1758276130.7397902.step
+Overall BBox: x[-68.472,68.472] y[11.832,163.593] z[-40.000,40.000]
+Solid count: 8
+Nipple solid: index=6, vol=3507.115, bbox_y[121.500,163.593]
+Tip center from 1 verts: x=-0.000, y=163.593, z=0.000
+Exported shape to: c:\PROGRAMING_PYTHON\2026-08-14_ASME_Hackathon_2026\experiments\B04\autodesk_output\cadquery_script\gpt-5.2_cadquery-script\val_edit_B04\gpt-5.2_cadquery-script_1786987789.587282\brep_end\1786987789.587282\tmp.step
+Exported PNG image to: c:\PROGRAMING_PYTHON\2026-08-14_ASME_Hackathon_2026\experiments\B04\autodesk_output\cadquery_script\gpt-5.2_cadquery-script\val_edit_B04\gpt-5.2_cadquery-script_1786987789.587282\brep_end\1786987789.587282\tmp.png
+Script completed.

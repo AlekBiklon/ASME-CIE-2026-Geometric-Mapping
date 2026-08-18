@@ -1,0 +1,249 @@
+{
+    "experiment_id": "B06",
+    "request_id": "ZK22J6VYRKQ2RTFD_1758875163.609787",
+    "method": "GEOMETRIC_MAPPING",
+    "operation": "CHAMFER",
+    "operation_status": "FULL_SUCCESS",
+    "cad_edit": {
+        "runtime_s": 186.71168750000652,
+        "step_success": true,
+        "result_valid_report": true,
+        "valid_brep": true,
+        "reimport_valid": true,
+        "export_reimport_success": true,
+        "reimport_volume_delta_mm3": -0.023170885305120237
+    },
+    "geometry": {
+        "start": {
+            "valid": true,
+            "solids": 1,
+            "faces": 266,
+            "edges": 625,
+            "volume_mm3": 67.08982065469982,
+            "bounding_box_mm": {
+                "x": 13.280000199999968,
+                "y": 4.9200002000000005,
+                "z": 8.249649654213902,
+                "diagonal": 16.389677443356558
+            }
+        },
+        "result": {
+            "valid": true,
+            "solids": 1,
+            "faces": 278,
+            "edges": 649,
+            "volume_mm3": 66.18689603908125,
+            "bounding_box_mm": {
+                "x": 13.280000200000716,
+                "y": 4.9200002000000005,
+                "z": 8.249649654214291,
+                "diagonal": 16.38967744335736
+            }
+        },
+        "change": {
+            "solids_delta": 0,
+            "faces_delta": 12,
+            "edges_delta": 24,
+            "volume_delta_mm3": -0.9029246156185735,
+            "absolute_volume_change_mm3": 0.9029246156185735,
+            "relative_volume_change": 0.013458444318487252
+        }
+    },
+    "operation_details": {
+        "operation": "CHAMFER",
+        "operation_status": "FULL_SUCCESS",
+        "chamfer": {
+            "requested_distance_mm": 0.2,
+            "contours_total": 12,
+            "full_success_contours": 12,
+            "adaptive_success_contours": 0,
+            "partial_success_contours": 0,
+            "failed_contours": 0,
+            "skipped_edges": [],
+            "contours": [
+                {
+                    "solid_index": 0,
+                    "contour_index": 1,
+                    "edge_ids": [
+                        "E0188"
+                    ],
+                    "edge_count": 1,
+                    "requested_distance_mm": 0.2,
+                    "applied_distance_mm": 0.2,
+                    "status": "FULL_SUCCESS",
+                    "skipped_edges": [],
+                    "volume_change_mm3": -0.05869277673484419
+                },
+                {
+                    "solid_index": 0,
+                    "contour_index": 2,
+                    "edge_ids": [
+                        "E0191"
+                    ],
+                    "edge_count": 1,
+                    "requested_distance_mm": 0.2,
+                    "applied_distance_mm": 0.2,
+                    "status": "FULL_SUCCESS",
+                    "skipped_edges": [],
+                    "volume_change_mm3": -0.05866826789903712
+                },
+                {
+                    "solid_index": 0,
+                    "contour_index": 3,
+                    "edge_ids": [
+                        "E0182"
+                    ],
+                    "edge_count": 1,
+                    "requested_distance_mm": 0.2,
+                    "applied_distance_mm": 0.2,
+                    "status": "FULL_SUCCESS",
+                    "skipped_edges": [],
+                    "volume_change_mm3": -0.058624626854864914
+                },
+                {
+                    "solid_index": 0,
+                    "contour_index": 4,
+                    "edge_ids": [
+                        "E0185"
+                    ],
+                    "edge_count": 1,
+                    "requested_distance_mm": 0.2,
+                    "applied_distance_mm": 0.2,
+                    "status": "FULL_SUCCESS",
+                    "skipped_edges": [],
+                    "volume_change_mm3": -0.05860719423949945
+                },
+                {
+                    "solid_index": 0,
+                    "contour_index": 5,
+                    "edge_ids": [
+                        "E0163"
+                    ],
+                    "edge_count": 1,
+                    "requested_distance_mm": 0.2,
+                    "applied_distance_mm": 0.2,
+                    "status": "FULL_SUCCESS",
+                    "skipped_edges": [],
+                    "volume_change_mm3": -0.10263483600694201
+                },
+                {
+                    "solid_index": 0,
+                    "contour_index": 6,
+                    "edge_ids": [
+                        "E0174"
+                    ],
+                    "edge_count": 1,
+                    "requested_distance_mm": 0.2,
+                    "applied_distance_mm": 0.2,
+                    "status": "FULL_SUCCESS",
+                    "skipped_edges": [],
+                    "volume_change_mm3": -0.10264809143308185
+                },
+                {
+                    "solid_index": 0,
+                    "contour_index": 7,
+                    "edge_ids": [
+                        "E0164"
+                    ],
+                    "edge_count": 1,
+                    "requested_distance_mm": 0.2,
+                    "applied_distance_mm": 0.2,
+                    "status": "FULL_SUCCESS",
+                    "skipped_edges": [],
+                    "volume_change_mm3": -0.10263585634105254
+                },
+                {
+                    "solid_index": 0,
+                    "contour_index": 8,
+                    "edge_ids": [
+                        "E0175"
+                    ],
+                    "edge_count": 1,
+                    "requested_distance_mm": 0.2,
+                    "applied_distance_mm": 0.2,
+                    "status": "FULL_SUCCESS",
+                    "skipped_edges": [],
+                    "volume_change_mm3": -0.1026490230284196
+                },
+                {
+                    "solid_index": 0,
+                    "contour_index": 9,
+                    "edge_ids": [
+                        "E0187"
+                    ],
+                    "edge_count": 1,
+                    "requested_distance_mm": 0.2,
+                    "applied_distance_mm": 0.2,
+                    "status": "FULL_SUCCESS",
+                    "skipped_edges": [],
+                    "volume_change_mm3": -0.05869172067751549
+                },
+                {
+                    "solid_index": 0,
+                    "contour_index": 10,
+                    "edge_ids": [
+                        "E0190"
+                    ],
+                    "edge_count": 1,
+                    "requested_distance_mm": 0.2,
+                    "applied_distance_mm": 0.2,
+                    "status": "FULL_SUCCESS",
+                    "skipped_edges": [],
+                    "volume_change_mm3": -0.05866782398906878
+                },
+                {
+                    "solid_index": 0,
+                    "contour_index": 11,
+                    "edge_ids": [
+                        "E0181"
+                    ],
+                    "edge_count": 1,
+                    "requested_distance_mm": 0.2,
+                    "applied_distance_mm": 0.2,
+                    "status": "FULL_SUCCESS",
+                    "skipped_edges": [],
+                    "volume_change_mm3": -0.05862526074686514
+                },
+                {
+                    "solid_index": 0,
+                    "contour_index": 12,
+                    "edge_ids": [
+                        "E0184"
+                    ],
+                    "edge_count": 1,
+                    "requested_distance_mm": 0.2,
+                    "applied_distance_mm": 0.2,
+                    "status": "FULL_SUCCESS",
+                    "skipped_edges": [],
+                    "volume_change_mm3": -0.05860825236226219
+                }
+            ],
+            "minimum_applied_distance_mm": 0.2,
+            "maximum_applied_distance_mm": 0.2,
+            "mean_applied_distance_mm": 0.20000000000000004,
+            "minimum_distance_retention": 1.0,
+            "mean_distance_retention": 1.0000000000000002
+        }
+    },
+    "ground_truth": {
+        "status": "NOT_CONFIRMED",
+        "reason": "No later B-Rep state exists for the same CAD model.",
+        "step": null,
+        "geometry": null
+    },
+    "gt_metrics": {
+        "available": false,
+        "chamfer_distance": null,
+        "voxel_iou": null,
+        "difference_f1": null,
+        "note": "Ground Truth is not confirmed; GT-dependent metrics are N/A."
+    },
+    "success": {
+        "operation_success": true,
+        "strict_operation_success": true,
+        "valid_brep": true,
+        "solid_count_preserved": true,
+        "export_reimport_success": true
+    },
+    "metrics_module_runtime_s": 7.596442400012165
+}

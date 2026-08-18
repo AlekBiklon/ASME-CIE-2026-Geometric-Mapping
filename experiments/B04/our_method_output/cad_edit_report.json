@@ -1,0 +1,37 @@
+{
+    "experiment_id": "B04",
+    "method": "GEOMETRIC_MAPPING",
+    "module": "CAD_EDIT",
+    "operation": "ADD_HOLE",
+    "parameters": {
+        "diameter_mm": 2.0
+    },
+    "target": {
+        "entity_type": "POINT_ON_FACE",
+        "face_id": "F0357",
+        "point_xyz": [
+            0.021734707385114405,
+            163.5598692846118,
+            -0.13723996485197176
+        ],
+        "surface_type": "BSPLINE",
+        "brep_match_distance_mm": 0.013094723941133887,
+        "source": "USER_3D_SELECTION"
+    },
+    "input_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B04\\input\\B04_start.step",
+    "edit_request": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B04\\input\\edit_request.json",
+    "output_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B04\\our_method_output\\B04_result.step",
+    "engine_report": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B04\\our_method_output\\B04_edit_report.json",
+    "status": "SUCCESS",
+    "runtime_seconds": 71.30120330001228,
+    "output_exists": true,
+    "engine_report_exists": true,
+    "step_success": true,
+    "input_valid": true,
+    "result_valid": true,
+    "reimport_valid": true,
+    "input_solids": 8,
+    "output_solids": 8,
+    "volume_change": -3.1477277210506145,
+    "error": null
+}

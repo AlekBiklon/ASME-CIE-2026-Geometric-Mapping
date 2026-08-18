@@ -1,0 +1,127 @@
+{
+    "experiment_id": "B04",
+    "request_id": "ZK22J6VYRKQ2RTFD_1758276114.349288",
+    "dataset_index": 63,
+    "file_name": "20755_fusion-360-151130-9929-2e84efcb-feedin_v1 v1",
+    "instruction": "Add a 2 mm hole to the bottle's nipple to make it easier for a baby to suck from.",
+    "status": "NOT_CONFIRMED",
+    "reason": "The next available B-Rep state for the same CAD model is geometrically identical to the experiment START STEP.",
+    "start_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B04\\input\\B04_start.step",
+    "dataset_start_step": "breps/ZK22J6VYRKQ2RTFD_1758276130.7397902.step",
+    "dataset_start_timestamp": 1758276130.7397902,
+    "start_geometry": {
+        "valid": true,
+        "solids": 8,
+        "faces": 397,
+        "edges": 929,
+        "volume": 111848.06611542235,
+        "bbox_x": 136.9431725957319,
+        "bbox_y": 151.76147289578606,
+        "bbox_z": 80.0000002
+    },
+    "history": [
+        {
+            "dataset_index": 63,
+            "request_id": "ZK22J6VYRKQ2RTFD_1758276114.349288",
+            "instruction": "Add a 2 mm hole to the bottle's nipple to make it easier for a baby to suck from.",
+            "step_relative": "breps/ZK22J6VYRKQ2RTFD_1758276130.7397902.step",
+            "step_absolute": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\ZK22J6VYRKQ2RTFD_1758276130.7397902.step",
+            "step_timestamp": 1758276130.7397902,
+            "step_exists": true
+        },
+        {
+            "dataset_index": 65,
+            "request_id": "ZK22J6VYRKQ2RTFD_1758276290.509771",
+            "instruction": "To provide a better grip for the baby, remove the existing handles, then create a new curved handle using a 27.5 mm radius and use the pipe tool to extrude a 10 mm diameter pipe to form a comfortable handle.",
+            "step_relative": "breps/ZK22J6VYRKQ2RTFD_1758276317.160194.step",
+            "step_absolute": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\ZK22J6VYRKQ2RTFD_1758276317.160194.step",
+            "step_timestamp": 1758276317.160194,
+            "step_exists": true
+        },
+        {
+            "dataset_index": 64,
+            "request_id": "ZK22J6VYRKQ2RTFD_1758276358.147559",
+            "instruction": "Make a cap for this bottle at a height of 40 mm curvature and then revolve it.",
+            "step_relative": "breps/ZK22J6VYRKQ2RTFD_1758276413.6394143.step",
+            "step_absolute": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\ZK22J6VYRKQ2RTFD_1758276413.6394143.step",
+            "step_timestamp": 1758276413.6394143,
+            "step_exists": true
+        }
+    ],
+    "candidates": [
+        {
+            "rank": 1,
+            "dataset_index": 65,
+            "request_id": "ZK22J6VYRKQ2RTFD_1758276290.509771",
+            "instruction": "To provide a better grip for the baby, remove the existing handles, then create a new curved handle using a 27.5 mm radius and use the pipe tool to extrude a 10 mm diameter pipe to form a comfortable handle.",
+            "step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\ZK22J6VYRKQ2RTFD_1758276317.160194.step",
+            "step_timestamp": 1758276317.160194,
+            "time_delta_from_start_s": 186.42040371894836,
+            "geometry": {
+                "valid": true,
+                "solids": 8,
+                "faces": 397,
+                "edges": 929,
+                "volume": 111848.06611542235,
+                "bbox_x": 136.9431725957319,
+                "bbox_y": 151.76147289578606,
+                "bbox_z": 80.0000002
+            },
+            "comparison_to_start": {
+                "volume_delta": 0.0,
+                "solids_delta": 0,
+                "faces_delta": 0,
+                "edges_delta": 0,
+                "bbox_delta": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "same_volume": true,
+                "same_solids": true,
+                "same_faces": true,
+                "same_edges": true,
+                "same_bbox": true,
+                "geometrically_identical_basic": true
+            }
+        },
+        {
+            "rank": 2,
+            "dataset_index": 64,
+            "request_id": "ZK22J6VYRKQ2RTFD_1758276358.147559",
+            "instruction": "Make a cap for this bottle at a height of 40 mm curvature and then revolve it.",
+            "step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\ZK22J6VYRKQ2RTFD_1758276413.6394143.step",
+            "step_timestamp": 1758276413.6394143,
+            "time_delta_from_start_s": 282.8996241092682,
+            "geometry": {
+                "valid": true,
+                "solids": 8,
+                "faces": 397,
+                "edges": 929,
+                "volume": 111848.06611542235,
+                "bbox_x": 136.9431725957319,
+                "bbox_y": 151.76147289578606,
+                "bbox_z": 80.0000002
+            },
+            "comparison_to_start": {
+                "volume_delta": 0.0,
+                "solids_delta": 0,
+                "faces_delta": 0,
+                "edges_delta": 0,
+                "bbox_delta": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "same_volume": true,
+                "same_solids": true,
+                "same_faces": true,
+                "same_edges": true,
+                "same_bbox": true,
+                "geometrically_identical_basic": true
+            }
+        }
+    ],
+    "confirmed_ground_truth": null,
+    "ground_truth_step": null
+}

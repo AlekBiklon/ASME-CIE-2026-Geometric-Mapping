@@ -1,0 +1,57 @@
+{
+    "experiment_id": "B07",
+    "dataset_index": 54,
+    "request_id": "SUJ2G2UMJQR7PMBX_1757575242.90517",
+    "instruction": "I add a fillet of 2 mm to the four outer edges and fillet of 1 mm to all the four inner edges to improve aesthetics.",
+    "instruction_source": "request_transcript",
+    "operation": "FILLET",
+    "parameters": {
+        "radius_mm": 2.0,
+        "fillet_groups": [
+            {
+                "group_index": 1,
+                "label": "OUTER_EDGES",
+                "radius_mm": 2.0
+            },
+            {
+                "group_index": 2,
+                "label": "INNER_EDGES",
+                "radius_mm": 1.0
+            }
+        ]
+    },
+    "target": {
+        "entity_type": "EDGE_GROUPS",
+        "selection_semantics": "USER_SELECTED_FILLET_GROUPS",
+        "source": "USER_3D_SELECTION",
+        "selection_count": 8,
+        "edge_groups": [
+            {
+                "group_index": 1,
+                "label": "OUTER_EDGES",
+                "radius_mm": 2.0,
+                "edge_ids": [
+                    "E0218",
+                    "E0216",
+                    "E0156",
+                    "E0154"
+                ],
+                "selection_count": 4,
+                "source": "USER_3D_SELECTION"
+            },
+            {
+                "group_index": 2,
+                "label": "INNER_EDGES",
+                "radius_mm": 1.0,
+                "edge_ids": [
+                    "E0226",
+                    "E0200",
+                    "E0201",
+                    "E0198"
+                ],
+                "selection_count": 4,
+                "source": "USER_3D_SELECTION"
+            }
+        ]
+    }
+}

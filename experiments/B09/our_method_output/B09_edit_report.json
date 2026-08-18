@@ -1,0 +1,75 @@
+{
+    "method": "Semi-Automatic Geometric Mapping + Robust Deterministic CAD Editing",
+    "operation": "ADD_HOLE",
+    "operation_status": "FULL_SUCCESS",
+    "input_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B09\\input\\B09_start.step",
+    "edit_request": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B09\\input\\edit_request.json",
+    "output_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B09\\our_method_output\\B09_result.step",
+    "input_valid": true,
+    "result_valid": true,
+    "step_success": true,
+    "reimport_valid": true,
+    "input_solids": 1,
+    "output_solids": 1,
+    "reimport_solids": 1,
+    "input_faces": 13,
+    "output_faces": 14,
+    "input_edges": 27,
+    "output_edges": 30,
+    "input_volume": 10606.910994492404,
+    "output_volume": 10492.532171021656,
+    "volume_change": -114.3788234707481,
+    "reimport_volume": 10492.532171017487,
+    "reimport_volume_delta": -4.169123712927103e-09,
+    "operation_report": {
+        "operation": "ADD_HOLE",
+        "mode": "REFERENCE_HOLES",
+        "geometry_source": "REFERENCE_HOLES",
+        "position_rule": "MIDPOINT",
+        "setup_rule": "COPY_EXISTING_HOLE_SETUP",
+        "reference_hole_1": {
+            "edge_id": "E0020",
+            "center": [
+                17.3843794324957,
+                -11.112482888808497,
+                -65.00936434786219
+            ],
+            "diameter_mm": 5.5372,
+            "axis": [
+                -1.0,
+                0.0,
+                0.0
+            ]
+        },
+        "reference_hole_2": {
+            "edge_id": "E0022",
+            "center": [
+                17.3843794324957,
+                -11.112482888808497,
+                -1.5093643478622267
+            ],
+            "diameter_mm": 5.5372,
+            "axis": [
+                -1.0,
+                0.0,
+                0.0
+            ]
+        },
+        "derived_center": [
+            17.3843794324957,
+            -11.112482888808497,
+            -33.25936434786221
+        ],
+        "derived_axis": [
+            -1.0,
+            0.0,
+            0.0
+        ],
+        "derived_diameter_mm": 5.5372,
+        "owner_solid": 0,
+        "input_volume": 10606.910994492404,
+        "output_volume": 10492.532171021656,
+        "removed_volume": 114.3788234707481,
+        "status": "FULL_SUCCESS"
+    }
+}

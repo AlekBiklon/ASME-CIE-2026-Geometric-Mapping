@@ -1,0 +1,106 @@
+{
+    "experiment_id": "B08",
+    "request_id": "B7A2N74ZJBF9MZHU_1770169445.8914912",
+    "method": "GEOMETRIC_MAPPING",
+    "operation": "CHAMFER",
+    "operation_status": "FULL_SUCCESS",
+    "cad_edit": {
+        "runtime_s": 272.1063727000146,
+        "step_success": true,
+        "result_valid_report": true,
+        "valid_brep": true,
+        "reimport_valid": true,
+        "export_reimport_success": true,
+        "reimport_volume_delta_mm3": 0.22859560808865353
+    },
+    "geometry": {
+        "start": {
+            "valid": true,
+            "solids": 9,
+            "faces": 1278,
+            "edges": 3513,
+            "volume_mm3": 33916.706432618936,
+            "bounding_box_mm": {
+                "x": 113.0000001,
+                "y": 72.04145208432739,
+                "z": 36.0000001,
+                "diagonal": 138.76228179234602
+            }
+        },
+        "result": {
+            "valid": true,
+            "solids": 9,
+            "faces": 1279,
+            "edges": 3515,
+            "volume_mm3": 33916.09142074819,
+            "bounding_box_mm": {
+                "x": 113.0000001,
+                "y": 72.04145208432699,
+                "z": 36.0000001,
+                "diagonal": 138.7622817923458
+            }
+        },
+        "change": {
+            "solids_delta": 0,
+            "faces_delta": 1,
+            "edges_delta": 2,
+            "volume_delta_mm3": -0.6150118707446381,
+            "absolute_volume_change_mm3": 0.6150118707446381,
+            "relative_volume_change": 1.8133006869828573e-05
+        }
+    },
+    "operation_details": {
+        "operation": "CHAMFER",
+        "operation_status": "FULL_SUCCESS",
+        "chamfer": {
+            "requested_distance_mm": 0.28284271247461845,
+            "contours_total": 1,
+            "full_success_contours": 1,
+            "adaptive_success_contours": 0,
+            "partial_success_contours": 0,
+            "failed_contours": 0,
+            "skipped_edges": [],
+            "contours": [
+                {
+                    "solid_index": 3,
+                    "contour_index": 1,
+                    "edge_ids": [
+                        "E2128"
+                    ],
+                    "edge_count": 1,
+                    "requested_distance_mm": 0.28284271247461845,
+                    "applied_distance_mm": 0.28284271247461845,
+                    "status": "FULL_SUCCESS",
+                    "skipped_edges": [],
+                    "volume_change_mm3": -0.8436074788330075
+                }
+            ],
+            "minimum_applied_distance_mm": 0.28284271247461845,
+            "maximum_applied_distance_mm": 0.28284271247461845,
+            "mean_applied_distance_mm": 0.28284271247461845,
+            "minimum_distance_retention": 1.0,
+            "mean_distance_retention": 1.0
+        }
+    },
+    "ground_truth": {
+        "status": "NOT_CONFIRMED",
+        "reason": "The next available B-Rep state for the same CAD model is geometrically identical to the experiment START STEP.",
+        "step": null,
+        "geometry": null
+    },
+    "gt_metrics": {
+        "available": false,
+        "chamfer_distance": null,
+        "voxel_iou": null,
+        "difference_f1": null,
+        "note": "Ground Truth is not confirmed; GT-dependent metrics are N/A."
+    },
+    "success": {
+        "operation_success": true,
+        "strict_operation_success": true,
+        "valid_brep": true,
+        "solid_count_preserved": true,
+        "export_reimport_success": true
+    },
+    "metrics_module_runtime_s": 69.66718220000621
+}

@@ -1,0 +1,386 @@
+{
+    "method": "Semi-Automatic Geometric Mapping + Robust Deterministic CAD Editing",
+    "operation": "FILLET",
+    "operation_status": "FULL_SUCCESS",
+    "input_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B07\\input\\B07_start.step",
+    "edit_request": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B07\\input\\edit_request.json",
+    "output_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B07\\our_method_output\\B07_result.step",
+    "input_valid": true,
+    "result_valid": true,
+    "step_success": true,
+    "reimport_valid": true,
+    "input_solids": 8,
+    "output_solids": 8,
+    "reimport_solids": 8,
+    "input_faces": 157,
+    "output_faces": 165,
+    "input_edges": 358,
+    "output_edges": 382,
+    "input_volume": 3249.906327241035,
+    "output_volume": 3239.52690447816,
+    "volume_change": -10.379422762875038,
+    "reimport_volume": 3239.526904478193,
+    "reimport_volume_delta": 3.319655661471188e-11,
+    "operation_report": {
+        "operation": "FILLET",
+        "mode": "MULTI_RADIUS",
+        "group_count": 2,
+        "status": "FULL_SUCCESS",
+        "groups": [
+            {
+                "label": "OUTER_EDGES",
+                "requested_radius_mm": 2.0,
+                "edge_ids": [
+                    "E0218",
+                    "E0216",
+                    "E0156",
+                    "E0154"
+                ],
+                "selected_edge_count": 4,
+                "owner_solid_count": 1,
+                "status": "FULL_SUCCESS",
+                "owner_results": [
+                    {
+                        "solid_index": 1,
+                        "input_volume": 1239.2316384463209,
+                        "output_volume": 1222.9292049873677,
+                        "volume_change": -16.302433458953146,
+                        "input_faces": 61,
+                        "output_faces": 65,
+                        "input_edges": 156,
+                        "output_edges": 168,
+                        "contours": [
+                            {
+                                "edge_ids": [
+                                    "E0218"
+                                ],
+                                "requested_radius_mm": 2.0,
+                                "applied_radius_mm": 2.0,
+                                "status": "FULL_SUCCESS",
+                                "attempts": [
+                                    {
+                                        "radius_mm": 2.0,
+                                        "success": true,
+                                        "reason": null
+                                    }
+                                ],
+                                "skipped_edges": [],
+                                "mapping": [
+                                    {
+                                        "edge_id": "E0218",
+                                        "local_edge_index": 75,
+                                        "match_score": 0.0,
+                                        "type": "LINE",
+                                        "length": 5.196152422706632
+                                    }
+                                ],
+                                "volume_before": 1239.2316384463209,
+                                "volume_after": 1235.156030035905,
+                                "volume_change": -4.075608410415953
+                            },
+                            {
+                                "edge_ids": [
+                                    "E0216"
+                                ],
+                                "requested_radius_mm": 2.0,
+                                "applied_radius_mm": 2.0,
+                                "status": "FULL_SUCCESS",
+                                "attempts": [
+                                    {
+                                        "radius_mm": 2.0,
+                                        "success": true,
+                                        "reason": null
+                                    }
+                                ],
+                                "skipped_edges": [],
+                                "mapping": [
+                                    {
+                                        "edge_id": "E0216",
+                                        "local_edge_index": 2,
+                                        "match_score": 0.0,
+                                        "type": "LINE",
+                                        "length": 5.196152422706633
+                                    }
+                                ],
+                                "volume_before": 1235.156030035905,
+                                "volume_after": 1231.0804216271179,
+                                "volume_change": -4.075608408787048
+                            },
+                            {
+                                "edge_ids": [
+                                    "E0156"
+                                ],
+                                "requested_radius_mm": 2.0,
+                                "applied_radius_mm": 2.0,
+                                "status": "FULL_SUCCESS",
+                                "attempts": [
+                                    {
+                                        "radius_mm": 2.0,
+                                        "success": true,
+                                        "reason": null
+                                    }
+                                ],
+                                "skipped_edges": [],
+                                "mapping": [
+                                    {
+                                        "edge_id": "E0156",
+                                        "local_edge_index": 45,
+                                        "match_score": 0.0,
+                                        "type": "LINE",
+                                        "length": 5.196152422706632
+                                    }
+                                ],
+                                "volume_before": 1231.0804216271179,
+                                "volume_after": 1227.004813308089,
+                                "volume_change": -4.075608319028788
+                            },
+                            {
+                                "edge_ids": [
+                                    "E0154"
+                                ],
+                                "requested_radius_mm": 2.0,
+                                "applied_radius_mm": 2.0,
+                                "status": "FULL_SUCCESS",
+                                "attempts": [
+                                    {
+                                        "radius_mm": 2.0,
+                                        "success": true,
+                                        "reason": null
+                                    }
+                                ],
+                                "skipped_edges": [],
+                                "mapping": [
+                                    {
+                                        "edge_id": "E0154",
+                                        "local_edge_index": 30,
+                                        "match_score": 0.0,
+                                        "type": "LINE",
+                                        "length": 5.196152422706633
+                                    }
+                                ],
+                                "volume_before": 1227.004813308089,
+                                "volume_after": 1222.9292049873677,
+                                "volume_change": -4.075608320721358
+                            }
+                        ]
+                    }
+                ],
+                "group_index": 1,
+                "original_edge_ids": [
+                    "E0218",
+                    "E0216",
+                    "E0156",
+                    "E0154"
+                ],
+                "remapped_edge_ids": [
+                    "E0218",
+                    "E0216",
+                    "E0156",
+                    "E0154"
+                ],
+                "remap": [
+                    {
+                        "source_edge_id": "E0218",
+                        "current_edge_id": "E0218",
+                        "match_score": 0.0
+                    },
+                    {
+                        "source_edge_id": "E0216",
+                        "current_edge_id": "E0216",
+                        "match_score": 0.0
+                    },
+                    {
+                        "source_edge_id": "E0156",
+                        "current_edge_id": "E0156",
+                        "match_score": 0.0
+                    },
+                    {
+                        "source_edge_id": "E0154",
+                        "current_edge_id": "E0154",
+                        "match_score": 0.0
+                    }
+                ],
+                "group_input_volume": 3249.906327241035,
+                "group_output_volume": 3233.6038937820817,
+                "group_volume_change": -16.302433458953146
+            },
+            {
+                "label": "INNER_EDGES",
+                "requested_radius_mm": 1.0,
+                "edge_ids": [
+                    "E0285",
+                    "E0284",
+                    "E0289",
+                    "E0287"
+                ],
+                "selected_edge_count": 4,
+                "owner_solid_count": 1,
+                "status": "FULL_SUCCESS",
+                "owner_results": [
+                    {
+                        "solid_index": 1,
+                        "input_volume": 1222.9292049873677,
+                        "output_volume": 1228.8522156834458,
+                        "volume_change": 5.923010696078109,
+                        "input_faces": 65,
+                        "output_faces": 69,
+                        "input_edges": 168,
+                        "output_edges": 180,
+                        "contours": [
+                            {
+                                "edge_ids": [
+                                    "E0285"
+                                ],
+                                "requested_radius_mm": 1.0,
+                                "applied_radius_mm": 1.0,
+                                "status": "FULL_SUCCESS",
+                                "attempts": [
+                                    {
+                                        "radius_mm": 1.0,
+                                        "success": true,
+                                        "reason": null
+                                    }
+                                ],
+                                "skipped_edges": [],
+                                "mapping": [
+                                    {
+                                        "edge_id": "E0285",
+                                        "local_edge_index": 142,
+                                        "match_score": 0.0,
+                                        "type": "LINE",
+                                        "length": 6.9
+                                    }
+                                ],
+                                "volume_before": 1222.9292049873677,
+                                "volume_after": 1224.4099576937215,
+                                "volume_change": 1.480752706353769
+                            },
+                            {
+                                "edge_ids": [
+                                    "E0284"
+                                ],
+                                "requested_radius_mm": 1.0,
+                                "applied_radius_mm": 1.0,
+                                "status": "FULL_SUCCESS",
+                                "attempts": [
+                                    {
+                                        "radius_mm": 1.0,
+                                        "success": true,
+                                        "reason": null
+                                    }
+                                ],
+                                "skipped_edges": [],
+                                "mapping": [
+                                    {
+                                        "edge_id": "E0284",
+                                        "local_edge_index": 20,
+                                        "match_score": 0.0,
+                                        "type": "LINE",
+                                        "length": 6.9
+                                    }
+                                ],
+                                "volume_before": 1224.4099576937215,
+                                "volume_after": 1225.8907103355077,
+                                "volume_change": 1.480752641786239
+                            },
+                            {
+                                "edge_ids": [
+                                    "E0289"
+                                ],
+                                "requested_radius_mm": 1.0,
+                                "applied_radius_mm": 1.0,
+                                "status": "FULL_SUCCESS",
+                                "attempts": [
+                                    {
+                                        "radius_mm": 1.0,
+                                        "success": true,
+                                        "reason": null
+                                    }
+                                ],
+                                "skipped_edges": [],
+                                "mapping": [
+                                    {
+                                        "edge_id": "E0289",
+                                        "local_edge_index": 29,
+                                        "match_score": 0.0,
+                                        "type": "LINE",
+                                        "length": 6.9
+                                    }
+                                ],
+                                "volume_before": 1225.8907103355077,
+                                "volume_after": 1227.3714630406646,
+                                "volume_change": 1.480752705156874
+                            },
+                            {
+                                "edge_ids": [
+                                    "E0287"
+                                ],
+                                "requested_radius_mm": 1.0,
+                                "applied_radius_mm": 1.0,
+                                "status": "FULL_SUCCESS",
+                                "attempts": [
+                                    {
+                                        "radius_mm": 1.0,
+                                        "success": true,
+                                        "reason": null
+                                    }
+                                ],
+                                "skipped_edges": [],
+                                "mapping": [
+                                    {
+                                        "edge_id": "E0287",
+                                        "local_edge_index": 28,
+                                        "match_score": 0.0,
+                                        "type": "LINE",
+                                        "length": 6.9
+                                    }
+                                ],
+                                "volume_before": 1227.3714630406646,
+                                "volume_after": 1228.8522156834458,
+                                "volume_change": 1.4807526427812263
+                            }
+                        ]
+                    }
+                ],
+                "group_index": 2,
+                "original_edge_ids": [
+                    "E0226",
+                    "E0200",
+                    "E0201",
+                    "E0198"
+                ],
+                "remapped_edge_ids": [
+                    "E0285",
+                    "E0284",
+                    "E0289",
+                    "E0287"
+                ],
+                "remap": [
+                    {
+                        "source_edge_id": "E0226",
+                        "current_edge_id": "E0285",
+                        "match_score": 0.0
+                    },
+                    {
+                        "source_edge_id": "E0200",
+                        "current_edge_id": "E0284",
+                        "match_score": 0.0
+                    },
+                    {
+                        "source_edge_id": "E0201",
+                        "current_edge_id": "E0289",
+                        "match_score": 0.0
+                    },
+                    {
+                        "source_edge_id": "E0198",
+                        "current_edge_id": "E0287",
+                        "match_score": 0.0
+                    }
+                ],
+                "group_input_volume": 3233.6038937820817,
+                "group_output_volume": 3239.52690447816,
+                "group_volume_change": 5.923010696078109
+            }
+        ]
+    }
+}

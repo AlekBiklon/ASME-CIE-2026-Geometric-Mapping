@@ -1,0 +1,30 @@
+{
+    "experiment_id": "B06",
+    "dataset_index": 33,
+    "request_id": "ZK22J6VYRKQ2RTFD_1758875163.609787",
+    "instruction": "Add 0.2 mm chamfer to the hole edges to improve fitting.",
+    "instruction_source": "row.request_text",
+    "operation": "CHAMFER",
+    "parameters": {
+        "distance_mm": 0.2
+    },
+    "target": {
+        "entity_type": "EDGES",
+        "edge_ids": [
+            "E0188",
+            "E0191",
+            "E0182",
+            "E0185",
+            "E0163",
+            "E0174",
+            "E0164",
+            "E0175",
+            "E0187",
+            "E0190",
+            "E0181",
+            "E0184"
+        ],
+        "selection_count": 12,
+        "source": "USER_3D_SELECTION"
+    }
+}

@@ -1,0 +1,25 @@
+{
+  "experiment_id": "B07",
+
+  "request_id": "SUJ2G2UMJQR7PMBX_1757575242.90517",
+
+  "method": "GEOMETRIC_MAPPING",
+
+  "dataset": {
+    "parquet": "neuralCAD-Edit-data/edit_192_external/parquets/val_edit_all.parquet"
+  },
+
+  "geometric_mapping": {
+    "pipeline": {
+      "input_viewer": true,
+      "cad_edit": true,
+      "ground_truth": true,
+      "metrics": true
+    }
+  },
+
+  "autodesk": {
+    "harness": "cadquery_script",
+    "model": "gpt-5.2"
+  }
+}

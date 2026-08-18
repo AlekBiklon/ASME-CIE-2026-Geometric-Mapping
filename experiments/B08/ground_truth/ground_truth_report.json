@@ -1,0 +1,127 @@
+{
+    "experiment_id": "B08",
+    "request_id": "B7A2N74ZJBF9MZHU_1770169445.8914912",
+    "dataset_index": 180,
+    "file_name": "120221_dXJuOmFkc2sud2lwcHJvZDpmcy5maWxlOnZmL",
+    "instruction": "null",
+    "status": "NOT_CONFIRMED",
+    "reason": "The next available B-Rep state for the same CAD model is geometrically identical to the experiment START STEP.",
+    "start_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B08\\input\\B08_start.step",
+    "dataset_start_step": "breps/B7A2N74ZJBF9MZHU_1770169581.2959814.step",
+    "dataset_start_timestamp": 1770169581.2959814,
+    "start_geometry": {
+        "valid": true,
+        "solids": 9,
+        "faces": 1278,
+        "edges": 3513,
+        "volume": 33916.706432618936,
+        "bbox_x": 113.0000001,
+        "bbox_y": 72.04145208432739,
+        "bbox_z": 36.0000001
+    },
+    "history": [
+        {
+            "dataset_index": 180,
+            "request_id": "B7A2N74ZJBF9MZHU_1770169445.8914912",
+            "instruction": "null",
+            "step_relative": "breps/B7A2N74ZJBF9MZHU_1770169581.2959814.step",
+            "step_absolute": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\B7A2N74ZJBF9MZHU_1770169581.2959814.step",
+            "step_timestamp": 1770169581.2959814,
+            "step_exists": true
+        },
+        {
+            "dataset_index": 182,
+            "request_id": "B7A2N74ZJBF9MZHU_1770169718.2982779",
+            "instruction": "null",
+            "step_relative": "breps/B7A2N74ZJBF9MZHU_1770169768.2317266.step",
+            "step_absolute": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\B7A2N74ZJBF9MZHU_1770169768.2317266.step",
+            "step_timestamp": 1770169768.2317266,
+            "step_exists": true
+        },
+        {
+            "dataset_index": 181,
+            "request_id": "B7A2N74ZJBF9MZHU_1770169975.851399",
+            "instruction": "null",
+            "step_relative": "breps/B7A2N74ZJBF9MZHU_1770170092.2686632.step",
+            "step_absolute": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\B7A2N74ZJBF9MZHU_1770170092.2686632.step",
+            "step_timestamp": 1770170092.2686632,
+            "step_exists": true
+        }
+    ],
+    "candidates": [
+        {
+            "rank": 1,
+            "dataset_index": 182,
+            "request_id": "B7A2N74ZJBF9MZHU_1770169718.2982779",
+            "instruction": "null",
+            "step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\B7A2N74ZJBF9MZHU_1770169768.2317266.step",
+            "step_timestamp": 1770169768.2317266,
+            "time_delta_from_start_s": 186.9357452392578,
+            "geometry": {
+                "valid": true,
+                "solids": 9,
+                "faces": 1278,
+                "edges": 3513,
+                "volume": 33916.706432618936,
+                "bbox_x": 113.0000001,
+                "bbox_y": 72.04145208432739,
+                "bbox_z": 36.0000001
+            },
+            "comparison_to_start": {
+                "volume_delta": 0.0,
+                "solids_delta": 0,
+                "faces_delta": 0,
+                "edges_delta": 0,
+                "bbox_delta": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "same_volume": true,
+                "same_solids": true,
+                "same_faces": true,
+                "same_edges": true,
+                "same_bbox": true,
+                "geometrically_identical_basic": true
+            }
+        },
+        {
+            "rank": 2,
+            "dataset_index": 181,
+            "request_id": "B7A2N74ZJBF9MZHU_1770169975.851399",
+            "instruction": "null",
+            "step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\B7A2N74ZJBF9MZHU_1770170092.2686632.step",
+            "step_timestamp": 1770170092.2686632,
+            "time_delta_from_start_s": 510.97268176078796,
+            "geometry": {
+                "valid": true,
+                "solids": 9,
+                "faces": 1278,
+                "edges": 3513,
+                "volume": 33916.706432618936,
+                "bbox_x": 113.0000001,
+                "bbox_y": 72.04145208432739,
+                "bbox_z": 36.0000001
+            },
+            "comparison_to_start": {
+                "volume_delta": 0.0,
+                "solids_delta": 0,
+                "faces_delta": 0,
+                "edges_delta": 0,
+                "bbox_delta": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "same_volume": true,
+                "same_solids": true,
+                "same_faces": true,
+                "same_edges": true,
+                "same_bbox": true,
+                "geometrically_identical_basic": true
+            }
+        }
+    ],
+    "confirmed_ground_truth": null,
+    "ground_truth_step": null
+}

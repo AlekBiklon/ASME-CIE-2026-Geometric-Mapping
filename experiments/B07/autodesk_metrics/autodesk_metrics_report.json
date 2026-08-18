@@ -1,0 +1,64 @@
+{
+    "experiment_id": "B07",
+    "request_id": "SUJ2G2UMJQR7PMBX_1757575242.90517",
+    "method": "AUTODESK",
+    "baseline": "neuralCAD-Edit",
+    "model": "gpt-5.2",
+    "harness": "cadquery_script",
+    "status": "SUCCESS",
+    "runtime": {
+        "sec": 643.1716566085815,
+        "min": 10.719527610143025
+    },
+    "agent": {
+        "vlm_responses": 5,
+        "visual_feedback_renders": 2,
+        "input_tokens": null,
+        "output_tokens": null,
+        "total_tokens": null,
+        "cost_estimate_usd": null
+    },
+    "step": {
+        "success": true,
+        "path": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B07\\autodesk_output\\cadquery_script\\gpt-5.2_cadquery-script\\val_edit_B07\\gpt-5.2_cadquery-script_1787050659.3664055\\brep_end\\1787050659.3664055\\tmp.step",
+        "valid_brep": true,
+        "solid_count_preserved": null
+    },
+    "geometry": {
+        "start": null,
+        "result": {
+            "valid": true,
+            "solids": 8,
+            "faces": 165,
+            "edges": 382,
+            "volume_mm3": 3236.393717657949,
+            "bounding_box_mm": {
+                "x": 31.25,
+                "y": 14.25,
+                "z": 26.5,
+                "diagonal": 43.38058321415239
+            }
+        },
+        "change": null
+    },
+    "ground_truth": {
+        "status": "NOT_EVALUATED",
+        "reason": "ground_truth_report.json not found.",
+        "geometry": null
+    },
+    "gt_metrics": {
+        "chamfer_distance": null,
+        "voxel_iou": null,
+        "volumetric_precision": null,
+        "volumetric_recall": null,
+        "volumetric_f1": null,
+        "difference_precision": null,
+        "difference_recall": null,
+        "difference_f1": null,
+        "added_f1": null,
+        "removed_f1": null,
+        "note": "Ground Truth is not confirmed; GT-dependent metrics are N/A."
+    },
+    "success": true,
+    "metrics_module_runtime_s": 0.7350916999857873
+}

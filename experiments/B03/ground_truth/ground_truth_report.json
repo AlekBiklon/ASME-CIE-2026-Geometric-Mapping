@@ -1,0 +1,91 @@
+{
+    "experiment_id": "B03",
+    "request_id": "B7A2N74ZJBF9MZHU_1770156927.436414",
+    "dataset_index": 137,
+    "file_name": "24161_fusion-360-151130-9056-d510667c-alloy-_v1",
+    "instruction": "I add chamfer, 1mm chamfer to this hole from both sides to prevent any sharp edges on the opening which should be meant for inlet valve of a tire.",
+    "status": "NOT_CONFIRMED",
+    "reason": "The next available B-Rep state for the same CAD model is geometrically identical to the experiment START STEP.",
+    "start_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B03\\input\\B03_start.step",
+    "dataset_start_step": "breps/B7A2N74ZJBF9MZHU_1770156951.5787919.step",
+    "dataset_start_timestamp": 1770156951.5787919,
+    "start_geometry": {
+        "valid": true,
+        "solids": 1,
+        "faces": 118,
+        "edges": 322,
+        "volume": 4886543.576109433,
+        "bbox_x": 253.8456439235599,
+        "bbox_y": 450.0,
+        "bbox_z": 452.9008423144482
+    },
+    "history": [
+        {
+            "dataset_index": 135,
+            "request_id": "B7A2N74ZJBF9MZHU_1770156627.991696",
+            "instruction": "I delete the hole unintentionally created by the hole tool feature by using delete face feature.",
+            "step_relative": "breps/B7A2N74ZJBF9MZHU_1770156647.5190556.step",
+            "step_absolute": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\B7A2N74ZJBF9MZHU_1770156647.5190556.step",
+            "step_timestamp": 1770156647.5190556,
+            "step_exists": true
+        },
+        {
+            "dataset_index": 137,
+            "request_id": "B7A2N74ZJBF9MZHU_1770156927.436414",
+            "instruction": "I add chamfer, 1mm chamfer to this hole from both sides to prevent any sharp edges on the opening which should be meant for inlet valve of a tire.",
+            "step_relative": "breps/B7A2N74ZJBF9MZHU_1770156951.5787919.step",
+            "step_absolute": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\B7A2N74ZJBF9MZHU_1770156951.5787919.step",
+            "step_timestamp": 1770156951.5787919,
+            "step_exists": true
+        },
+        {
+            "dataset_index": 136,
+            "request_id": "B7A2N74ZJBF9MZHU_1770157512.538927",
+            "instruction": "Hi. Use sketch 3 in the timeline for defining the position of the holes with respect to the center of the cylinder. It should be 50mm, so the center of the hole should be 50mm from the center of the cylinder and ignore the position of the holes with respect to other geometry features for now.",
+            "step_relative": "breps/B7A2N74ZJBF9MZHU_1770157547.551866.step",
+            "step_absolute": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\B7A2N74ZJBF9MZHU_1770157547.551866.step",
+            "step_timestamp": 1770157547.551866,
+            "step_exists": true
+        }
+    ],
+    "candidates": [
+        {
+            "rank": 1,
+            "dataset_index": 136,
+            "request_id": "B7A2N74ZJBF9MZHU_1770157512.538927",
+            "instruction": "Hi. Use sketch 3 in the timeline for defining the position of the holes with respect to the center of the cylinder. It should be 50mm, so the center of the hole should be 50mm from the center of the cylinder and ignore the position of the holes with respect to other geometry features for now.",
+            "step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\B7A2N74ZJBF9MZHU_1770157547.551866.step",
+            "step_timestamp": 1770157547.551866,
+            "time_delta_from_start_s": 595.9730741977692,
+            "geometry": {
+                "valid": true,
+                "solids": 1,
+                "faces": 118,
+                "edges": 322,
+                "volume": 4886543.576109433,
+                "bbox_x": 253.8456439235599,
+                "bbox_y": 450.0,
+                "bbox_z": 452.9008423144482
+            },
+            "comparison_to_start": {
+                "volume_delta": 0.0,
+                "solids_delta": 0,
+                "faces_delta": 0,
+                "edges_delta": 0,
+                "bbox_delta": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "same_volume": true,
+                "same_solids": true,
+                "same_faces": true,
+                "same_edges": true,
+                "same_bbox": true,
+                "geometrically_identical_basic": true
+            }
+        }
+    ],
+    "confirmed_ground_truth": null,
+    "ground_truth_step": null
+}

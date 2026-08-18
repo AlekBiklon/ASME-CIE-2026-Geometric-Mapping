@@ -1,0 +1,283 @@
+Thinking text:
+**Analyzing mouse model**
+
+I'm determining whether to use os.path.exists first. If the file doesn't exist, I'll fallback to a search. My model is a mouse with a specific scroll wheel slot configuration. I see that past debugging had some bounding box details that seem off. Currently, the task is to load the correct mouse model named 20805 and print the solid counts and bounding boxes to help identify issues. 
+
+Next, I need to find a face representing the inside of the slot for adding the fillet edges. I'll search for cylindrical faces and the edges where the slot meets the top surface.
+**Refining mouse modeling**
+
+I’m thinking it’s better to focus on the location of the scroll wheel slot, maybe near the top and center along the length of the mouse. To identify this slot, I’ll look for the smallest faces, since the edges around it are internal. 
+
+First, I’ll determine the body’s coordinate system using the bounding box. Then I want to find candidate faces near the top, specifically looking for the cutout that forms a rectangular slot. The next step is to find all edges where the center is within 20% of the top height.
+**Filtering edges for mouse model**
+
+I’m considering excluding edges on the outer boundary by filtering those with midpoints on the bounding box perimeter, which seems a bit tricky. I also want to determine the edges that form the outer skin, focusing on those close to the bbox min and max in X or Y. 
+
+To simplify, I might look at faces near the top band with small areas and mostly vertical normals. Alternatively, I could compute edges adjacent to nearly horizontal faces. A sequential fillet on internal edges around the scroll wheel slot could work, approximating the center along the length axis. I’ll find the longer dimension in the bounding box to identify the length axis.
+**Defining scroll wheel slot**
+
+The scroll wheel is likely centered near the upper front mid of the mouse, so I'm thinking the x-coordinate might be near 0, with the slot center also around (0, 0). I’ll focus on the area around the bounding box center in the XY plane. 
+
+After loading, my approach is to compute candidate edges in the top band and central window for Y and X. To filter out outer edges, I need to exclude those with midpoints too close to the bounding box sides and those exceeding a certain length threshold. Then, I’ll apply a 2mm fillet to the slot edges. If that batch fails, I'll try doing it sequentially for each edge.
+**Selecting correct solid and edges**
+
+I need to ensure I’m selecting the correct solid for the mouse model. This could be a single solid or an assembly with multiple parts, but I’m aiming for the scroll wheel slot on the top shell, likely the largest solid. There’s a possibility of a fillet failure due to invalid selections or confusion with edge types. 
+
+To refine the selection of edges, I'll compute their adjacent faces and focus on internal edges, ensuring they are not too close to the outer boundary. The slot edges will be defined based on specific z and x, y conditions. I’ll determine edge lengths and then apply the fillet, taking care to select the concave edges appropriately. 
+
+Since the slot is an internal opening, I'll differentiate the edges based on their characteristics and write a function to load the model correctly. I’ll print debug information, showing candidate counts, and ensure the function can handle the path properly.
+
+Generated script:
+def my_cad_function(args):
+    import os
+    import math
+    import cadquery as cq
+
+    # --- Locate STEP (runner often doesn't pass input_file) ---
+    # Use the task-provided STEP path first.
+    preferred_step = r"C:/PROGRAMING_PYTHON/2026-08-14_ASME_Hackathon_2026/neuralCAD-Edit-data/edit_192_external/breps/4S7JQK6ZQMAD25GL_1758863189.5437753.step"
+
+    def _norm(p):
+        return os.path.normpath(os.path.expanduser(str(p)))
+
+    def _find_step_path(a):
+        # 1) Common keys
+        for k in ["input_file", "brep_start_path_step", "brep_start_path", "step_path", "model_path"]:
+            p = a.get(k)
+            if p and str(p).lower().endswith('.step') and os.path.exists(_norm(p)):
+                return _norm(p)
+
+        # 2) Preferred explicit file
+        if os.path.exists(_norm(preferred_step)):
+            return _norm(preferred_step)
+
+        # 3) Look in the known breps folder for matching tag
+        breps_dir = os.path.dirname(_norm(preferred_step))
+        tag = "4S7JQK6ZQMAD25GL"
+        if os.path.isdir(breps_dir):
+            cands = []
+            for fn in os.listdir(breps_dir):
+                if not fn.lower().endswith('.step'):
+                    continue
+                if fn.lower() == 'tmp.step':
+                    continue
+                if tag.lower() not in fn.lower():
+                    continue
+                cands.append(os.path.join(breps_dir, fn))
+            if cands:
+                return max(cands, key=lambda p: os.path.getmtime(p))
+
+        # 4) Last resort: search upwards from function_file/output_dir/cwd
+        roots = []
+        if a.get('function_file'):
+            d = os.path.dirname(_norm(a['function_file']))
+            roots.append(d)
+            for _ in range(4):
+                d2 = os.path.dirname(d)
+                if d2 and d2 != d:
+                    roots.append(d2)
+                    d = d2
+        if a.get('output_dir'):
+            roots.append(_norm(a['output_dir']))
+        roots.append(os.getcwd())
+
+        best = None
+        best_m = -1.0
+        for r in roots:
+            if not os.path.isdir(r):
+                continue
+            for dirpath, dirnames, filenames in os.walk(r):
+                # limit depth
+                if dirpath.replace('\\', '/').count('/') - r.replace('\\', '/').count('/') > 8:
+                    dirnames[:] = []
+                    continue
+                for fn in filenames:
+                    if not fn.lower().endswith('.step'):
+                        continue
+                    if fn.lower() == 'tmp.step':
+                        continue
+                    p = os.path.join(dirpath, fn)
+                    try:
+                        m = os.path.getmtime(p)
+                    except Exception:
+                        continue
+                    if m > best_m:
+                        best_m = m
+                        best = p
+        return best
+
+    step_path = _find_step_path(args)
+    if not step_path or not os.path.exists(step_path):
+        print('Args keys:', sorted(list(args.keys())))
+        raise ValueError('Could not locate STEP for edit task')
+
+    print('Loading STEP:', step_path)
+    model = cq.importers.importStep(step_path)
+    base = model.val() if hasattr(model, 'val') else model
+
+    # --- Choose target solid (mouse body) ---
+    solids = list(base.Solids())
+    if not solids:
+        solids = [base]
+
+    def _safe_vol(s):
+        try:
+            return s.Volume()
+        except Exception:
+            return 0.0
+
+    target_i = max(range(len(solids)), key=lambda i: _safe_vol(solids[i]))
+    target = solids[target_i]
+
+    bb = target.BoundingBox()
+    print(f"Solids={len(solids)}; target bbox xlen={bb.xlen:.3f} ylen={bb.ylen:.3f} zlen={bb.zlen:.3f} center=({bb.center.x:.3f},{bb.center.y:.3f},{bb.center.z:.3f})")
+
+    fillet_r = 2.0
+
+    # --- Edge selection heuristic for scroll-wheel slot edges ---
+    cx, cy = bb.center.x, bb.center.y
+    z_top = bb.zmax
+
+    # Top band where the slot opening edges should live
+    top_band = max(3.0, 0.30 * bb.zlen)
+    z_min = z_top - top_band
+
+    # Central region in XY (slot is generally near the centerline)
+    xw = 0.35 * bb.xlen
+    yw = 0.30 * bb.ylen
+
+    # Exclude outer perimeter edges by requiring some margin from bbox sides
+    margin = max(4.0, 0.08 * min(bb.xlen, bb.ylen))
+
+    # Edge length limits to avoid large exterior edges
+    max_len = max(35.0, 0.55 * min(bb.xlen, bb.ylen))
+    min_len = 1.0
+
+    def _is_candidate_edge(e):
+        c = e.Center()
+        if c.z < z_min or c.z > z_top + 0.5:
+            return False
+        if abs(c.x - cx) > xw:
+            return False
+        if abs(c.y - cy) > yw:
+            return False
+
+        # Not too close to outer boundary
+        if (c.x - bb.xmin) < margin or (bb.xmax - c.x) < margin:
+            return False
+        if (c.y - bb.ymin) < margin or (bb.ymax - c.y) < margin:
+            return False
+
+        try:
+            L = e.Length()
+            if L < min_len or L > max_len:
+                return False
+        except Exception:
+            pass
+        return True
+
+    wp = cq.Workplane('XY').newObject([target])
+
+    # Prefer vertical-ish edges first (slot walls), then add top-rim edges.
+    cand_v = wp.edges('|Z').filter(_is_candidate_edge)
+    cand_all = wp.edges().filter(_is_candidate_edge)
+
+    # Debug samples
+    try:
+        ev = list(cand_v.vals())
+        ea = list(cand_all.vals())
+        print(f"Candidate edges: vertical(|Z)={len(ev)}  all={len(ea)}")
+        for i, e in enumerate((ev[:10] if ev else ea[:10])):
+            cc = e.Center()
+            try:
+                L = e.Length()
+            except Exception:
+                L = float('nan')
+            print(f"  cand[{i}] len={L:.3f} center=({cc.x:.3f},{cc.y:.3f},{cc.z:.3f})")
+    except Exception as e:
+        print('Debug listing candidates failed:', e)
+
+    def _try_batch(sel, label):
+        try:
+            n = len(sel.vals())
+            if n == 0:
+                return None
+            out = sel.fillet(fillet_r).val()
+            print(f"{label}: batch fillet ok on {n} edges")
+            return out
+        except Exception as e:
+            print(f"{label}: batch fillet failed: {e}")
+            return None
+
+    modified = _try_batch(cand_v, 'PASS1 vertical edges')
+    if modified is None:
+        # Try rim edges very near top
+        def _near_top(e):
+            c = e.Center()
+            return _is_candidate_edge(e) and abs(c.z - z_top) <= 1.5
+        modified = _try_batch(wp.edges().filter(_near_top), 'PASS2 near-top edges')
+
+    if modified is None:
+        modified = _try_batch(cand_all, 'PASS3 all candidate edges')
+
+    # Last resort: sequential single-edge fillets (often succeeds when batch fails)
+    if modified is None:
+        try:
+            edges = list(cand_all.vals())
+        except Exception:
+            edges = []
+
+        def _safe_len(ed):
+            try:
+                return ed.Length()
+            except Exception:
+                return 1e9
+
+        edges.sort(key=_safe_len)
+        print(f"PASS4 sequential: trying up to {min(len(edges), 80)} edges")
+        solid_curr = target
+        applied = 0
+        for e in edges[:80]:
+            try:
+                solid_curr = solid_curr.fillet(fillet_r, [e])
+                applied += 1
+            except Exception:
+                continue
+        if applied > 0:
+            modified = solid_curr
+            print(f"PASS4 sequential: applied fillet to {applied} edges")
+
+    if modified is None:
+        print('No fillet applied; returning original model.')
+        return model
+
+    # Reassemble with other solids
+    if len(solids) == 1:
+        return cq.Workplane('XY').newObject([modified])
+
+    new_solids = [modified if i == target_i else s for i, s in enumerate(solids)]
+    try:
+        comp = cq.Compound.makeCompound(new_solids)
+        return cq.Workplane('XY').newObject([comp])
+    except Exception:
+        # If compound fails, return modified target at least
+        return cq.Workplane('XY').newObject([modified])
+
+
+Program output:
+stdout: Loading function from: c:\PROGRAMING_PYTHON\2026-08-14_ASME_Hackathon_2026\experiments\B05\autodesk_output\cadquery_script\gpt-5.2_cadquery-script\val_edit_B05\gpt-5.2_cadquery-script_1786989193.7681894\brep_end\1786989193.7681894\temp_script.py
+Loading STEP: C:\PROGRAMING_PYTHON\2026-08-14_ASME_Hackathon_2026\neuralCAD-Edit-data\edit_192_external\breps\4S7JQK6ZQMAD25GL_1758863189.5437753.step
+Solids=2; target bbox xlen=65.545 ylen=31.900 zlen=102.519 center=(26.883,18.110,26.360)
+Candidate edges: vertical(|Z)=0  all=8
+  cand[0] len=17.094 center=(25.116,24.651,51.508)
+  cand[1] len=11.114 center=(25.300,15.557,59.285)
+  cand[2] len=15.650 center=(25.115,10.000,51.462)
+  cand[3] len=17.098 center=(30.428,24.645,51.382)
+  cand[4] len=15.650 center=(30.427,10.000,51.337)
+  cand[5] len=11.103 center=(30.612,15.552,59.160)
+  cand[6] len=5.315 center=(27.956,21.142,59.222)
+  cand[7] len=5.314 center=(27.956,10.000,59.222)
+PASS3 all candidate edges: batch fillet ok on 8 edges
+Exported shape to: c:\PROGRAMING_PYTHON\2026-08-14_ASME_Hackathon_2026\experiments\B05\autodesk_output\cadquery_script\gpt-5.2_cadquery-script\val_edit_B05\gpt-5.2_cadquery-script_1786989193.7681894\brep_end\1786989193.7681894\tmp.step
+Exported PNG image to: c:\PROGRAMING_PYTHON\2026-08-14_ASME_Hackathon_2026\experiments\B05\autodesk_output\cadquery_script\gpt-5.2_cadquery-script\val_edit_B05\gpt-5.2_cadquery-script_1786989193.7681894\brep_end\1786989193.7681894\tmp.png
+Script completed.

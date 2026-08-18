@@ -1,0 +1,64 @@
+{
+    "experiment_id": "B04",
+    "dataset_index": 63,
+    "request_id": "ZK22J6VYRKQ2RTFD_1758276114.349288",
+    "request_type": "edit",
+    "file_name": "20755_fusion-360-151130-9929-2e84efcb-feedin_v1 v1",
+    "instruction": "Add a 2 mm hole to the bottle's nipple to make it easier for a baby to suck from.",
+    "source_start_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\ZK22J6VYRKQ2RTFD_1758276130.7397902.step",
+    "local_start_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B04\\input\\B04_start.step",
+    "video_path": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\videos\\ZK22J6VYRKQ2RTFD_1758276114.349288_30_720_audio.mp4",
+    "request_events": [
+        {
+            "event": "commandStarting",
+            "commandId": "PanCommand",
+            "commandName": "Pan",
+            "timestamp": 1758276119.965178,
+            "timestamp_relative_to_vid_start": -1.2079451084136963
+        },
+        {
+            "event": "commandStarting",
+            "commandId": "ConstrainedOrbitCommand",
+            "commandName": "Constrained Orbit",
+            "timestamp": 1758276121.349046,
+            "timestamp_relative_to_vid_start": 0.17592287063598633
+        },
+        {
+            "event": "activeSelectionChanged",
+            "entityType": "adsk::fusion::BRepFace",
+            "bboxMin": [
+                -0.5587703411883322,
+                15.826061047162058,
+                -0.5587703411883312
+            ],
+            "bboxMax": [
+                0.5587703411883302,
+                16.359319585662824,
+                0.5587703411883312
+            ],
+            "area": 1.9884548612278694,
+            "centroid": [
+                -9.434476101519467e-16,
+                16.10498712604425,
+                1.733309677288436e-17
+            ],
+            "timestamp": 1758276123.5814981,
+            "timestamp_relative_to_vid_start": 2.4083750247955322
+        },
+        {
+            "event": "commandStarting",
+            "commandId": "ConstrainedOrbitCommand",
+            "commandName": "Constrained Orbit",
+            "timestamp": 1758276124.117868,
+            "timestamp_relative_to_vid_start": 2.944744825363159
+        },
+        {
+            "event": "commandStarting",
+            "commandId": "ConstrainedOrbitCommand",
+            "commandName": "Constrained Orbit",
+            "timestamp": 1758276129.1429381,
+            "timestamp_relative_to_vid_start": 7.969815015792847
+        }
+    ],
+    "request_event_count": 5
+}

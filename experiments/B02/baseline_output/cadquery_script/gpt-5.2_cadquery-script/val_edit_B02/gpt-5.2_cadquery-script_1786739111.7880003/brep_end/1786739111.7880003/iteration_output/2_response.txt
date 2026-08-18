@@ -1,0 +1,196 @@
+Thinking text:
+**Evaluating CAD Functionality**
+
+I'm considering a simpler approach, like attempting a global fillet first. If that fails, I could filter by edge length and try again. If that still doesn't work, perhaps I can reduce it to edges on the outer boundary. Another option is to fillet in the Workplane using `.edges("|Z")`. I think I should start with `.edges().fillet(0.2)` on the workplane, and if that fails, I can try per-solid with `solid.fillet(radius, solid.Edges())`. I’ll need to include debug prints while ensuring that the first iteration isn’t complete. I'll handle small directories but be cautious with performance in recursive searches.
+**Implementing Custom Walk Functionality**
+
+I need to set up a custom walk function with a depth limit. I'll define a function that uses `os.walk` to go through directories, but will stop when it reaches a specified depth. If it hits that depth, I'll clear the list of directories to limit how deep it goes.
+
+Next, I'll collect step files while excluding any that start with "tmp.step" and choose the candidate file with the largest size. If I can't find any valid files, I'll raise a ValueError listing the directories I scanned.
+
+For the fillet implementation, I’ll check whether `model` has a `val` attribute and extract solids as needed. If there are no solids, I'll proceed by selecting edges from the workplane. I’ll ensure to sort edges by length and try to apply fillets incrementally if it fails.
+**Exploring Fillet Options**
+
+I'm considering another approach to fillet using CadQuery's `Workplane` selection. I could use `cq.Workplane(obj=solid).edges().fillet(0.2)` because it might be more successful. I can try to fillet in batches, starting with all edges, then narrowing down to top-level long edges greater than 5mm, but that might exclude smaller ones. 
+
+To align with requirements, I think a better strategy is to apply a fillet with an edge filter of length greater than 1mm. Here’s the plan: I’ll try filleting all edges, then if that fails, move to edges longer than 0.5mm, then 2.0mm, and if it still fails, I’ll return the original result.
+
+Generated script:
+def my_cad_function(args):
+    import os
+    import cadquery as cq
+
+    radius = 0.2  # mm fillet
+
+    def find_step_path():
+        # 1) Preferred: passed explicitly
+        p = args.get("input_file", None)
+        if p:
+            p = os.path.expanduser(str(p))
+            if os.path.exists(p):
+                return p
+
+        # 2) Heuristic: search near the provided function_file (available in this runner)
+        func_path = args.get("function_file", None)
+        bases = []
+        if func_path:
+            func_path = os.path.expanduser(str(func_path))
+            d = os.path.dirname(func_path)
+            # search current dir and a few parents
+            for _ in range(8):
+                if d and d not in bases:
+                    bases.append(d)
+                nd = os.path.dirname(d)
+                if nd == d:
+                    break
+                d = nd
+
+        out_dir = args.get("output_dir", None)
+        if out_dir:
+            out_dir = os.path.expanduser(str(out_dir))
+            if out_dir not in bases:
+                bases.append(out_dir)
+
+        def walk_step_files(base, max_depth=4):
+            found = []
+            if not base or not os.path.isdir(base):
+                return found
+            base = os.path.abspath(base)
+            for root, dirs, files in os.walk(base):
+                rel = os.path.relpath(root, base)
+                depth = 0 if rel == "." else rel.count(os.sep) + 1
+                if depth >= max_depth:
+                    dirs[:] = []
+                for fn in files:
+                    lfn = fn.lower()
+                    if lfn.endswith((".step", ".stp")):
+                        # avoid picking our own output
+                        if lfn in ("tmp.step", "tmp.stp"):
+                            continue
+                        found.append(os.path.join(root, fn))
+            return found
+
+        candidates = []
+        for b in bases:
+            # search base and common subfolders
+            candidates.extend(walk_step_files(b, max_depth=4))
+            candidates.extend(walk_step_files(os.path.join(b, "breps"), max_depth=4))
+            candidates.extend(walk_step_files(os.path.join(b, "brep_start"), max_depth=4))
+
+        # de-dup
+        uniq = []
+        seen = set()
+        for c in candidates:
+            ac = os.path.abspath(c)
+            if ac not in seen and os.path.exists(ac):
+                seen.add(ac)
+                uniq.append(ac)
+
+        if not uniq:
+            print("ERROR: No STEP found. args keys:", sorted(list(args.keys())))
+            if func_path:
+                print("function_file:", func_path)
+            if out_dir:
+                print("output_dir:", out_dir)
+            print("Searched bases:")
+            for b in bases:
+                print("  ", b)
+            raise ValueError("No STEP input available (runner did not pass --input_file, and heuristic search found none).")
+
+        # choose the largest file as the most likely source model
+        uniq.sort(key=lambda p: (os.path.getsize(p), os.path.getmtime(p)), reverse=True)
+        return uniq[0]
+
+    step_path = find_step_path()
+
+    model = cq.importers.importStep(step_path)
+    shape = model.val() if hasattr(model, "val") else model
+
+    # Debug info (useful for first iterations)
+    try:
+        bb = shape.BoundingBox()
+        c = bb.center
+        nsol = 0
+        try:
+            nsol = len(list(shape.Solids()))
+        except Exception:
+            pass
+        print(f"Loaded STEP: {step_path}")
+        try:
+            print(f"Is Valid: {shape.isValid()}")
+        except Exception:
+            pass
+        print(f"Solids: {nsol}")
+        print(f"Faces: {len(shape.Faces())}")
+        print(f"Edges: {len(shape.Edges())}")
+        print(f"BBox center: ({c.x:.3f}, {c.y:.3f}, {c.z:.3f})")
+    except Exception as e:
+        print("Debug info failed:", e)
+
+    def fillet_solid_try(solid):
+        edges_all = list(solid.Edges())
+        # Try progressively filtering tiny edges for robustness
+        for min_len in (0.0, 0.3, 0.8, 1.5, 3.0):
+            edges = [e for e in edges_all if e.Length() > float(min_len)]
+            if not edges:
+                continue
+            try:
+                return solid.fillet(radius, edges), min_len
+            except Exception:
+                continue
+        return None, None
+
+    # Prefer per-solid fillet (often more robust than Workplane selection on compounds)
+    try:
+        solids = list(shape.Solids())
+    except Exception:
+        solids = []
+
+    if solids:
+        filleted_solids = []
+        any_done = False
+        for i, s in enumerate(solids):
+            fs, used_min = fillet_solid_try(s)
+            if fs is None:
+                # keep original solid if fillet fails
+                filleted_solids.append(s)
+                print(f"Solid {i}: fillet failed; kept original")
+            else:
+                filleted_solids.append(fs)
+                any_done = True
+                print(f"Solid {i}: fillet {radius}mm applied (min edge length filter > {used_min}mm)")
+
+        if any_done:
+            if len(filleted_solids) == 1:
+                return cq.Workplane(obj=filleted_solids[0])
+            comp = cq.Compound.makeCompound(filleted_solids)
+            return cq.Workplane(obj=comp)
+
+    # Fallback: try fillet via Workplane selection (may succeed on some imports)
+    try:
+        result = model.edges().fillet(radius)
+        print(f"Fallback: Workplane fillet {radius}mm applied to selectable edges")
+        return result
+    except Exception as e:
+        print(f"Fallback Workplane fillet failed: {e}")
+
+    print("Returning original model (no fillet applied).")
+    return model
+
+
+Program output:
+stdout: Loading function from: C:\PROGRAMING_PYTHON\2026-08-14_ASME_Hackathon_2026\experiments\B02\baseline_output\cadquery_script\gpt-5.2_cadquery-script\val_edit_B02\gpt-5.2_cadquery-script_1786739111.7880003\brep_end\1786739111.7880003\temp_script.py
+ERROR: No STEP found. args keys: ['function_file', 'output_dir']
+function_file: C:\PROGRAMING_PYTHON\2026-08-14_ASME_Hackathon_2026\experiments\B02\baseline_output\cadquery_script\gpt-5.2_cadquery-script\val_edit_B02\gpt-5.2_cadquery-script_1786739111.7880003\brep_end\1786739111.7880003\temp_script.py
+output_dir: C:\PROGRAMING_PYTHON\2026-08-14_ASME_Hackathon_2026\experiments\B02\baseline_output\cadquery_script\gpt-5.2_cadquery-script\val_edit_B02\gpt-5.2_cadquery-script_1786739111.7880003\brep_end\1786739111.7880003
+Searched bases:
+   C:\PROGRAMING_PYTHON\2026-08-14_ASME_Hackathon_2026\experiments\B02\baseline_output\cadquery_script\gpt-5.2_cadquery-script\val_edit_B02\gpt-5.2_cadquery-script_1786739111.7880003\brep_end\1786739111.7880003
+   C:\PROGRAMING_PYTHON\2026-08-14_ASME_Hackathon_2026\experiments\B02\baseline_output\cadquery_script\gpt-5.2_cadquery-script\val_edit_B02\gpt-5.2_cadquery-script_1786739111.7880003\brep_end
+   C:\PROGRAMING_PYTHON\2026-08-14_ASME_Hackathon_2026\experiments\B02\baseline_output\cadquery_script\gpt-5.2_cadquery-script\val_edit_B02\gpt-5.2_cadquery-script_1786739111.7880003
+   C:\PROGRAMING_PYTHON\2026-08-14_ASME_Hackathon_2026\experiments\B02\baseline_output\cadquery_script\gpt-5.2_cadquery-script\val_edit_B02
+   C:\PROGRAMING_PYTHON\2026-08-14_ASME_Hackathon_2026\experiments\B02\baseline_output\cadquery_script\gpt-5.2_cadquery-script
+   C:\PROGRAMING_PYTHON\2026-08-14_ASME_Hackathon_2026\experiments\B02\baseline_output\cadquery_script
+   C:\PROGRAMING_PYTHON\2026-08-14_ASME_Hackathon_2026\experiments\B02\baseline_output
+   C:\PROGRAMING_PYTHON\2026-08-14_ASME_Hackathon_2026\experiments\B02
+Error executing LLM-provided function: No STEP input available (runner did not pass --input_file, and heuristic search found none).
+Script completed.

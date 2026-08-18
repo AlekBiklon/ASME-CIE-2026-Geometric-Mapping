@@ -1,0 +1,127 @@
+{
+    "experiment_id": "B01",
+    "request_id": "SUJ2G2UMJQR7PMBX_1757677048.372038",
+    "dataset_index": 51,
+    "file_name": "20393_fusion-360-151130-1325-f67c6b30-pebble v1",
+    "instruction": "Please add a hole of 2 mm here for reset button.",
+    "status": "NOT_CONFIRMED",
+    "reason": "The next available B-Rep state for the same CAD model is geometrically identical to the experiment START STEP.",
+    "start_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B01\\input\\B01_start.step",
+    "dataset_start_step": "breps/SUJ2G2UMJQR7PMBX_1757677066.6712623.step",
+    "dataset_start_timestamp": 1757677066.6712623,
+    "start_geometry": {
+        "valid": true,
+        "solids": 1,
+        "faces": 227,
+        "edges": 630,
+        "volume": 3298.450926915044,
+        "bbox_x": 56.0323867786677,
+        "bbox_y": 15.127477963273174,
+        "bbox_z": 35.00000020275195
+    },
+    "history": [
+        {
+            "dataset_index": 51,
+            "request_id": "SUJ2G2UMJQR7PMBX_1757677048.372038",
+            "instruction": "Please add a hole of 2 mm here for reset button.",
+            "step_relative": "breps/SUJ2G2UMJQR7PMBX_1757677066.6712623.step",
+            "step_absolute": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\SUJ2G2UMJQR7PMBX_1757677066.6712623.step",
+            "step_timestamp": 1757677066.6712623,
+            "step_exists": true
+        },
+        {
+            "dataset_index": 53,
+            "request_id": "SUJ2G2UMJQR7PMBX_1757677201.4505322",
+            "instruction": "Please emboss four rectangular patterns of depth 0.3 mm for aesthetic look.",
+            "step_relative": "breps/SUJ2G2UMJQR7PMBX_1757677232.5764313.step",
+            "step_absolute": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\SUJ2G2UMJQR7PMBX_1757677232.5764313.step",
+            "step_timestamp": 1757677232.5764313,
+            "step_exists": true
+        },
+        {
+            "dataset_index": 52,
+            "request_id": "SUJ2G2UMJQR7PMBX_1757677320.163158",
+            "instruction": "Please raise the four sides by 5 mm and add fillet for display protection.",
+            "step_relative": "breps/SUJ2G2UMJQR7PMBX_1757677353.050026.step",
+            "step_absolute": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\SUJ2G2UMJQR7PMBX_1757677353.050026.step",
+            "step_timestamp": 1757677353.050026,
+            "step_exists": true
+        }
+    ],
+    "candidates": [
+        {
+            "rank": 1,
+            "dataset_index": 53,
+            "request_id": "SUJ2G2UMJQR7PMBX_1757677201.4505322",
+            "instruction": "Please emboss four rectangular patterns of depth 0.3 mm for aesthetic look.",
+            "step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\SUJ2G2UMJQR7PMBX_1757677232.5764313.step",
+            "step_timestamp": 1757677232.5764313,
+            "time_delta_from_start_s": 165.90516901016235,
+            "geometry": {
+                "valid": true,
+                "solids": 1,
+                "faces": 227,
+                "edges": 630,
+                "volume": 3298.450926915044,
+                "bbox_x": 56.0323867786677,
+                "bbox_y": 15.127477963273174,
+                "bbox_z": 35.00000020275195
+            },
+            "comparison_to_start": {
+                "volume_delta": 0.0,
+                "solids_delta": 0,
+                "faces_delta": 0,
+                "edges_delta": 0,
+                "bbox_delta": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "same_volume": true,
+                "same_solids": true,
+                "same_faces": true,
+                "same_edges": true,
+                "same_bbox": true,
+                "geometrically_identical_basic": true
+            }
+        },
+        {
+            "rank": 2,
+            "dataset_index": 52,
+            "request_id": "SUJ2G2UMJQR7PMBX_1757677320.163158",
+            "instruction": "Please raise the four sides by 5 mm and add fillet for display protection.",
+            "step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\SUJ2G2UMJQR7PMBX_1757677353.050026.step",
+            "step_timestamp": 1757677353.050026,
+            "time_delta_from_start_s": 286.3787636756897,
+            "geometry": {
+                "valid": true,
+                "solids": 1,
+                "faces": 227,
+                "edges": 630,
+                "volume": 3298.450926915044,
+                "bbox_x": 56.0323867786677,
+                "bbox_y": 15.127477963273174,
+                "bbox_z": 35.00000020275195
+            },
+            "comparison_to_start": {
+                "volume_delta": 0.0,
+                "solids_delta": 0,
+                "faces_delta": 0,
+                "edges_delta": 0,
+                "bbox_delta": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "same_volume": true,
+                "same_solids": true,
+                "same_faces": true,
+                "same_edges": true,
+                "same_bbox": true,
+                "geometrically_identical_basic": true
+            }
+        }
+    ],
+    "confirmed_ground_truth": null,
+    "ground_truth_step": null
+}

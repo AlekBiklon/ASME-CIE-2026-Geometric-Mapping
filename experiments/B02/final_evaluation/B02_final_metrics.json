@@ -1,0 +1,101 @@
+{
+    "experiment_id": "B02",
+    "benchmark": "ASME CIE 2026 Student Hackathon",
+    "engineering_edit": {
+        "operation": "FILLET",
+        "instruction": "Add fillet of 0.2 mm along the sharp edges for safer handling.",
+        "radius_mm": 0.2
+    },
+    "input": {
+        "start_step": "C:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B02\\input\\B02_start.step",
+        "start_step_exists": true,
+        "edit_request": "C:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B02\\input\\edit_request.json",
+        "edit_request_exists": true
+    },
+    "ground_truth": {
+        "available": false,
+        "confirmed": false,
+        "step_path": null,
+        "reason": "No explicit post-edit Ground Truth STEP/B-Rep was identified in the available external benchmark metadata. val_edit_all.parquet contains brep_start_path but no confirmed brep_end_path or target B-Rep for B02.",
+        "geometric_similarity_metrics_available": false
+    },
+    "autodesk_baseline": {
+        "status": "FAILED",
+        "success": false,
+        "runtime_seconds": 494.9,
+        "runtime_minutes": 8.248333333333333,
+        "output_step_available": false,
+        "output_step": null,
+        "tokens": null,
+        "cost_usd": null,
+        "metrics": {
+            "chamfer": null,
+            "mean_surface_distance_mm": null,
+            "voxel_iou": null,
+            "volumetric_precision": null,
+            "volumetric_recall": null,
+            "volumetric_f1": null,
+            "difference_f1": null
+        }
+    },
+    "our_method": {
+        "method": "Semi-Automatic Geometric Mapping + Deterministic CAD Editing",
+        "status": "SUCCESS",
+        "success": true,
+        "output_step": "C:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B02\\our_method_output\\B02_result.step",
+        "output_step_exists": true,
+        "selection_source": "USER_3D_SELECTION",
+        "selected_edge_ids": [
+            "E0353"
+        ],
+        "selected_edge_count": 1,
+        "fillet_radius_mm": 0.2,
+        "input_valid": true,
+        "result_valid": true,
+        "step_export_success": true,
+        "reimport_valid": true,
+        "input_solids": 12,
+        "output_solids": 12,
+        "input_volume_mm3": 11691.106700809616,
+        "output_volume_mm3": 11691.411950496766,
+        "volume_change_mm3": 0.30524968714962597,
+        "edited_solid": {
+            "solid_id": 6,
+            "faces_before": 10,
+            "faces_after": 11,
+            "edges_before": 24,
+            "edges_after": 27
+        },
+        "runtime_seconds": null,
+        "runtime_minutes": null,
+        "tokens": null,
+        "cost_usd": null,
+        "metrics": {
+            "chamfer": null,
+            "mean_surface_distance_mm": null,
+            "voxel_iou": null,
+            "volumetric_precision": null,
+            "volumetric_recall": null,
+            "volumetric_f1": null,
+            "difference_f1": null
+        }
+    },
+    "comparison": {
+        "evaluation_type": "TASK_COMPLETION_AND_ROBUSTNESS",
+        "autodesk_completed_task": false,
+        "our_method_completed_task": true,
+        "autodesk_valid_step_created": false,
+        "our_method_valid_step_created": true,
+        "winner_task_completion": "OUR_METHOD",
+        "geometric_accuracy_comparison_possible": false,
+        "geometric_accuracy_reason": "Confirmed post-edit Ground Truth STEP is unavailable for B02."
+    },
+    "notes": [
+        "Autodesk baseline failed to complete B02.",
+        "Our method successfully applied a deterministic 0.2 mm fillet to the user-selected edge E0353.",
+        "The edited model remained a valid B-Rep after STEP export and re-import.",
+        "The number of solids was preserved at 12.",
+        "Ground Truth similarity metrics are intentionally reported as null rather than estimated from an unconfirmed target STEP."
+    ],
+    "saved_at": "2026-08-16T17:28:12"
+}

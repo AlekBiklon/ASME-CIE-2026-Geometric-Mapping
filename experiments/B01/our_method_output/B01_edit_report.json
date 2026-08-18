@@ -1,0 +1,56 @@
+{
+    "method": "Semi-Automatic Geometric Mapping + Robust Deterministic CAD Editing",
+    "operation": "ADD_HOLE",
+    "operation_status": "FULL_SUCCESS",
+    "input_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B01\\input\\B01_start.step",
+    "edit_request": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B01\\input\\edit_request.json",
+    "output_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B01\\our_method_output\\B01_result.step",
+    "input_valid": true,
+    "result_valid": true,
+    "step_success": true,
+    "reimport_valid": true,
+    "input_solids": 1,
+    "output_solids": 1,
+    "reimport_solids": 1,
+    "input_faces": 227,
+    "output_faces": 228,
+    "input_edges": 630,
+    "output_edges": 633,
+    "input_volume": 3298.450926915044,
+    "output_volume": 3295.309256222478,
+    "volume_change": -3.1416706925660947,
+    "reimport_volume": 3295.288959406529,
+    "reimport_volume_delta": -0.0202968159487682,
+    "operation_report": {
+        "operation": "ADD_HOLE",
+        "mode": "EXPLICIT_DIAMETER",
+        "diameter_mm": 2.0,
+        "target_face": "F0042",
+        "target_point": [
+            26.050372340976264,
+            -3.381198136015799,
+            -17.5
+        ],
+        "projected_point": [
+            26.050372340976264,
+            -3.381198136015799,
+            -17.5
+        ],
+        "face_normal": [
+            -0.0,
+            -0.0,
+            -1.0
+        ],
+        "surface_type": "PLANE",
+        "surface_uv": [
+            23.730372280439244,
+            -1.911607539194429
+        ],
+        "projection_distance_mm": 0.0,
+        "owner_solid": 0,
+        "input_volume": 3298.450926915044,
+        "output_volume": 3295.309256222478,
+        "removed_volume": 3.1416706925660947,
+        "status": "FULL_SUCCESS"
+    }
+}

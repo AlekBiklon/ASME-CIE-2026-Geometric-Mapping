@@ -1,0 +1,176 @@
+{
+    "method": "Semi-Automatic Geometric Mapping + Robust Deterministic CAD Editing",
+    "operation": "CHAMFER",
+    "operation_status": "ADAPTIVE_SUCCESS",
+    "input_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B03\\input\\B03_start.step",
+    "edit_request": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B03\\input\\edit_request.json",
+    "output_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B03\\our_method_output\\B03_result.step",
+    "input_valid": true,
+    "result_valid": true,
+    "step_success": true,
+    "reimport_valid": true,
+    "input_solids": 1,
+    "output_solids": 1,
+    "reimport_solids": 1,
+    "input_faces": 118,
+    "output_faces": 124,
+    "input_edges": 322,
+    "output_edges": 338,
+    "input_volume": 4886543.576109433,
+    "output_volume": 4886501.781076583,
+    "volume_change": -41.795032849535346,
+    "reimport_volume": 4886502.778095089,
+    "reimport_volume_delta": 0.9970185058191419,
+    "operation_report": {
+        "operation": "CHAMFER",
+        "requested_distance_mm": 1.0,
+        "edge_ids": [
+            "E0011",
+            "E0010",
+            "E0009",
+            "E0007",
+            "E0012",
+            "E0013"
+        ],
+        "selected_edge_count": 6,
+        "owner_solid_count": 1,
+        "status": "ADAPTIVE_SUCCESS",
+        "owner_results": [
+            {
+                "solid_index": 0,
+                "input_volume": 4886543.576109433,
+                "output_volume": 4886501.781076583,
+                "volume_change": -41.795032849535346,
+                "input_faces": 118,
+                "output_faces": 124,
+                "input_edges": 322,
+                "output_edges": 338,
+                "contours": [
+                    {
+                        "edge_ids": [
+                            "E0011",
+                            "E0009",
+                            "E0010"
+                        ],
+                        "requested_distance_mm": 1.0,
+                        "applied_distance_mm": 1.0,
+                        "status": "FULL_SUCCESS",
+                        "attempts": [
+                            {
+                                "distance_mm": 1.0,
+                                "success": true,
+                                "reason": null
+                            }
+                        ],
+                        "skipped_edges": [],
+                        "mapping": [
+                            {
+                                "edge_id": "E0011",
+                                "local_edge_index": 10,
+                                "match_score": 0.0,
+                                "type": "BSPLINE",
+                                "length": 3.195419505175622
+                            },
+                            {
+                                "edge_id": "E0009",
+                                "local_edge_index": 8,
+                                "match_score": 0.0,
+                                "type": "BSPLINE",
+                                "length": 23.57976631705625
+                            },
+                            {
+                                "edge_id": "E0010",
+                                "local_edge_index": 9,
+                                "match_score": 0.0,
+                                "type": "BSPLINE",
+                                "length": 13.302218121898452
+                            }
+                        ],
+                        "volume_before": 4886543.576109433,
+                        "volume_after": 4886516.17359618,
+                        "volume_change": -27.402513252571225
+                    },
+                    {
+                        "edge_ids": [
+                            "E0007",
+                            "E0013",
+                            "E0012"
+                        ],
+                        "requested_distance_mm": 1.0,
+                        "applied_distance_mm": 0.65,
+                        "status": "ADAPTIVE_SUCCESS",
+                        "attempts": [
+                            {
+                                "distance_mm": 1.0,
+                                "success": false,
+                                "reason": "StdFail_NotDone: BRep_API: command not done"
+                            },
+                            {
+                                "distance_mm": 0.95,
+                                "success": false,
+                                "reason": "StdFail_NotDone: BRep_API: command not done"
+                            },
+                            {
+                                "distance_mm": 0.9,
+                                "success": false,
+                                "reason": "StdFail_NotDone: BRep_API: command not done"
+                            },
+                            {
+                                "distance_mm": 0.85,
+                                "success": false,
+                                "reason": "StdFail_NotDone: BRep_API: command not done"
+                            },
+                            {
+                                "distance_mm": 0.8,
+                                "success": false,
+                                "reason": "StdFail_NotDone: BRep_API: command not done"
+                            },
+                            {
+                                "distance_mm": 0.75,
+                                "success": false,
+                                "reason": "StdFail_NotDone: BRep_API: command not done"
+                            },
+                            {
+                                "distance_mm": 0.7,
+                                "success": false,
+                                "reason": "StdFail_NotDone: BRep_API: command not done"
+                            },
+                            {
+                                "distance_mm": 0.65,
+                                "success": true,
+                                "reason": null
+                            }
+                        ],
+                        "skipped_edges": [],
+                        "mapping": [
+                            {
+                                "edge_id": "E0007",
+                                "local_edge_index": 2,
+                                "match_score": 0.0,
+                                "type": "BSPLINE",
+                                "length": 21.80177343431408
+                            },
+                            {
+                                "edge_id": "E0013",
+                                "local_edge_index": 4,
+                                "match_score": 0.0,
+                                "type": "BSPLINE",
+                                "length": 16.46668931681416
+                            },
+                            {
+                                "edge_id": "E0012",
+                                "local_edge_index": 6,
+                                "match_score": 0.0,
+                                "type": "BSPLINE",
+                                "length": 1.3862147698355627
+                            }
+                        ],
+                        "volume_before": 4886516.17359618,
+                        "volume_after": 4886501.781076583,
+                        "volume_change": -14.39251959696412
+                    }
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,127 @@
+{
+    "experiment_id": "B02",
+    "request_id": "SUJ2G2UMJQR7PMBX_1762932921.809779",
+    "dataset_index": 27,
+    "file_name": "21549_fusion-360-151130-7378-d8bb534e-2-26-v_v1",
+    "instruction": "Add fillet of 0.2 mm along the sharp edges for safer handling.",
+    "status": "NOT_CONFIRMED",
+    "reason": "The next available B-Rep state for the same CAD model is geometrically identical to the experiment START STEP.",
+    "start_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B02\\input\\B02_start.step",
+    "dataset_start_step": "breps/SUJ2G2UMJQR7PMBX_1762932954.777719.step",
+    "dataset_start_timestamp": 1762932954.777719,
+    "start_geometry": {
+        "valid": true,
+        "solids": 12,
+        "faces": 283,
+        "edges": 715,
+        "volume": 11691.106700809616,
+        "bbox_x": 70.21134599634414,
+        "bbox_y": 30.603782539627037,
+        "bbox_z": 146.59004364688113
+    },
+    "history": [
+        {
+            "dataset_index": 27,
+            "request_id": "SUJ2G2UMJQR7PMBX_1762932921.809779",
+            "instruction": "Add fillet of 0.2 mm along the sharp edges for safer handling.",
+            "step_relative": "breps/SUJ2G2UMJQR7PMBX_1762932954.777719.step",
+            "step_absolute": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\SUJ2G2UMJQR7PMBX_1762932954.777719.step",
+            "step_timestamp": 1762932954.777719,
+            "step_exists": true
+        },
+        {
+            "dataset_index": 29,
+            "request_id": "SUJ2G2UMJQR7PMBX_1762933245.4024708",
+            "instruction": "Create a slot cut of 5 mm length and 2 mm radius with a fillet of 0.5 mm in the top and chamfer of 0.75 mm in the rear for hanging.",
+            "step_relative": "breps/SUJ2G2UMJQR7PMBX_1762933280.0479367.step",
+            "step_absolute": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\SUJ2G2UMJQR7PMBX_1762933280.0479367.step",
+            "step_timestamp": 1762933280.0479367,
+            "step_exists": true
+        },
+        {
+            "dataset_index": 28,
+            "request_id": "SUJ2G2UMJQR7PMBX_1762933482.2598138",
+            "instruction": "Create 4 cylindrical cut of 8 mm diameter in this handle for grip.",
+            "step_relative": "breps/SUJ2G2UMJQR7PMBX_1762933508.178841.step",
+            "step_absolute": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\SUJ2G2UMJQR7PMBX_1762933508.178841.step",
+            "step_timestamp": 1762933508.178841,
+            "step_exists": true
+        }
+    ],
+    "candidates": [
+        {
+            "rank": 1,
+            "dataset_index": 29,
+            "request_id": "SUJ2G2UMJQR7PMBX_1762933245.4024708",
+            "instruction": "Create a slot cut of 5 mm length and 2 mm radius with a fillet of 0.5 mm in the top and chamfer of 0.75 mm in the rear for hanging.",
+            "step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\SUJ2G2UMJQR7PMBX_1762933280.0479367.step",
+            "step_timestamp": 1762933280.0479367,
+            "time_delta_from_start_s": 325.27021765708923,
+            "geometry": {
+                "valid": true,
+                "solids": 12,
+                "faces": 283,
+                "edges": 715,
+                "volume": 11691.106700809616,
+                "bbox_x": 70.21134599634414,
+                "bbox_y": 30.603782539627037,
+                "bbox_z": 146.59004364688113
+            },
+            "comparison_to_start": {
+                "volume_delta": 0.0,
+                "solids_delta": 0,
+                "faces_delta": 0,
+                "edges_delta": 0,
+                "bbox_delta": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "same_volume": true,
+                "same_solids": true,
+                "same_faces": true,
+                "same_edges": true,
+                "same_bbox": true,
+                "geometrically_identical_basic": true
+            }
+        },
+        {
+            "rank": 2,
+            "dataset_index": 28,
+            "request_id": "SUJ2G2UMJQR7PMBX_1762933482.2598138",
+            "instruction": "Create 4 cylindrical cut of 8 mm diameter in this handle for grip.",
+            "step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\SUJ2G2UMJQR7PMBX_1762933508.178841.step",
+            "step_timestamp": 1762933508.178841,
+            "time_delta_from_start_s": 553.4011220932007,
+            "geometry": {
+                "valid": true,
+                "solids": 12,
+                "faces": 283,
+                "edges": 715,
+                "volume": 11691.106700809616,
+                "bbox_x": 70.21134599634414,
+                "bbox_y": 30.603782539627037,
+                "bbox_z": 146.59004364688113
+            },
+            "comparison_to_start": {
+                "volume_delta": 0.0,
+                "solids_delta": 0,
+                "faces_delta": 0,
+                "edges_delta": 0,
+                "bbox_delta": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "same_volume": true,
+                "same_solids": true,
+                "same_faces": true,
+                "same_edges": true,
+                "same_bbox": true,
+                "geometrically_identical_basic": true
+            }
+        }
+    ],
+    "confirmed_ground_truth": null,
+    "ground_truth_step": null
+}

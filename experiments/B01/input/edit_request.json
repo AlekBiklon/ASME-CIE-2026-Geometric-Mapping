@@ -1,0 +1,24 @@
+{
+    "experiment_id": "B01",
+    "dataset_index": 51,
+    "request_id": "SUJ2G2UMJQR7PMBX_1757677048.372038",
+    "instruction": "Please add a hole of 2 mm here for reset button.",
+    "instruction_source": "request_transcript",
+    "operation": "ADD_HOLE",
+    "parameters": {
+        "diameter_mm": 2.0,
+        "geometry_source": "TEXT"
+    },
+    "target": {
+        "entity_type": "POINT_ON_FACE",
+        "face_id": "F0042",
+        "point_xyz": [
+            26.050372340976264,
+            -3.381198136015799,
+            -17.5
+        ],
+        "surface_type": "PLANE",
+        "brep_match_distance_mm": 0.0,
+        "source": "USER_3D_SELECTION"
+    }
+}

@@ -1,0 +1,82 @@
+{
+    "experiment_id": "B09",
+    "request_id": "F332D3FXML85WLR2_1769686175.1922078",
+    "method": "GEOMETRIC_MAPPING",
+    "operation": "ADD_HOLE",
+    "operation_status": "FULL_SUCCESS",
+    "cad_edit": {
+        "runtime_s": 1.5553719999734312,
+        "step_success": true,
+        "result_valid_report": true,
+        "valid_brep": true,
+        "reimport_valid": true,
+        "export_reimport_success": true,
+        "reimport_volume_delta_mm3": -4.169123712927103e-09
+    },
+    "geometry": {
+        "start": {
+            "valid": true,
+            "solids": 1,
+            "faces": 13,
+            "edges": 27,
+            "volume_mm3": 10606.910994492404,
+            "bounding_box_mm": {
+                "x": 4.749800000000123,
+                "y": 26.98750000000001,
+                "z": 88.9,
+                "diagonal": 93.02739250505736
+            }
+        },
+        "result": {
+            "valid": true,
+            "solids": 1,
+            "faces": 14,
+            "edges": 30,
+            "volume_mm3": 10492.532171017487,
+            "bounding_box_mm": {
+                "x": 4.749800000000054,
+                "y": 26.987499999991023,
+                "z": 88.899999999998,
+                "diagonal": 93.02739250505283
+            }
+        },
+        "change": {
+            "solids_delta": 0,
+            "faces_delta": 1,
+            "edges_delta": 3,
+            "volume_delta_mm3": -114.37882347491723,
+            "absolute_volume_change_mm3": 114.37882347491723,
+            "relative_volume_change": 0.010783424461118601
+        }
+    },
+    "operation_details": {
+        "operation": "ADD_HOLE",
+        "operation_status": "FULL_SUCCESS",
+        "add_hole": {
+            "diameter_mm": null,
+            "target_face": null,
+            "removed_volume_mm3": 114.3788234707481
+        }
+    },
+    "ground_truth": {
+        "status": "NOT_CONFIRMED",
+        "reason": "The next available B-Rep state for the same CAD model is geometrically identical to the experiment START STEP.",
+        "step": null,
+        "geometry": null
+    },
+    "gt_metrics": {
+        "available": false,
+        "chamfer_distance": null,
+        "voxel_iou": null,
+        "difference_f1": null,
+        "note": "Ground Truth is not confirmed; GT-dependent metrics are N/A."
+    },
+    "success": {
+        "operation_success": true,
+        "strict_operation_success": true,
+        "valid_brep": true,
+        "solid_count_preserved": true,
+        "export_reimport_success": true
+    },
+    "metrics_module_runtime_s": 0.20838110003387555
+}

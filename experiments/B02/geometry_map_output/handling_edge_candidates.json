@@ -1,0 +1,1642 @@
+{
+    "experiment": "B02",
+    "operation": "FILLET",
+    "radius_mm": 0.2,
+    "intent": "SAFER_HANDLING",
+    "filter": {
+        "curve_type": "LINE",
+        "adjacent_face_types": [
+            "PLANE",
+            "PLANE"
+        ],
+        "minimum_length_mm": 5.0,
+        "minimum_sharpness_deg": 60.0
+    },
+    "candidate_count": 56,
+    "edges": [
+        {
+            "edge_id": "E0287",
+            "length_mm": 81.28000000000021,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0122",
+                "F0123"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                -17.058383018481095,
+                -4.22537783289471,
+                77.84164908997113
+            ],
+            "normal1": [
+                -0.40821789367673483,
+                0.9063077870366498,
+                -0.10938165494661597
+            ],
+            "normal2": [
+                -0.8754260781085034,
+                -0.4226183060485681,
+                -0.23456971066231808
+            ],
+            "normal_angle_deg": 90.00000280109465,
+            "sharpness_deg": 89.99999719890535,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0284",
+            "length_mm": 81.28000000000002,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0121",
+                "F0123"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                -16.12519681569956,
+                -6.29719738682922,
+                78.09169557939424
+            ],
+            "normal1": [
+                0.40821789367673494,
+                -0.9063077870366498,
+                0.10938165494661599
+            ],
+            "normal2": [
+                -0.8754260781085034,
+                -0.4226183060485681,
+                -0.23456971066231808
+            ],
+            "normal_angle_deg": 89.99999719890536,
+            "sharpness_deg": 89.99999719890536,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0280",
+            "length_mm": 47.8060635449689,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0120",
+                "F0121"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                4.883517019237252,
+                1.753680756269198,
+                66.3935789472549
+            ],
+            "normal1": [
+                0.8754260980655933,
+                0.42261826174069916,
+                0.2345697160098041
+            ],
+            "normal2": [
+                0.40821789367673494,
+                -0.9063077870366498,
+                0.10938165494661599
+            ],
+            "normal_angle_deg": 89.99999999999996,
+            "sharpness_deg": 89.99999999999996,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0282",
+            "length_mm": 47.80606354496889,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0120",
+                "F0122"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                3.9503309142922536,
+                3.8255003574349877,
+                66.14353248404689
+            ],
+            "normal1": [
+                0.8754260980655933,
+                0.42261826174069916,
+                0.2345697160098041
+            ],
+            "normal2": [
+                -0.40821789367673483,
+                0.9063077870366498,
+                -0.10938165494661597
+            ],
+            "normal_angle_deg": 90.00000000000004,
+            "sharpness_deg": 89.99999999999996,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0055",
+            "length_mm": 44.46347182807193,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0019",
+                "F0029"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                21.77635258403177,
+                -0.507999993860722,
+                5.062860464320439
+            ],
+            "normal1": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "normal2": [
+                0.9659258262890682,
+                0.0,
+                0.2588190451025211
+            ],
+            "normal_angle_deg": 90.0,
+            "sharpness_deg": 90.0,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0075",
+            "length_mm": 44.46347182807193,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0025",
+                "F0029"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                21.77635258403177,
+                -2.79399999386072,
+                5.062860464320439
+            ],
+            "normal1": [
+                0.0,
+                -1.0,
+                0.0
+            ],
+            "normal2": [
+                0.9659258262890682,
+                0.0,
+                0.2588190451025211
+            ],
+            "normal_angle_deg": 90.0,
+            "sharpness_deg": 90.0,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0358",
+            "length_mm": 35.56000000000004,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0151",
+                "F0152"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                6.42798296509097,
+                1.805837377583071,
+                60.52994419392885
+            ],
+            "normal1": [
+                -0.40821789367673483,
+                0.9063077870366498,
+                -0.10938165494661597
+            ],
+            "normal2": [
+                -0.8754260980655931,
+                -0.4226182617406991,
+                -0.23456971600980503
+            ],
+            "normal_angle_deg": 89.99999999999996,
+            "sharpness_deg": 89.99999999999996,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0373",
+            "length_mm": 35.560000000000024,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0156",
+                "F0157"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                6.523711963104172,
+                1.767973817712311,
+                60.55559470163874
+            ],
+            "normal1": [
+                0.8754260980655931,
+                0.4226182617406991,
+                0.23456971600980503
+            ],
+            "normal2": [
+                0.40821789367673483,
+                -0.9063077870366498,
+                0.10938165494661597
+            ],
+            "normal_angle_deg": 89.99999999999996,
+            "sharpness_deg": 89.99999999999996,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0355",
+            "length_mm": 35.56000000000002,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0150",
+                "F0151"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                -10.248884735289128,
+                -6.24504076551537,
+                56.06139096133134
+            ],
+            "normal1": [
+                0.8754260781085037,
+                0.4226183060485668,
+                0.2345697106623189
+            ],
+            "normal2": [
+                -0.40821789367673483,
+                0.9063077870366498,
+                -0.10938165494661597
+            ],
+            "normal_angle_deg": 89.99999719890543,
+            "sharpness_deg": 89.99999719890543,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0367",
+            "length_mm": 35.56000000000002,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0154",
+                "F0155"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                -11.277005099098297,
+                -4.125496386795939,
+                55.785906940126736
+            ],
+            "normal1": [
+                -0.8754260980655931,
+                -0.4226182617406991,
+                -0.23456971600980503
+            ],
+            "normal2": [
+                -0.40821789367673483,
+                0.9063077870366498,
+                -0.10938165494661597
+            ],
+            "normal_angle_deg": 89.99999999999996,
+            "sharpness_deg": 89.99999999999996,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0365",
+            "length_mm": 35.56000000000001,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0154",
+                "F0157"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                -10.278100147721126,
+                -6.343222140531539,
+                56.053562715163636
+            ],
+            "normal1": [
+                -0.8754260980655931,
+                -0.4226182617406991,
+                -0.23456971600980503
+            ],
+            "normal2": [
+                0.40821789367673483,
+                -0.9063077870366498,
+                0.10938165494661597
+            ],
+            "normal_angle_deg": 90.00000000000004,
+            "sharpness_deg": 89.99999999999996,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0361",
+            "length_mm": 35.55999999999993,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0152",
+                "F0153"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                5.494796860145885,
+                3.8776569787488513,
+                60.27989773072089
+            ],
+            "normal1": [
+                -0.8754260980655931,
+                -0.4226182617406991,
+                -0.23456971600980503
+            ],
+            "normal2": [
+                0.40821789367673483,
+                -0.9063077870366498,
+                0.10938165494661597
+            ],
+            "normal_angle_deg": 90.00000000000004,
+            "sharpness_deg": 89.99999999999996,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0353",
+            "length_mm": 35.559999999999924,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0150",
+                "F0153"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                -11.182070938070614,
+                -4.173221211580859,
+                55.81134447190819
+            ],
+            "normal1": [
+                0.8754260781085037,
+                0.4226183060485668,
+                0.2345697106623189
+            ],
+            "normal2": [
+                0.40821789367673483,
+                -0.9063077870366498,
+                0.10938165494661597
+            ],
+            "normal_angle_deg": 90.00000280109455,
+            "sharpness_deg": 89.99999719890545,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0370",
+            "length_mm": 35.559999999999924,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0155",
+                "F0156"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                5.524807011726985,
+                3.9856995714479213,
+                60.28793892660179
+            ],
+            "normal1": [
+                -0.40821789367673483,
+                0.9063077870366498,
+                -0.10938165494661597
+            ],
+            "normal2": [
+                0.8754260980655931,
+                0.4226182617406991,
+                0.23456971600980503
+            ],
+            "normal_angle_deg": 90.00000000000004,
+            "sharpness_deg": 89.99999999999996,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0059",
+            "length_mm": 24.701113798205704,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0019",
+                "F0026"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                5.960436267901311,
+                -0.507999993860722,
+                -9.514887019658023
+            ],
+            "normal1": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "normal2": [
+                -0.9659258262890672,
+                -4.88883239366518e-08,
+                -0.25881904510252013
+            ],
+            "normal_angle_deg": 90.00000280109464,
+            "sharpness_deg": 89.99999719890536,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0074",
+            "length_mm": 24.7011137982057,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0025",
+                "F0026"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                5.960436375851931,
+                -2.79399999386072,
+                -9.514886990732741
+            ],
+            "normal1": [
+                0.0,
+                -1.0,
+                0.0
+            ],
+            "normal2": [
+                -0.9659258262890672,
+                -4.88883239366518e-08,
+                -0.25881904510252013
+            ],
+            "normal_angle_deg": 89.99999719890538,
+            "sharpness_deg": 89.99999719890538,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0118",
+            "length_mm": 19.811999999999955,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0043",
+                "F0078"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                2.6296014982416085,
+                0.0,
+                -9.813806395096911
+            ],
+            "normal1": [
+                0.0,
+                -1.0,
+                -0.0
+            ],
+            "normal2": [
+                -0.9659258262890682,
+                0.0,
+                -0.2588190451025211
+            ],
+            "normal_angle_deg": 90.0,
+            "sharpness_deg": 90.0,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0207",
+            "length_mm": 19.811999999999955,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0078",
+                "F0090"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                2.6296014982416085,
+                1.778,
+                -9.813806395096911
+            ],
+            "normal1": [
+                -0.9659258262890682,
+                0.0,
+                -0.2588190451025211
+            ],
+            "normal2": [
+                -0.0,
+                1.0,
+                0.0
+            ],
+            "normal_angle_deg": 90.0,
+            "sharpness_deg": 90.0,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0237",
+            "length_mm": 19.81199999999995,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0098",
+                "F0103"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                2.6296014982416085,
+                0.0,
+                -9.813806395096911
+            ],
+            "normal1": [
+                -0.9659258262890682,
+                0.0,
+                -0.2588190451025211
+            ],
+            "normal2": [
+                -0.0,
+                1.0,
+                0.0
+            ],
+            "normal_angle_deg": 90.0,
+            "sharpness_deg": 90.0,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0226",
+            "length_mm": 19.303641829520988,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0095",
+                "F0103"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                4.282722926433663,
+                0.0,
+                -9.107708175484175
+            ],
+            "normal1": [
+                0.9659651556554785,
+                0.0,
+                0.2586722212752799
+            ],
+            "normal2": [
+                -0.0,
+                1.0,
+                0.0
+            ],
+            "normal_angle_deg": 90.0,
+            "sharpness_deg": 90.0,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0374",
+            "length_mm": 19.192724717656738,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0157",
+                "F0158"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                2.7246085296143496,
+                -2.2876241614096307,
+                41.13041751698155
+            ],
+            "normal1": [
+                0.40821789367673483,
+                -0.9063077870366498,
+                0.10938165494661597
+            ],
+            "normal2": [
+                0.2588190451025211,
+                -5.828670879282072e-16,
+                -0.9659258262890683
+            ],
+            "normal_angle_deg": 90.00000000000003,
+            "sharpness_deg": 89.99999999999997,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0368",
+            "length_mm": 19.192724717656716,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0155",
+                "F0158"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                1.7257035782371588,
+                -0.06989840767400457,
+                40.862761741944645
+            ],
+            "normal1": [
+                -0.40821789367673483,
+                0.9063077870366498,
+                -0.10938165494661597
+            ],
+            "normal2": [
+                0.2588190451025211,
+                -5.828670879282072e-16,
+                -0.9659258262890683
+            ],
+            "normal_angle_deg": 89.99999999999999,
+            "sharpness_deg": 89.99999999999999,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0369",
+            "length_mm": 19.192724717656713,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0155",
+                "F0159"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                -7.477901665608448,
+                -0.0698984076739837,
+                75.21108412478385
+            ],
+            "normal1": [
+                -0.40821789367673483,
+                0.9063077870366498,
+                -0.10938165494661597
+            ],
+            "normal2": [
+                -0.2588190451025211,
+                6.245004513516506e-16,
+                0.9659258262890682
+            ],
+            "normal_angle_deg": 90.00000000000001,
+            "sharpness_deg": 89.99999999999999,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0375",
+            "length_mm": 19.192724717656706,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0157",
+                "F0159"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                -6.478996714231265,
+                -2.287624161409618,
+                75.47873989982084
+            ],
+            "normal1": [
+                0.40821789367673483,
+                -0.9063077870366498,
+                0.10938165494661597
+            ],
+            "normal2": [
+                -0.2588190451025211,
+                6.245004513516506e-16,
+                0.9659258262890682
+            ],
+            "normal_angle_deg": 89.99999999999999,
+            "sharpness_deg": 89.99999999999999,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0054",
+            "length_mm": 19.050000719726096,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0019",
+                "F0027"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                6.821912080785227,
+                -0.507999993860722,
+                24.071816849185023
+            ],
+            "normal1": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "normal2": [
+                -0.2588190451025211,
+                0.0,
+                0.9659258262890682
+            ],
+            "normal_angle_deg": 90.0,
+            "sharpness_deg": 90.0,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0286",
+            "length_mm": 19.050000719726047,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0122",
+                "F0125"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                1.7984568735936461,
+                -0.19993873772989623,
+                40.82070013898966
+            ],
+            "normal1": [
+                -0.40821789367673483,
+                0.9063077870366498,
+                -0.10938165494661597
+            ],
+            "normal2": [
+                0.2588190451025211,
+                -7.494005416219813e-16,
+                -0.9659258262890682
+            ],
+            "normal_angle_deg": 90.0,
+            "sharpness_deg": 90.0,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0362",
+            "length_mm": 19.05000071972604,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0153",
+                "F0158"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                1.7581655829604532,
+                -0.14778211641602823,
+                40.87145990989496
+            ],
+            "normal1": [
+                0.40821789367673483,
+                -0.9063077870366498,
+                0.10938165494661597
+            ],
+            "normal2": [
+                0.2588190451025211,
+                -5.828670879282072e-16,
+                -0.9659258262890683
+            ],
+            "normal_angle_deg": 90.00000000000003,
+            "sharpness_deg": 89.99999999999997,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0363",
+            "length_mm": 19.05000071972603,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0153",
+                "F0159"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                -7.445439660885153,
+                -0.1477821164159998,
+                75.21978229273415
+            ],
+            "normal1": [
+                0.40821789367673483,
+                -0.9063077870366498,
+                0.10938165494661597
+            ],
+            "normal2": [
+                -0.2588190451025211,
+                6.245004513516506e-16,
+                0.9659258262890682
+            ],
+            "normal_angle_deg": 89.99999999999999,
+            "sharpness_deg": 89.99999999999999,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0356",
+            "length_mm": 19.050000607967412,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0151",
+                "F0158"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                2.6913517368237567,
+                -2.2196016939661636,
+                41.121506386210434
+            ],
+            "normal1": [
+                -0.40821789367673483,
+                0.9063077870366498,
+                -0.10938165494661597
+            ],
+            "normal2": [
+                0.2588190451025211,
+                -5.828670879282072e-16,
+                -0.9659258262890683
+            ],
+            "normal_angle_deg": 89.99999999999999,
+            "sharpness_deg": 89.99999999999999,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0076",
+            "length_mm": 19.050000607967377,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0025",
+                "F0027"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                6.821912134760531,
+                -2.79399999386072,
+                24.07181686364772
+            ],
+            "normal1": [
+                0.0,
+                -1.0,
+                0.0
+            ],
+            "normal2": [
+                -0.2588190451025211,
+                0.0,
+                0.9659258262890682
+            ],
+            "normal_angle_deg": 90.0,
+            "sharpness_deg": 90.0,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0357",
+            "length_mm": 19.050000607967334,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0151",
+                "F0159"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                -6.512253507021899,
+                -2.219601693966127,
+                75.46982876904974
+            ],
+            "normal1": [
+                -0.40821789367673483,
+                0.9063077870366498,
+                -0.10938165494661597
+            ],
+            "normal2": [
+                -0.2588190451025211,
+                6.245004513516506e-16,
+                0.9659258262890682
+            ],
+            "normal_angle_deg": 90.00000000000001,
+            "sharpness_deg": 89.99999999999999,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0285",
+            "length_mm": 19.05000060796732,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0121",
+                "F0125"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                2.7316430274568937,
+                -2.2717583152800254,
+                41.070746615305254
+            ],
+            "normal1": [
+                0.40821789367673494,
+                -0.9063077870366498,
+                0.10938165494661599
+            ],
+            "normal2": [
+                0.2588190451025211,
+                -7.494005416219813e-16,
+                -0.9659258262890682
+            ],
+            "normal_angle_deg": 90.00000000000001,
+            "sharpness_deg": 89.99999999999999,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0251",
+            "length_mm": 13.800634771998183,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0106",
+                "F0108"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                3.407529995546951,
+                -5.861268969348471,
+                -12.717075071696149
+            ],
+            "normal1": [
+                -0.9659258262890682,
+                3.14625669795278e-16,
+                -0.2588190451025211
+            ],
+            "normal2": [
+                -0.00021096195688850803,
+                0.9999996678104962,
+                0.0007873207415734172
+            ],
+            "normal_angle_deg": 90.0,
+            "sharpness_deg": 90.0,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0239",
+            "length_mm": 13.7517324262944,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0098",
+                "F0101"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                3.41385783148773,
+                -7.62,
+                -12.7406908769291
+            ],
+            "normal1": [
+                -0.9659258262890682,
+                0.0,
+                -0.2588190451025211
+            ],
+            "normal2": [
+                0.0,
+                -1.0,
+                0.0
+            ],
+            "normal_angle_deg": 90.0,
+            "sharpness_deg": 90.0,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0248",
+            "length_mm": 13.751732426294398,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0105",
+                "F0106"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                3.413857831487734,
+                -7.62,
+                -12.740690876929104
+            ],
+            "normal1": [
+                -3.37761603913765e-16,
+                -1.0,
+                -9.0502949002934e-17
+            ],
+            "normal2": [
+                -0.9659258262890682,
+                3.14625669795278e-16,
+                -0.2588190451025211
+            ],
+            "normal_angle_deg": 90.0,
+            "sharpness_deg": 90.0,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0253",
+            "length_mm": 13.56341615018536,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0107",
+                "F0108"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                6.239403215154602,
+                -5.8620088661618555,
+                -11.018511813994408
+            ],
+            "normal1": [
+                0.7323568832752079,
+                -2.5608802332436295e-16,
+                0.6809209906585519
+            ],
+            "normal2": [
+                -0.00021096195688850803,
+                0.9999996678104962,
+                0.0007873207415734172
+            ],
+            "normal_angle_deg": 89.97813571353903,
+            "sharpness_deg": 89.97813571353903,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0323",
+            "length_mm": 13.032161463069375,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0135",
+                "F0142"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                17.813980221630466,
+                5.841955795462678,
+                -15.031507956608
+            ],
+            "normal1": [
+                0.0,
+                0.0,
+                1.0
+            ],
+            "normal2": [
+                -0.0016436593245319302,
+                -0.9999986491911002,
+                -0.0
+            ],
+            "normal_angle_deg": 90.0,
+            "sharpness_deg": 90.0,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0339",
+            "length_mm": 12.029468412427292,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0142",
+                "F0148"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                17.820382025760352,
+                5.841945273063412,
+                -18.2155038585881
+            ],
+            "normal1": [
+                -0.0016436593245319302,
+                -0.9999986491911002,
+                -0.0
+            ],
+            "normal2": [
+                0.0,
+                0.0,
+                -1.0
+            ],
+            "normal_angle_deg": 90.0,
+            "sharpness_deg": 90.0,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0077",
+            "length_mm": 8.266569896505917,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0025",
+                "F0028"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                -1.3087587908250917,
+                -2.79399999386072,
+                17.614118701439985
+            ],
+            "normal1": [
+                0.0,
+                -1.0,
+                0.0
+            ],
+            "normal2": [
+                -0.9659258262890672,
+                -4.88883239366518e-08,
+                -0.25881904510252013
+            ],
+            "normal_angle_deg": 89.99999719890538,
+            "sharpness_deg": 89.99999719890538,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0053",
+            "length_mm": 8.266569896505906,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0019",
+                "F0028"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                -1.308758898775709,
+                -0.507999993860722,
+                17.614118672514692
+            ],
+            "normal1": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "normal2": [
+                -0.9659258262890672,
+                -4.88883239366518e-08,
+                -0.25881904510252013
+            ],
+            "normal_angle_deg": 90.00000280109464,
+            "sharpness_deg": 89.99999719890536,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0227",
+            "length_mm": 7.62,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0095",
+                "F0102"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                1.78606497106136,
+                -3.81,
+                0.215614516801246
+            ],
+            "normal1": [
+                0.9659651556554785,
+                0.0,
+                0.2586722212752799
+            ],
+            "normal2": [
+                -0.2588190451025211,
+                0.0,
+                0.9659258262890682
+            ],
+            "normal_angle_deg": 90.00870896514897,
+            "sharpness_deg": 89.99129103485103,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0236",
+            "length_mm": 7.62,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0098",
+                "F0102"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                0.0657400374560407,
+                -3.81,
+                -0.245345159877425
+            ],
+            "normal1": [
+                -0.9659258262890682,
+                0.0,
+                -0.2588190451025211
+            ],
+            "normal2": [
+                -0.2588190451025211,
+                0.0,
+                0.9659258262890682
+            ],
+            "normal_angle_deg": 90.0,
+            "sharpness_deg": 90.0,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0238",
+            "length_mm": 7.62,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0098",
+                "F0100"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                5.19346295902718,
+                -3.81,
+                -19.3822676303164
+            ],
+            "normal1": [
+                -0.9659258262890682,
+                0.0,
+                -0.2588190451025211
+            ],
+            "normal2": [
+                0.514370906390578,
+                -1.49886200386386e-16,
+                -0.8575678227749309
+            ],
+            "normal_angle_deg": 105.95541476005512,
+            "sharpness_deg": 74.04458523994488,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0225",
+            "length_mm": 7.619999999999999,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0095",
+                "F0100"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                6.77938088180596,
+                -3.8100000000000005,
+                -18.4310308677696
+            ],
+            "normal1": [
+                0.9659651556554785,
+                0.0,
+                0.2586722212752799
+            ],
+            "normal2": [
+                0.514370906390578,
+                -1.49886200386386e-16,
+                -0.8575678227749309
+            ],
+            "normal_angle_deg": 74.03587627479592,
+            "sharpness_deg": 74.03587627479592,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0224",
+            "length_mm": 7.0204883828919495,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0095",
+                "F0101"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                5.871378219585986,
+                -7.62,
+                -15.040257290990747
+            ],
+            "normal1": [
+                0.9659651556554785,
+                0.0,
+                0.2586722212752799
+            ],
+            "normal2": [
+                0.0,
+                -1.0,
+                0.0
+            ],
+            "normal_angle_deg": 90.0,
+            "sharpness_deg": 90.0,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0254",
+            "length_mm": 6.604429913260562,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0108",
+                "F0109"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                8.025336178634854,
+                -5.856384456032653,
+                -17.68370437261467
+            ],
+            "normal1": [
+                -0.00021096195688850803,
+                0.9999996678104962,
+                0.0007873207415734172
+            ],
+            "normal2": [
+                0.514370906390578,
+                -1.49886200386386e-16,
+                -0.8575678227749309
+            ],
+            "normal_angle_deg": 90.04490234186363,
+            "sharpness_deg": 89.95509765813637,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0288",
+            "length_mm": 6.58541370851429,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0122",
+                "F0124"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                -24.694267497951333,
+                -2.8338197857268406,
+                117.86924398206564
+            ],
+            "normal1": [
+                -0.40821789367673483,
+                0.9063077870366498,
+                -0.10938165494661597
+            ],
+            "normal2": [
+                -0.2588190451025211,
+                7.512581982576722e-16,
+                0.9659258262890682
+            ],
+            "normal_angle_deg": 90.00000000000001,
+            "sharpness_deg": 89.99999999999999,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0283",
+            "length_mm": 6.585413596755627,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0121",
+                "F0124"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                -23.761081344087955,
+                -4.905639363276926,
+                118.11929045838056
+            ],
+            "normal1": [
+                0.40821789367673494,
+                -0.9063077870366498,
+                0.10938165494661599
+            ],
+            "normal2": [
+                -0.2588190451025211,
+                7.512581982576722e-16,
+                0.9659258262890682
+            ],
+            "normal_angle_deg": 90.0,
+            "sharpness_deg": 90.0,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0677",
+            "length_mm": 6.353269202843,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0261",
+                "F0266"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                17.8220166271818,
+                -4.826,
+                -15.031507956608
+            ],
+            "normal1": [
+                0.0,
+                -1.0,
+                -0.0
+            ],
+            "normal2": [
+                0.0,
+                0.0,
+                1.0
+            ],
+            "normal_angle_deg": 90.0,
+            "sharpness_deg": 90.0,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0679",
+            "length_mm": 6.353269202843,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0261",
+                "F0263"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                17.8220166271818,
+                -4.826,
+                -18.2155038585881
+            ],
+            "normal1": [
+                0.0,
+                -1.0,
+                -0.0
+            ],
+            "normal2": [
+                0.0,
+                0.0,
+                -1.0
+            ],
+            "normal_angle_deg": 90.0,
+            "sharpness_deg": 90.0,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0682",
+            "length_mm": 6.353269202843,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0262",
+                "F0263"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                17.8220166271818,
+                -5.461,
+                -18.2155038585881
+            ],
+            "normal1": [
+                0.0,
+                -1.0,
+                0.0
+            ],
+            "normal2": [
+                0.0,
+                0.0,
+                -1.0
+            ],
+            "normal_angle_deg": 90.0,
+            "sharpness_deg": 90.0,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0684",
+            "length_mm": 6.353269202843,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0262",
+                "F0266"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                17.8220166271818,
+                -5.461,
+                -15.031507956608
+            ],
+            "normal1": [
+                0.0,
+                -1.0,
+                0.0
+            ],
+            "normal2": [
+                0.0,
+                0.0,
+                1.0
+            ],
+            "normal_angle_deg": 90.0,
+            "sharpness_deg": 90.0,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0229",
+            "length_mm": 6.35,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0095",
+                "F0096"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                2.64681528623223,
+                -4.445,
+                -2.99870361939201
+            ],
+            "normal1": [
+                0.9659651556554785,
+                0.0,
+                0.2586722212752799
+            ],
+            "normal2": [
+                0.2588190451025211,
+                -9.050294900293414e-17,
+                -0.9659258262890682
+            ],
+            "normal_angle_deg": 89.99129103485103,
+            "sharpness_deg": 89.99129103485103,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0232",
+            "length_mm": 6.35,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0096",
+                "F0098"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                0.92697890946307,
+                -4.445,
+                -3.45953238766097
+            ],
+            "normal1": [
+                0.2588190451025211,
+                -9.050294900293414e-17,
+                -0.9659258262890682
+            ],
+            "normal2": [
+                -0.9659258262890682,
+                0.0,
+                -0.2588190451025211
+            ],
+            "normal_angle_deg": 90.0,
+            "sharpness_deg": 90.0,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0702",
+            "length_mm": 6.164407841578299,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0273",
+                "F0275"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                31.75278357505045,
+                -1.2699999998443794,
+                -6.25591487796375
+            ],
+            "normal1": [
+                -4.90093530063369e-12,
+                1.0,
+                1.22464679914735e-16
+            ],
+            "normal2": [
+                9.00143032914408e-60,
+                1.22464679914735e-16,
+                -1.0
+            ],
+            "normal_angle_deg": 90.0,
+            "sharpness_deg": 90.0,
+            "classification": "SHARP"
+        },
+        {
+            "edge_id": "E0230",
+            "length_mm": 6.042634189641065,
+            "curve_type": "LINE",
+            "adjacent_faces": [
+                "F0095",
+                "F0097"
+            ],
+            "face1_type": "PLANE",
+            "face2_type": "PLANE",
+            "midpoint": [
+                3.428346090326429,
+                -1.2699999999999994,
+                -5.9171906571748885
+            ],
+            "normal1": [
+                0.9659651556554785,
+                0.0,
+                0.2586722212752799
+            ],
+            "normal2": [
+                -3.49676543189026e-16,
+                -1.0,
+                -0.0
+            ],
+            "normal_angle_deg": 90.00000000000003,
+            "sharpness_deg": 89.99999999999997,
+            "classification": "SHARP"
+        }
+    ]
+}

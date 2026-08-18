@@ -1,0 +1,18 @@
+{
+    "experiment_id": "B02",
+    "dataset_index": 27,
+    "request_id": "SUJ2G2UMJQR7PMBX_1762932921.809779",
+    "instruction": "Add fillet of 0.2 mm along the sharp edges for safer handling.",
+    "operation": "FILLET",
+    "parameters": {
+        "radius_mm": 0.2
+    },
+    "target": {
+        "entity_type": "EDGE",
+        "edge_ids": [
+            "E0370"
+        ],
+        "selection_count": 1,
+        "source": "USER_3D_SELECTION"
+    }
+}

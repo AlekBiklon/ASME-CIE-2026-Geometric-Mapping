@@ -1,0 +1,164 @@
+{
+    "experiment_id": "B03",
+    "dataset_index": 137,
+    "request_id": "B7A2N74ZJBF9MZHU_1770156927.436414",
+    "request_type": "edit",
+    "file_name": "24161_fusion-360-151130-9056-d510667c-alloy-_v1",
+    "instruction": "I add chamfer, 1mm chamfer to this hole from both sides to prevent any sharp edges on the opening which should be meant for inlet valve of a tire.",
+    "source_start_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\B7A2N74ZJBF9MZHU_1770156951.5787919.step",
+    "local_start_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B03\\input\\B03_start.step",
+    "video_path": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\videos\\B7A2N74ZJBF9MZHU_1770156927.436414_30_720_audio.mp4",
+    "request_events": [
+        {
+            "event": "activeSelectionChanged",
+            "entityType": "adsk::fusion::BRepEdge",
+            "bboxMin": [
+                3.871710681915283,
+                19.149118581702858,
+                18.87076225280762
+            ],
+            "bboxMax": [
+                4.740081810661543,
+                19.694721024389295,
+                20.070762252807615
+            ],
+            "area": null,
+            "centroid": null,
+            "timestamp": 1770156933.4179032,
+            "timestamp_relative_to_vid_start": 2.7182374000549316
+        },
+        {
+            "event": "activeSelectionChanged",
+            "entityType": "adsk::fusion::BRepEdge",
+            "bboxMin": [
+                3.871710681915283,
+                19.149118581702858,
+                18.87076225280762
+            ],
+            "bboxMax": [
+                4.740081810661543,
+                19.694721024389295,
+                20.070762252807615
+            ],
+            "area": null,
+            "centroid": null,
+            "timestamp": 1770156934.575234,
+            "timestamp_relative_to_vid_start": 3.875568151473999
+        },
+        {
+            "event": "activeSelectionChanged",
+            "entityType": "adsk::fusion::BRepEdge",
+            "bboxMin": [
+                4.740081810661543,
+                19.149118581702858,
+                18.934127426081417
+            ],
+            "bboxMax": [
+                5.071710681915284,
+                19.216883271883017,
+                20.007397079533817
+            ],
+            "area": null,
+            "centroid": null,
+            "timestamp": 1770156934.575234,
+            "timestamp_relative_to_vid_start": 3.875568151473999
+        },
+        {
+            "event": "commandStarting",
+            "commandId": "ConstrainedOrbitCommand",
+            "commandName": "Constrained Orbit",
+            "timestamp": 1770156935.108333,
+            "timestamp_relative_to_vid_start": 4.408667325973511
+        },
+        {
+            "event": "commandStarting",
+            "commandId": "ConstrainedOrbitCommand",
+            "commandName": "Constrained Orbit",
+            "timestamp": 1770156936.8229032,
+            "timestamp_relative_to_vid_start": 6.123237371444702
+        },
+        {
+            "event": "commandStarting",
+            "commandId": "ConstrainedOrbitCommand",
+            "commandName": "Constrained Orbit",
+            "timestamp": 1770156938.317246,
+            "timestamp_relative_to_vid_start": 7.61758017539978
+        },
+        {
+            "event": "commandStarting",
+            "commandId": "ConstrainedOrbitCommand",
+            "commandName": "Constrained Orbit",
+            "timestamp": 1770156941.161877,
+            "timestamp_relative_to_vid_start": 10.46221113204956
+        },
+        {
+            "event": "activeSelectionChanged",
+            "entityType": "adsk::fusion::BRepEdge",
+            "bboxMin": [
+                3.871710681915283,
+                18.84301519941603,
+                18.870762252807616
+            ],
+            "bboxMax": [
+                4.590976734532495,
+                19.307964025716746,
+                20.07076225280762
+            ],
+            "area": null,
+            "centroid": null,
+            "timestamp": 1770156942.683129,
+            "timestamp_relative_to_vid_start": 11.983463287353516
+        },
+        {
+            "event": "activeSelectionChanged",
+            "entityType": "adsk::fusion::BRepEdge",
+            "bboxMin": [
+                3.871710681915283,
+                18.84301519941603,
+                18.870762252807616
+            ],
+            "bboxMax": [
+                4.590976734532495,
+                19.307964025716746,
+                20.07076225280762
+            ],
+            "area": null,
+            "centroid": null,
+            "timestamp": 1770156943.4101708,
+            "timestamp_relative_to_vid_start": 12.71050500869751
+        },
+        {
+            "event": "activeSelectionChanged",
+            "entityType": "adsk::fusion::BRepEdge",
+            "bboxMin": [
+                4.590976734532494,
+                18.84301519941603,
+                18.882735375281506
+            ],
+            "bboxMax": [
+                5.071710681915284,
+                18.918458276073352,
+                20.058789130333732
+            ],
+            "area": null,
+            "centroid": null,
+            "timestamp": 1770156943.4101708,
+            "timestamp_relative_to_vid_start": 12.71050500869751
+        },
+        {
+            "event": "commandStarting",
+            "commandId": "ConstrainedOrbitCommand",
+            "commandName": "Constrained Orbit",
+            "timestamp": 1770156943.679195,
+            "timestamp_relative_to_vid_start": 12.97952914237976
+        },
+        {
+            "event": "commandStarting",
+            "commandId": "ConstrainedOrbitCommand",
+            "commandName": "Constrained Orbit",
+            "timestamp": 1770156947.549929,
+            "timestamp_relative_to_vid_start": 16.850263118743896
+        }
+    ],
+    "request_event_count": 12
+}

@@ -1,0 +1,14 @@
+{
+    "experiment_id": "B10",
+    "dataset_index": 162,
+    "request_id": "3YH2WFSRM22W7DKT_1770125357.5670888",
+    "request_type": "edit",
+    "file_name": "24037_fusion-360-151130-5290-07e58172-untitl_v1",
+    "instruction": "I fillet these edges of the part by radius 5 millimeters and here the divisible edge respectively to create the part easy to handle and safe to handle so to avoid the injuries.",
+    "instruction_source": "request_transcript",
+    "source_start_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\3YH2WFSRM22W7DKT_1770125393.3132772.step",
+    "local_start_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B10\\input\\B10_start.step",
+    "video_path": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\videos\\3YH2WFSRM22W7DKT_1770125357.5670888_30_720_audio.mp4",
+    "request_events": [],
+    "request_event_count": 0
+}

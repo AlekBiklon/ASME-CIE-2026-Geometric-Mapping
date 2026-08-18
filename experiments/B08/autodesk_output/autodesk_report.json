@@ -1,0 +1,52 @@
+{
+    "experiment_id": "B08",
+    "request_id": "B7A2N74ZJBF9MZHU_1770169445.8914912",
+    "dataset_index": 180,
+    "method": "AUTODESK",
+    "baseline": "neuralCAD-Edit",
+    "model": "gpt-5.2",
+    "model_key": "gpt-5.2_cadquery-script",
+    "harness": "cadquery_script",
+    "status": "SUCCESS",
+    "return_code": 0,
+    "runtime_sec": 1636.1207609176636,
+    "runtime_min": 27.268679348627725,
+    "step_success": true,
+    "input_parquet": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B08\\val_edit_B08.parquet",
+    "config": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit\\src\\config\\edit_192_external.json",
+    "harness_file": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit\\src\\harnesses\\cadquery_script.py",
+    "output_dir": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B08\\autodesk_output",
+    "stdout_log": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B08\\autodesk_output\\stdout.log",
+    "output_files": [
+        "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B08\\autodesk_output\\stdout.log",
+        "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B08\\autodesk_output\\cadquery_script\\gpt-5.2_cadquery-script\\val_edit_B08\\gpt-5.2_cadquery-script_1786992365.1159885\\brep_end\\1786992365.1159885\\settings.json",
+        "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B08\\autodesk_output\\cadquery_script\\gpt-5.2_cadquery-script\\val_edit_B08\\gpt-5.2_cadquery-script_1786992365.1159885\\brep_end\\1786992365.1159885\\temp_script.py",
+        "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B08\\autodesk_output\\cadquery_script\\gpt-5.2_cadquery-script\\val_edit_B08\\gpt-5.2_cadquery-script_1786992365.1159885\\brep_end\\1786992365.1159885\\tmp.png",
+        "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B08\\autodesk_output\\cadquery_script\\gpt-5.2_cadquery-script\\val_edit_B08\\gpt-5.2_cadquery-script_1786992365.1159885\\brep_end\\1786992365.1159885\\tmp.step",
+        "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B08\\autodesk_output\\cadquery_script\\gpt-5.2_cadquery-script\\val_edit_B08\\gpt-5.2_cadquery-script_1786992365.1159885\\brep_end\\1786992365.1159885\\iteration_output\\0_response.txt",
+        "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B08\\autodesk_output\\cadquery_script\\gpt-5.2_cadquery-script\\val_edit_B08\\gpt-5.2_cadquery-script_1786992365.1159885\\brep_end\\1786992365.1159885\\iteration_output\\1_response.txt",
+        "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B08\\autodesk_output\\cadquery_script\\gpt-5.2_cadquery-script\\val_edit_B08\\gpt-5.2_cadquery-script_1786992365.1159885\\brep_end\\1786992365.1159885\\iteration_output\\2_output.png",
+        "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B08\\autodesk_output\\cadquery_script\\gpt-5.2_cadquery-script\\val_edit_B08\\gpt-5.2_cadquery-script_1786992365.1159885\\brep_end\\1786992365.1159885\\iteration_output\\2_response.txt",
+        "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B08\\autodesk_output\\cadquery_script\\gpt-5.2_cadquery-script\\val_edit_B08\\gpt-5.2_cadquery-script_1786992365.1159885\\brep_end\\1786992365.1159885\\iteration_output\\3_output.png",
+        "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B08\\autodesk_output\\cadquery_script\\gpt-5.2_cadquery-script\\val_edit_B08\\gpt-5.2_cadquery-script_1786992365.1159885\\brep_end\\1786992365.1159885\\iteration_output\\3_response.txt",
+        "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B08\\autodesk_output\\cadquery_script\\gpt-5.2_cadquery-script\\val_edit_B08\\gpt-5.2_cadquery-script_1786992365.1159885\\brep_end\\1786992365.1159885\\iteration_output\\4_output.png",
+        "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B08\\autodesk_output\\cadquery_script\\gpt-5.2_cadquery-script\\val_edit_B08\\gpt-5.2_cadquery-script_1786992365.1159885\\brep_end\\1786992365.1159885\\iteration_output\\4_response.txt",
+        "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B08\\autodesk_output\\cadquery_script\\gpt-5.2_cadquery-script\\val_edit_B08\\gpt-5.2_cadquery-script_1786992365.1159885\\brep_end\\1786992365.1159885\\iteration_output\\5_output.png",
+        "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B08\\autodesk_output\\cadquery_script\\gpt-5.2_cadquery-script\\val_edit_B08\\gpt-5.2_cadquery-script_1786992365.1159885\\brep_end\\1786992365.1159885\\iteration_output\\5_response.txt",
+        "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B08\\autodesk_output\\cadquery_script\\gpt-5.2_cadquery-script\\val_edit_B08\\gpt-5.2_cadquery-script_1786992365.1159885\\brep_end\\1786992365.1159885\\iteration_output\\6_output.png",
+        "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B08\\autodesk_output\\cadquery_script\\gpt-5.2_cadquery-script\\val_edit_B08\\gpt-5.2_cadquery-script_1786992365.1159885\\brep_end\\1786992365.1159885\\iteration_output\\6_response.txt",
+        "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B08\\autodesk_output\\cadquery_script\\gpt-5.2_cadquery-script\\val_edit_B08\\gpt-5.2_cadquery-script_1786992365.1159885\\brep_end\\1786992365.1159885\\iteration_output\\7_output.png",
+        "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B08\\autodesk_output\\cadquery_script\\gpt-5.2_cadquery-script\\val_edit_B08\\gpt-5.2_cadquery-script_1786992365.1159885\\brep_end\\1786992365.1159885\\iteration_output\\7_response.txt",
+        "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B08\\autodesk_output\\cadquery_script\\gpt-5.2_cadquery-script\\val_edit_B08\\gpt-5.2_cadquery-script_1786992365.1159885\\brep_end\\1786992365.1159885\\iteration_output\\8_output.png",
+        "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B08\\autodesk_output\\cadquery_script\\gpt-5.2_cadquery-script\\val_edit_B08\\gpt-5.2_cadquery-script_1786992365.1159885\\brep_end\\1786992365.1159885\\iteration_output\\8_response.txt",
+        "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B08\\autodesk_output\\cadquery_script\\gpt-5.2_cadquery-script\\val_edit_B08\\gpt-5.2_cadquery-script_1786992365.1159885\\brep_end\\1786992365.1159885\\iteration_output\\9_output.png",
+        "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B08\\autodesk_output\\cadquery_script\\gpt-5.2_cadquery-script\\val_edit_B08\\gpt-5.2_cadquery-script_1786992365.1159885\\brep_end\\1786992365.1159885\\iteration_output\\9_response.txt"
+    ],
+    "step_files": [
+        "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B08\\autodesk_output\\cadquery_script\\gpt-5.2_cadquery-script\\val_edit_B08\\gpt-5.2_cadquery-script_1786992365.1159885\\brep_end\\1786992365.1159885\\tmp.step"
+    ],
+    "stl_files": [],
+    "json_files": [
+        "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B08\\autodesk_output\\cadquery_script\\gpt-5.2_cadquery-script\\val_edit_B08\\gpt-5.2_cadquery-script_1786992365.1159885\\brep_end\\1786992365.1159885\\settings.json"
+    ]
+}

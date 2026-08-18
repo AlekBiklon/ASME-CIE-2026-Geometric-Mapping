@@ -1,0 +1,330 @@
+{
+    "method": "Semi-Automatic Geometric Mapping + Robust Deterministic CAD Editing",
+    "operation": "FILLET",
+    "operation_status": "ADAPTIVE_SUCCESS",
+    "input_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B10\\input\\B10_start.step",
+    "edit_request": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B10\\input\\edit_request.json",
+    "output_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B10\\our_method_output\\B10_result.step",
+    "input_valid": true,
+    "result_valid": true,
+    "step_success": true,
+    "reimport_valid": true,
+    "input_solids": 1,
+    "output_solids": 1,
+    "reimport_solids": 1,
+    "input_faces": 17,
+    "output_faces": 45,
+    "input_edges": 45,
+    "output_edges": 97,
+    "input_volume": 799986.8624130149,
+    "output_volume": 790056.3711362929,
+    "volume_change": -9930.491276721936,
+    "reimport_volume": 790214.812453959,
+    "reimport_volume_delta": 158.44131766608916,
+    "operation_report": {
+        "label": "SINGLE_RADIUS",
+        "requested_radius_mm": 5.0,
+        "edge_ids": [
+            "E0019",
+            "E0018",
+            "E0005",
+            "E0006",
+            "E0008",
+            "E0016",
+            "E0017",
+            "E0007",
+            "E0009",
+            "E0015",
+            "E0014",
+            "E0042",
+            "E0045",
+            "E0012",
+            "E0036",
+            "E0004",
+            "E0032",
+            "E0041",
+            "E0040",
+            "E0002",
+            "E0037",
+            "E0039",
+            "E0034",
+            "E0038"
+        ],
+        "selected_edge_count": 24,
+        "owner_solid_count": 1,
+        "status": "ADAPTIVE_SUCCESS",
+        "owner_results": [
+            {
+                "solid_index": 0,
+                "input_volume": 799986.8624130149,
+                "output_volume": 790056.3711362929,
+                "volume_change": -9930.491276721936,
+                "input_faces": 17,
+                "output_faces": 45,
+                "input_edges": 45,
+                "output_edges": 97,
+                "contours": [
+                    {
+                        "edge_ids": [
+                            "E0019",
+                            "E0012",
+                            "E0036",
+                            "E0045",
+                            "E0042",
+                            "E0014",
+                            "E0015",
+                            "E0016",
+                            "E0017",
+                            "E0018"
+                        ],
+                        "requested_radius_mm": 5.0,
+                        "applied_radius_mm": 4.95,
+                        "status": "ADAPTIVE_SUCCESS",
+                        "attempts": [
+                            {
+                                "radius_mm": 5.0,
+                                "success": false,
+                                "reason": "Standard_ConstructionError: "
+                            },
+                            {
+                                "radius_mm": 4.95,
+                                "success": true,
+                                "reason": null
+                            }
+                        ],
+                        "skipped_edges": [],
+                        "mapping": [
+                            {
+                                "edge_id": "E0019",
+                                "local_edge_index": 18,
+                                "match_score": 0.0,
+                                "type": "LINE",
+                                "length": 50.392544558496
+                            },
+                            {
+                                "edge_id": "E0012",
+                                "local_edge_index": 11,
+                                "match_score": 0.0,
+                                "type": "CIRCLE",
+                                "length": 39.269908169872416
+                            },
+                            {
+                                "edge_id": "E0036",
+                                "local_edge_index": 35,
+                                "match_score": 0.0,
+                                "type": "LINE",
+                                "length": 50.0
+                            },
+                            {
+                                "edge_id": "E0045",
+                                "local_edge_index": 44,
+                                "match_score": 0.0,
+                                "type": "CIRCLE",
+                                "length": 157.07963267948966
+                            },
+                            {
+                                "edge_id": "E0042",
+                                "local_edge_index": 41,
+                                "match_score": 0.0,
+                                "type": "LINE",
+                                "length": 50.0
+                            },
+                            {
+                                "edge_id": "E0014",
+                                "local_edge_index": 13,
+                                "match_score": 0.0,
+                                "type": "CIRCLE",
+                                "length": 39.269908169872416
+                            },
+                            {
+                                "edge_id": "E0015",
+                                "local_edge_index": 14,
+                                "match_score": 0.0,
+                                "type": "LINE",
+                                "length": 50.392544558496
+                            },
+                            {
+                                "edge_id": "E0016",
+                                "local_edge_index": 15,
+                                "match_score": 0.0,
+                                "type": "CIRCLE",
+                                "length": 72.2703723932031
+                            },
+                            {
+                                "edge_id": "E0017",
+                                "local_edge_index": 16,
+                                "match_score": 0.0,
+                                "type": "LINE",
+                                "length": 12.506056871642983
+                            },
+                            {
+                                "edge_id": "E0018",
+                                "local_edge_index": 17,
+                                "match_score": 0.0,
+                                "type": "CIRCLE",
+                                "length": 72.27037239320306
+                            }
+                        ],
+                        "volume_before": 799986.8624130149,
+                        "volume_after": 796752.1303245837,
+                        "volume_change": -3234.732088431134
+                    },
+                    {
+                        "edge_ids": [
+                            "E0005",
+                            "E0004",
+                            "E0032",
+                            "E0041",
+                            "E0040",
+                            "E0002",
+                            "E0009",
+                            "E0008",
+                            "E0007",
+                            "E0006"
+                        ],
+                        "requested_radius_mm": 5.0,
+                        "applied_radius_mm": 5.0,
+                        "status": "FULL_SUCCESS",
+                        "attempts": [
+                            {
+                                "radius_mm": 5.0,
+                                "success": true,
+                                "reason": null
+                            }
+                        ],
+                        "skipped_edges": [],
+                        "mapping": [
+                            {
+                                "edge_id": "E0005",
+                                "local_edge_index": 29,
+                                "match_score": 0.0,
+                                "type": "LINE",
+                                "length": 50.392544558496
+                            },
+                            {
+                                "edge_id": "E0004",
+                                "local_edge_index": 30,
+                                "match_score": 0.0,
+                                "type": "CIRCLE",
+                                "length": 39.269908169872416
+                            },
+                            {
+                                "edge_id": "E0032",
+                                "local_edge_index": 31,
+                                "match_score": 0.0,
+                                "type": "LINE",
+                                "length": 50.0
+                            },
+                            {
+                                "edge_id": "E0041",
+                                "local_edge_index": 63,
+                                "match_score": 0.0,
+                                "type": "CIRCLE",
+                                "length": 157.07963267948966
+                            },
+                            {
+                                "edge_id": "E0040",
+                                "local_edge_index": 41,
+                                "match_score": 0.0,
+                                "type": "LINE",
+                                "length": 50.0
+                            },
+                            {
+                                "edge_id": "E0002",
+                                "local_edge_index": 40,
+                                "match_score": 0.0,
+                                "type": "CIRCLE",
+                                "length": 39.269908169872416
+                            },
+                            {
+                                "edge_id": "E0009",
+                                "local_edge_index": 39,
+                                "match_score": 0.0,
+                                "type": "LINE",
+                                "length": 50.392544558496
+                            },
+                            {
+                                "edge_id": "E0008",
+                                "local_edge_index": 61,
+                                "match_score": 0.0,
+                                "type": "CIRCLE",
+                                "length": 72.27037239320309
+                            },
+                            {
+                                "edge_id": "E0007",
+                                "local_edge_index": 60,
+                                "match_score": 0.0,
+                                "type": "LINE",
+                                "length": 12.506056871642983
+                            },
+                            {
+                                "edge_id": "E0006",
+                                "local_edge_index": 57,
+                                "match_score": 0.0,
+                                "type": "CIRCLE",
+                                "length": 72.27037239320309
+                            }
+                        ],
+                        "volume_before": 796752.1303245837,
+                        "volume_after": 793589.5479592353,
+                        "volume_change": -3162.5823653484695
+                    },
+                    {
+                        "edge_ids": [
+                            "E0037",
+                            "E0038",
+                            "E0034",
+                            "E0039"
+                        ],
+                        "requested_radius_mm": 5.0,
+                        "applied_radius_mm": 5.0,
+                        "status": "FULL_SUCCESS",
+                        "attempts": [
+                            {
+                                "radius_mm": 5.0,
+                                "success": true,
+                                "reason": null
+                            }
+                        ],
+                        "skipped_edges": [],
+                        "mapping": [
+                            {
+                                "edge_id": "E0037",
+                                "local_edge_index": 33,
+                                "match_score": 0.0,
+                                "type": "LINE",
+                                "length": 175.0
+                            },
+                            {
+                                "edge_id": "E0038",
+                                "local_edge_index": 32,
+                                "match_score": 0.0,
+                                "type": "CIRCLE",
+                                "length": 157.07963267948966
+                            },
+                            {
+                                "edge_id": "E0034",
+                                "local_edge_index": 9,
+                                "match_score": 0.0,
+                                "type": "LINE",
+                                "length": 175.0
+                            },
+                            {
+                                "edge_id": "E0039",
+                                "local_edge_index": 28,
+                                "match_score": 0.0,
+                                "type": "CIRCLE",
+                                "length": 157.07963267948966
+                            }
+                        ],
+                        "volume_before": 793589.5479592353,
+                        "volume_after": 790056.3711362929,
+                        "volume_change": -3533.1768229423324
+                    }
+                ]
+            }
+        ],
+        "operation": "FILLET",
+        "mode": "SINGLE_RADIUS"
+    }
+}

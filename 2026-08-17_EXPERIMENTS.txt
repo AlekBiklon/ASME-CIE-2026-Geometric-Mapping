@@ -1,0 +1,90 @@
+
+====================================================================================
+==B01== ADD_HOLE - Hole Ø2 mm
+"experiment_id": "B01",
+"request_id": "SUJ2G2UMJQR7PMBX_1757677048.372038",
+"method": "GEOMETRIC_MAPPING",    /   "AUTODESK"
+"parquet": "neuralCAD-Edit-data/edit_192_external/parquets/val_edit_all.parquet"
+
+====================================================================================
+====================================================================================
+==B02== FILLET - Fillet 0.2 mm
+"experiment_id": "B02",
+"request_id": "SUJ2G2UMJQR7PMBX_1762932921.809779",
+"method": "GEOMETRIC_MAPPING",  /   "AUTODESK"
+"parquet": "neuralCAD-Edit-data/edit_192_external/parquets/val_edit_all.parquet"
+
+====================================================================================
+====================================================================================
+==B03== CHAMFER - Chamfer 1 mm
+"experiment_id": "B03",
+"request_id": "B7A2N74ZJBF9MZHU_1770156927.436414",
+"method": "GEOMETRIC_MAPPING",  /   "AUTODESK"
+"parquet": "neuralCAD-Edit-data/edit_192_external/parquets/val_edit_all.parquet"
+
+====================================================================================
+====================================================================================
+==B04==	HOLE - Add a 2 mm hole to bottle nipple
+
+"experiment_id": "B04",
+"request_id": "ZK22J6VYRKQ2RTFD_1758276114.349288",
+"method": "GEOMETRIC_MAPPING",  /   "AUTODESK"
+"parquet": "neuralCAD-Edit-data/edit_192_external/parquets/val_edit_all.parquet
+
+====================================================================================
+====================================================================================
+==B05== FILLET - Add 2 mm fillet to scrolling-wheel slot
+
+"experiment_id": "B05",
+"request_id": "4S7JQK6ZQMAD25GL_1758863141.735564",
+"method": "GEOMETRIC_MAPPING",  /   "AUTODESK"
+"parquet": "neuralCAD-Edit-data/edit_192_external/parquets/val_edit_all.parquet
+====================================================================================
+====================================================================================
+==B06== CHAMFER - Add 0.2 mm chamfer to hole edges
+
+"experiment_id": "B06",
+"request_id": "ZK22J6VYRKQ2RTFD_1758875163.609787",
+"method": "GEOMETRIC_MAPPING",  /   "AUTODESK"
+"parquet": "neuralCAD-Edit-data/edit_192_external/parquets/val_edit_all.parquet
+====================================================================================
+====================================================================================
+==B07== FILLET - Outer fillet 2 mm + inner fillet 1 mm
+
+"experiment_id": "B07",
+"request_id": "SUJ2G2UMJQR7PMBX_1757575242.90517",
+"method": "GEOMETRIC_MAPPING",  /   "AUTODESK"
+"parquet": "neuralCAD-Edit-data/edit_192_external/parquets/val_edit_all.parquet
+====================================================================================
+====================================================================================
+==B08== CHAMFER - Chamfer lower edge of cylindrical section
+
+"experiment_id": "B08",
+"request_id": "B7A2N74ZJBF9MZHU_1770169445.8914912",
+"method": "GEOMETRIC_MAPPING",  /   "AUTODESK"
+"parquet": "neuralCAD-Edit-data/edit_192_external/parquets/val_edit_all.parquet
+====================================================================================
+====================================================================================
+==B09== HOLE - Add another matching hole midway
+
+"experiment_id": "B09",
+"request_id": "F332D3FXML85WLR2_1769686175.1922078",
+"method": "GEOMETRIC_MAPPING",  /   "AUTODESK"
+"parquet": "neuralCAD-Edit-data/edit_192_external/parquets/val_edit_all.parquet
+====================================================================================
+====================================================================================
+==B10== FILLET - Fillet selected edges R5 mm
+
+"experiment_id": "B10",
+"request_id": "3YH2WFSRM22W7DKT_1770125357.5670888",
+"method": "GEOMETRIC_MAPPING",  /   "AUTODESK"
+"parquet": "neuralCAD-Edit-data/edit_192_external/parquets/val_edit_all.parquet
+
+====================================================================================
+====================================================================================
+
+
+
+
+
+

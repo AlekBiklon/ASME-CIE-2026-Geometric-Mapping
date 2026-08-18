@@ -1,0 +1,171 @@
+Thinking text:
+**Considering chamfering edges**
+
+I need to chamfer the hole edges, and I have the step file of the existing model. My plan is to load the file and select the hole edges for a chamfer of 0.2mm. But I need to clarify what "hole edges" means; it could refer to all circular edges around cylindrical holes. Since there are multiple holes, I should apply the chamfer to all relevant edges carefully. I’ll use a filter to identify inner circular edges specifically, ensuring I don’t accidentally chamfer the outer fillet edges.
+**Determining edge selection for chamfering**
+
+I’m considering how to identify edges for chamfering, focusing on closed circular edges. In OCC, a circle edge is closed, so I can check if edges are closed using the .isClosed() method in CadQuery. I'll filter for edges that return true for this property, as arcs won’t be closed. 
+
+My goal is to chamfer all closed circular edges while avoiding outer cylindrical edges. I’ll filter further by identifying concave or internal edges, especially around counterbores and ensuring I'm only dealing with the necessary hole edges.
+**Analyzing face adjacency for edge classification**
+
+I'm thinking about how to classify edges based on their adjacent faces. If an edge is between a cylindrical hole face and a planar face, I need to distinguish whether it’s internal or external. One way to do this is by evaluating the face normals. 
+
+I could check for cylindrical faces with small radii that are likely internal by looking at their area. However, since the normals of internal holes point inward, I’ll focus on identifying cylindrical faces whose orientation indicates they're indeed inside. This could simplify the determination process.
+**Classifying face normals for edge selection**
+
+I realized that face normals on a solid point outward from the material. For the interior of a hole, the normals actually point inward towards the axis. This means that normals on the outer cylindrical surfaces point away into external space. The key is the direction relative to the center of the shape. I can compute a vector from the bounding box center to the face center. 
+
+Using the dot product, I can determine if the normals indicate an inner or outer face. Once I identify the cylindrical faces, I’ll find the circular edges on those inner faces and apply the chamfer there.
+**Implementing the chamfering process**
+
+I’m outlining my implementation steps. First, I’ll import the step file to the workplane, then retrieve the solid shape. I need to compute the bounding box center and iterate through each face. For cylindrical faces, I’ll sample a point and check the normal. 
+
+I’ll classify faces based on their normals and collect only the closed circular edges from internal cylindrical faces. Then I need to apply the chamfering. Given the possibility of multiple solids in the compound, I’ll manage them by combining results at the end. I’m making sure to handle potential errors with the normal calculations and check for closed edges carefully. Once everything’s set, I’ll produce the final output.
+
+Generated script:
+def my_cad_function(args):
+    import os
+    import cadquery as cq
+
+    # Load STEP
+    input_path = args.get("input_file", "")
+    input_path = os.path.expanduser(input_path) if input_path else input_path
+    if not input_path or not os.path.exists(input_path):
+        print(f"ERROR: input_file not found: {input_path}")
+        return None
+
+    shape_wp = cq.importers.importStep(input_path)
+
+    # Get solids from imported model
+    solids = []
+    try:
+        solids = shape_wp.solids().vals()
+    except Exception:
+        pass
+
+    if not solids:
+        v = shape_wp.val() if hasattr(shape_wp, "val") else shape_wp
+        try:
+            solids = v.Solids()
+        except Exception:
+            solids = []
+
+    if not solids:
+        print("ERROR: No solids found in imported STEP.")
+        return shape_wp
+
+    print(f"Loaded STEP: {input_path}")
+    print(f"Solids found: {len(solids)}")
+
+    def _safe_dot(a, b):
+        return a.x * b.x + a.y * b.y + a.z * b.z
+
+    def _get_face_normal(face):
+        # Try to compute normal at face center robustly
+        pt = face.Center()
+        try:
+            u, v = face.paramAt(pt)
+            return face.normalAt(u, v)
+        except Exception:
+            try:
+                return face.normalAt()
+            except Exception:
+                # Fallback: approximate with a planar normal if possible
+                try:
+                    return face.normalAt(0, 0)
+                except Exception:
+                    return cq.Vector(0, 0, 1)
+
+    def _edge_is_closed(edge):
+        try:
+            return bool(edge.isClosed())
+        except Exception:
+            try:
+                return bool(edge.wrapped.Closed())
+            except Exception:
+                return False
+
+    def chamfer_hole_edges_on_solid(solid, chamfer_size=0.2):
+        bbox = solid.BoundingBox()
+        c = bbox.center
+        internal_cyl_faces = []
+        hole_edges = []
+
+        faces = solid.Faces()
+        for f in faces:
+            try:
+                if str(f.geomType()).upper() != "CYLINDER":
+                    continue
+            except Exception:
+                continue
+
+            n = _get_face_normal(f)
+            fc = f.Center()
+            v = cq.Vector(fc.x - c.x, fc.y - c.y, fc.z - c.z)
+            d = _safe_dot(n, v)
+
+            # Heuristic:
+            # For outer cylindrical faces, outward normal tends to point away from bbox center => dot > 0
+            # For hole interior cylindrical faces, outward normal points toward the part center => dot < 0
+            if d < 0:
+                internal_cyl_faces.append(f)
+
+        # Collect closed circular edges from internal cylindrical faces
+        wrapped_seen = set()
+        for f in internal_cyl_faces:
+            for e in f.Edges():
+                try:
+                    if str(e.geomType()).upper() != "CIRCLE":
+                        continue
+                except Exception:
+                    continue
+
+                if not _edge_is_closed(e):
+                    continue
+
+                key = id(getattr(e, "wrapped", e))
+                if key in wrapped_seen:
+                    continue
+                wrapped_seen.add(key)
+                hole_edges.append(e)
+
+        print(f"Internal cylindrical faces detected: {len(internal_cyl_faces)}")
+        print(f"Hole circular edges selected for chamfer: {len(hole_edges)}")
+
+        if not hole_edges:
+            return solid
+
+        # Apply chamfer
+        wp = cq.Workplane(obj=solid).newObject(hole_edges)
+        try:
+            wp = wp.chamfer(chamfer_size)
+        except Exception as e:
+            print(f"Chamfer failed: {e}")
+            return solid
+
+        return wp.val()
+
+    chamfered = []
+    for i, s in enumerate(solids):
+        try:
+            out = chamfer_hole_edges_on_solid(s, chamfer_size=0.2)
+            chamfered.append(out)
+        except Exception as e:
+            print(f"Failed processing solid {i}: {e}")
+            chamfered.append(s)
+
+    if len(chamfered) == 1:
+        return chamfered[0]
+
+    try:
+        return cq.Compound.makeCompound(chamfered)
+    except Exception:
+        # Fallback: return first solid if compound creation fails
+        return chamfered[0]
+
+
+Program output:
+stdout: Loading function from: c:\PROGRAMING_PYTHON\2026-08-14_ASME_Hackathon_2026\experiments\B06\autodesk_output\cadquery_script\gpt-5.2_cadquery-script\val_edit_B06\gpt-5.2_cadquery-script_1786990391.1841419\brep_end\1786990391.1841419\temp_script.py
+ERROR: input_file not found: 
+Script completed.

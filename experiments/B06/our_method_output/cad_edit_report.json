@@ -1,0 +1,44 @@
+{
+    "experiment_id": "B06",
+    "method": "GEOMETRIC_MAPPING",
+    "module": "CAD_EDIT",
+    "operation": "CHAMFER",
+    "parameters": {
+        "distance_mm": 0.2
+    },
+    "target": {
+        "entity_type": "EDGES",
+        "edge_ids": [
+            "E0188",
+            "E0191",
+            "E0182",
+            "E0185",
+            "E0163",
+            "E0174",
+            "E0164",
+            "E0175",
+            "E0187",
+            "E0190",
+            "E0181",
+            "E0184"
+        ],
+        "selection_count": 12,
+        "source": "USER_3D_SELECTION"
+    },
+    "input_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B06\\input\\B06_start.step",
+    "edit_request": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B06\\input\\edit_request.json",
+    "output_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B06\\our_method_output\\B06_result.step",
+    "engine_report": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B06\\our_method_output\\B06_edit_report.json",
+    "status": "SUCCESS",
+    "runtime_seconds": 186.71168750000652,
+    "output_exists": true,
+    "engine_report_exists": true,
+    "step_success": true,
+    "input_valid": true,
+    "result_valid": true,
+    "reimport_valid": true,
+    "input_solids": 1,
+    "output_solids": 1,
+    "volume_change": -0.8797537303134533,
+    "error": null
+}

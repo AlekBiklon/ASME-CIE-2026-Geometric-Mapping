@@ -1,0 +1,47 @@
+{
+    "method": "Semi-Automatic Geometric Mapping + Robust Deterministic CAD Editing",
+    "operation": "FILLET",
+    "operation_status": "FULL_SUCCESS",
+    "input_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B05\\input\\B05_start.step",
+    "edit_request": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B05\\input\\edit_request.json",
+    "output_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B05\\our_method_output\\B05_result.step",
+    "input_valid": true,
+    "result_valid": true,
+    "step_success": true,
+    "reimport_valid": true,
+    "input_solids": 2,
+    "output_solids": 2,
+    "reimport_solids": 2,
+    "input_faces": 15,
+    "output_faces": 19,
+    "input_edges": 30,
+    "output_edges": 42,
+    "input_volume": 127190.35128102351,
+    "output_volume": 127138.26193396773,
+    "volume_change": -52.08934705577849,
+    "reimport_volume": 127138.32840095124,
+    "reimport_volume_delta": 0.06646698350959923,
+    "operation_report": {
+        "operation": "FILLET",
+        "radius_mm": 2.0,
+        "edge_ids": [
+            "E0005",
+            "E0001",
+            "E0008",
+            "E0011"
+        ],
+        "status": "FULL_SUCCESS",
+        "solid_results": [
+            {
+                "solid_index": 0,
+                "input_volume": 126577.39397081616,
+                "output_volume": 126525.30462376038,
+                "volume_change": -52.08934705577849,
+                "input_faces": 11,
+                "output_faces": 15,
+                "input_edges": 24,
+                "output_edges": 36
+            }
+        ]
+    }
+}

@@ -1,0 +1,81 @@
+{
+    "experiment_id": "B07",
+    "request_id": "SUJ2G2UMJQR7PMBX_1757575242.90517",
+    "method": "GEOMETRIC_MAPPING",
+    "operation": "FILLET",
+    "operation_status": "FULL_SUCCESS",
+    "cad_edit": {
+        "runtime_s": 3.737009600037709,
+        "step_success": true,
+        "result_valid_report": true,
+        "valid_brep": true,
+        "reimport_valid": true,
+        "export_reimport_success": true,
+        "reimport_volume_delta_mm3": 3.319655661471188e-11
+    },
+    "geometry": {
+        "start": {
+            "valid": true,
+            "solids": 8,
+            "faces": 157,
+            "edges": 358,
+            "volume_mm3": 3249.906327241035,
+            "bounding_box_mm": {
+                "x": 31.25,
+                "y": 14.25,
+                "z": 26.5,
+                "diagonal": 43.38058321415239
+            }
+        },
+        "result": {
+            "valid": true,
+            "solids": 8,
+            "faces": 165,
+            "edges": 382,
+            "volume_mm3": 3239.526904478193,
+            "bounding_box_mm": {
+                "x": 31.25,
+                "y": 14.25,
+                "z": 26.5,
+                "diagonal": 43.38058321415239
+            }
+        },
+        "change": {
+            "solids_delta": 0,
+            "faces_delta": 8,
+            "edges_delta": 24,
+            "volume_delta_mm3": -10.379422762841841,
+            "absolute_volume_change_mm3": 10.379422762841841,
+            "relative_volume_change": 0.0031937605942179
+        }
+    },
+    "operation_details": {
+        "operation": "FILLET",
+        "operation_status": "FULL_SUCCESS",
+        "fillet": {
+            "radius_mm": null,
+            "edge_ids": []
+        }
+    },
+    "ground_truth": {
+        "status": "NOT_CONFIRMED",
+        "reason": "The next available B-Rep state for the same CAD model is geometrically identical to the experiment START STEP.",
+        "step": null,
+        "geometry": null
+    },
+    "gt_metrics": {
+        "available": false,
+        "chamfer_distance": null,
+        "voxel_iou": null,
+        "difference_f1": null,
+        "note": "Ground Truth is not confirmed; GT-dependent metrics are N/A."
+    },
+    "success": {
+        "operation_success": true,
+        "strict_operation_success": true,
+        "valid_brep": true,
+        "solid_count_preserved": true,
+        "export_reimport_success": true
+    },
+    "metrics_module_runtime_s": 1.0900017999811098
+}

@@ -1,0 +1,83 @@
+{
+    "experiment_id": "B02",
+    "request_id": "SUJ2G2UMJQR7PMBX_1762932921.809779",
+    "method": "AUTODESK",
+    "baseline": "neuralCAD-Edit",
+    "model": "gpt-5.2",
+    "harness": "cadquery_script",
+    "status": "SUCCESS",
+    "runtime": {
+        "sec": 588.255649805069,
+        "min": 9.804260830084482
+    },
+    "agent": {
+        "vlm_responses": 3,
+        "visual_feedback_renders": 1,
+        "input_tokens": null,
+        "output_tokens": null,
+        "total_tokens": null,
+        "cost_estimate_usd": null
+    },
+    "step": {
+        "success": true,
+        "path": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B02\\autodesk_output\\cadquery_script\\gpt-5.2_cadquery-script\\val_edit_B02\\gpt-5.2_cadquery-script_1786973084.497887\\brep_end\\1786973084.497887\\tmp.step",
+        "valid_brep": true,
+        "solid_count_preserved": false
+    },
+    "geometry": {
+        "start": {
+            "valid": true,
+            "solids": 12,
+            "faces": 283,
+            "edges": 715,
+            "volume_mm3": 11691.106700809616,
+            "bounding_box_mm": {
+                "x": 70.21134599634414,
+                "y": 30.603782539627037,
+                "z": 146.59004364688113,
+                "diagonal": 165.3930636657585
+            }
+        },
+        "result": {
+            "valid": true,
+            "solids": 9,
+            "faces": 400,
+            "edges": 1013,
+            "volume_mm3": 15377.545341321756,
+            "bounding_box_mm": {
+                "x": 124.000001400705,
+                "y": 124.000001400705,
+                "z": 73.500000673695,
+                "diagonal": 190.14271165044124
+            }
+        },
+        "change": {
+            "solids_delta": -3,
+            "faces_delta": 117,
+            "edges_delta": 298,
+            "volume_delta_mm3": 3686.4386405121404,
+            "absolute_volume_change_mm3": 3686.4386405121404,
+            "relative_volume_change": 0.315319903825431
+        }
+    },
+    "ground_truth": {
+        "status": "NOT_CONFIRMED",
+        "reason": "The next available B-Rep state for the same CAD model is geometrically identical to the experiment START STEP.",
+        "geometry": null
+    },
+    "gt_metrics": {
+        "chamfer_distance": null,
+        "voxel_iou": null,
+        "volumetric_precision": null,
+        "volumetric_recall": null,
+        "volumetric_f1": null,
+        "difference_precision": null,
+        "difference_recall": null,
+        "difference_f1": null,
+        "added_f1": null,
+        "removed_f1": null,
+        "note": "Ground Truth is not confirmed; GT-dependent metrics are N/A."
+    },
+    "success": true,
+    "metrics_module_runtime_s": 3.5753002999699675
+}

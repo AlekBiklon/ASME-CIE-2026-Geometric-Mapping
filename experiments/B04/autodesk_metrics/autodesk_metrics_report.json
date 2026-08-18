@@ -1,0 +1,64 @@
+{
+    "experiment_id": "B04",
+    "request_id": "ZK22J6VYRKQ2RTFD_1758276114.349288",
+    "method": "AUTODESK",
+    "baseline": "neuralCAD-Edit",
+    "model": "gpt-5.2",
+    "harness": "cadquery_script",
+    "status": "SUCCESS",
+    "runtime": {
+        "sec": 1148.8374977111816,
+        "min": 19.147291628519692
+    },
+    "agent": {
+        "vlm_responses": 10,
+        "visual_feedback_renders": 9,
+        "input_tokens": null,
+        "output_tokens": null,
+        "total_tokens": null,
+        "cost_estimate_usd": null
+    },
+    "step": {
+        "success": true,
+        "path": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B04\\autodesk_output\\cadquery_script\\gpt-5.2_cadquery-script\\val_edit_B04\\gpt-5.2_cadquery-script_1786987789.587282\\brep_end\\1786987789.587282\\tmp.step",
+        "valid_brep": true,
+        "solid_count_preserved": null
+    },
+    "geometry": {
+        "start": null,
+        "result": {
+            "valid": true,
+            "solids": 11,
+            "faces": 395,
+            "edges": 936,
+            "volume_mm3": 63806.59408176097,
+            "bounding_box_mm": {
+                "x": 136.94317259572767,
+                "y": 144.56017114666776,
+                "z": 65.0000002,
+                "diagonal": 209.4661682194457
+            }
+        },
+        "change": null
+    },
+    "ground_truth": {
+        "status": "NOT_EVALUATED",
+        "reason": "ground_truth_report.json not found.",
+        "geometry": null
+    },
+    "gt_metrics": {
+        "chamfer_distance": null,
+        "voxel_iou": null,
+        "volumetric_precision": null,
+        "volumetric_recall": null,
+        "volumetric_f1": null,
+        "difference_precision": null,
+        "difference_recall": null,
+        "difference_f1": null,
+        "added_f1": null,
+        "removed_f1": null,
+        "note": "Ground Truth is not confirmed; GT-dependent metrics are N/A."
+    },
+    "success": true,
+    "metrics_module_runtime_s": 11.615363399963826
+}

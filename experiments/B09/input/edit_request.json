@@ -1,0 +1,30 @@
+{
+    "experiment_id": "B09",
+    "dataset_index": 72,
+    "request_id": "F332D3FXML85WLR2_1769686175.1922078",
+    "instruction": "Hi, add one more hole which would have the same setup as these two holes, which would be in the middle between this hole and this hole.",
+    "instruction_source": "request_transcript",
+    "operation": "ADD_HOLE",
+    "parameters": {
+        "geometry_source": "REFERENCE_HOLES",
+        "position_rule": "MIDPOINT",
+        "setup_rule": "COPY_EXISTING_HOLE_SETUP"
+    },
+    "reference": {
+        "entity_type": "REFERENCE_HOLE_PAIR",
+        "hole_1_edge_ids": [
+            "E0020"
+        ],
+        "hole_2_edge_ids": [
+            "E0022"
+        ],
+        "selection_count": 2,
+        "source": "USER_3D_SELECTION"
+    },
+    "target": {
+        "entity_type": "DERIVED_HOLE",
+        "selection_semantics": "MIDPOINT_BETWEEN_REFERENCE_HOLES",
+        "source": "GEOMETRIC_DERIVATION",
+        "selection_count": 0
+    }
+}

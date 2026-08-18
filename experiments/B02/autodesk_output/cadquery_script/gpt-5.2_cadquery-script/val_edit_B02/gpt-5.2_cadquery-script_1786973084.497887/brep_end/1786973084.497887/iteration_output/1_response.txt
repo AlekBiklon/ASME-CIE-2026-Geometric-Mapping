@@ -1,0 +1,113 @@
+Thinking text:
+
+
+Generated script:
+def my_cad_function(args):
+    import os
+    import cadquery as cq
+
+    def _find_step_path(args_dict):
+        # Preferred key
+        p = args_dict.get("input_file", None)
+        if isinstance(p, str) and p.lower().endswith(('.step', '.stp')):
+            return os.path.expanduser(p)
+
+        # Try common alternates
+        for k in [
+            "brep_start_path_step",
+            "brep_start_path",
+            "step_path",
+            "model_path",
+            "file_path",
+        ]:
+            p = args_dict.get(k, None)
+            if isinstance(p, str) and p.lower().endswith(('.step', '.stp')):
+                return os.path.expanduser(p)
+
+        # Scan all values for a STEP path
+        for v in args_dict.values():
+            if isinstance(v, str) and v.lower().endswith(('.step', '.stp')):
+                return os.path.expanduser(v)
+
+        return None
+
+    step_path = _find_step_path(args)
+    if not step_path:
+        print("ERROR: Could not find STEP path in args.")
+        print(f"Args keys: {sorted(list(args.keys()))}")
+        print(f"Args: {args}")
+        raise ValueError("No STEP input path found (expected args['input_file'] or any value ending with .step/.stp).")
+
+    if not os.path.exists(step_path):
+        print(f"ERROR: STEP path does not exist: {step_path}")
+        print(f"Args: {args}")
+        raise ValueError(f"STEP file not found: {step_path}")
+
+    model = cq.importers.importStep(step_path)
+    shape = model.val() if hasattr(model, "val") else model
+
+    # Debug info
+    try:
+        bbox = shape.BoundingBox()
+        c = bbox.center
+        print(f"Loaded STEP: {os.path.basename(step_path)}")
+        print(f"Valid: {shape.isValid()}")
+        print(f"Faces: {len(shape.Faces())}, Edges: {len(shape.Edges())}, Solids: {len(shape.Solids())}")
+        print(f"Bbox: x={bbox.xlen:.3f}, y={bbox.ylen:.3f}, z={bbox.zlen:.3f} center=({c.x:.3f},{c.y:.3f},{c.z:.3f})")
+    except Exception as e:
+        print(f"Debug info failed: {e}")
+
+    r = 0.2  # mm fillet radius
+
+    def _fillet_solid(s):
+        wp = cq.Workplane(obj=s)
+        # 1) Try all edges
+        try:
+            return wp.edges().fillet(r).val()
+        except Exception as e1:
+            # 2) Try only linear edges
+            try:
+                return wp.edges("%LINE").fillet(r).val()
+            except Exception as e2:
+                # 3) Try filtering out tiny edges
+                try:
+                    return wp.edges().filter(lambda e: e.Length() > 0.5).fillet(r).val()
+                except Exception as e3:
+                    print("Fillet failed on a solid; leaving it unmodified.")
+                    print(f"  all-edges error: {e1}")
+                    print(f"  LINE-edges error: {e2}")
+                    print(f"  length-filter error: {e3}")
+                    return s
+
+    solids = shape.Solids()
+    if len(solids) == 0:
+        # Not a solid model; just return original
+        print("No solids detected in STEP; returning original shape.")
+        return model
+
+    if len(solids) == 1:
+        out = _fillet_solid(solids[0])
+        print(f"Applied fillet r={r} mm (best-effort) to single solid.")
+        return cq.Workplane(obj=out)
+
+    # Multi-solid: fillet each solid separately and return as a compound
+    out_solids = []
+    for i, s in enumerate(solids):
+        try:
+            out_solids.append(_fillet_solid(s))
+        except Exception as e:
+            print(f"Unexpected error filleting solid {i}: {e}")
+            out_solids.append(s)
+
+    comp = cq.Compound.makeCompound(out_solids)
+    print(f"Applied fillet r={r} mm (best-effort) across {len(solids)} solids; returned as compound.")
+    return cq.Workplane(obj=comp)
+
+
+Program output:
+stdout: Loading function from: c:\PROGRAMING_PYTHON\2026-08-14_ASME_Hackathon_2026\experiments\B02\autodesk_output\cadquery_script\gpt-5.2_cadquery-script\val_edit_B02\gpt-5.2_cadquery-script_1786973084.497887\brep_end\1786973084.497887\temp_script.py
+ERROR: Could not find STEP path in args.
+Args keys: ['function_file', 'output_dir']
+Args: {'output_dir': 'c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B02\\autodesk_output\\cadquery_script\\gpt-5.2_cadquery-script\\val_edit_B02\\gpt-5.2_cadquery-script_1786973084.497887\\brep_end\\1786973084.497887', 'function_file': 'c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B02\\autodesk_output\\cadquery_script\\gpt-5.2_cadquery-script\\val_edit_B02\\gpt-5.2_cadquery-script_1786973084.497887\\brep_end\\1786973084.497887\\temp_script.py'}
+Error executing LLM-provided function: No STEP input path found (expected args['input_file'] or any value ending with .step/.stp).
+Script completed.

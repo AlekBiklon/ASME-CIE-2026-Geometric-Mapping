@@ -1,0 +1,55 @@
+{
+    "method": "Semi-Automatic Geometric Mapping + Robust Deterministic CAD Editing",
+    "operation": "ADD_HOLE",
+    "operation_status": "FULL_SUCCESS",
+    "input_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B04\\input\\B04_start.step",
+    "edit_request": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B04\\input\\edit_request.json",
+    "output_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B04\\our_method_output\\B04_result.step",
+    "input_valid": true,
+    "result_valid": true,
+    "step_success": true,
+    "reimport_valid": true,
+    "input_solids": 8,
+    "output_solids": 8,
+    "reimport_solids": 8,
+    "input_faces": 397,
+    "output_faces": 374,
+    "input_edges": 929,
+    "output_edges": 878,
+    "input_volume": 111848.06611542235,
+    "output_volume": 111844.9183877013,
+    "volume_change": -3.1477277210506145,
+    "reimport_volume": 111844.98497616296,
+    "reimport_volume_delta": 0.06658846166101284,
+    "operation_report": {
+        "operation": "ADD_HOLE",
+        "diameter_mm": 2.0,
+        "target_face": "F0357",
+        "target_point": [
+            0.021734707385114405,
+            163.5598692846118,
+            -0.13723996485197176
+        ],
+        "projected_point": [
+            0.021550389821252715,
+            163.57291088332786,
+            -0.1360761242012677
+        ],
+        "face_normal": [
+            -0.014075712072137488,
+            0.9959430053398806,
+            0.08887859384705084
+        ],
+        "surface_type": "BSPLINE",
+        "surface_uv": [
+            -1.6600813548748803,
+            0.16929712721418738
+        ],
+        "projection_distance_mm": 0.013094723941162381,
+        "owner_solid": 6,
+        "input_volume": 3507.114708142625,
+        "output_volume": 3503.966980421579,
+        "removed_volume": 3.147727721046067,
+        "status": "FULL_SUCCESS"
+    }
+}

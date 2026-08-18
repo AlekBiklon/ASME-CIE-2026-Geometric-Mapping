@@ -1,0 +1,64 @@
+{
+    "experiment_id": "B09",
+    "request_id": "F332D3FXML85WLR2_1769686175.1922078",
+    "method": "AUTODESK",
+    "baseline": "neuralCAD-Edit",
+    "model": "gpt-5.2",
+    "harness": "cadquery_script",
+    "status": "SUCCESS",
+    "runtime": {
+        "sec": 399.22901463508606,
+        "min": 6.6538169105847675
+    },
+    "agent": {
+        "vlm_responses": 3,
+        "visual_feedback_renders": 2,
+        "input_tokens": null,
+        "output_tokens": null,
+        "total_tokens": null,
+        "cost_estimate_usd": null
+    },
+    "step": {
+        "success": true,
+        "path": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B09\\autodesk_output\\cadquery_script\\gpt-5.2_cadquery-script\\val_edit_B09\\gpt-5.2_cadquery-script_1786994206.5863683\\brep_end\\1786994206.5863683\\tmp.step",
+        "valid_brep": true,
+        "solid_count_preserved": null
+    },
+    "geometry": {
+        "start": null,
+        "result": {
+            "valid": true,
+            "solids": 1,
+            "faces": 16,
+            "edges": 33,
+            "volume_mm3": 10436.57501998445,
+            "bounding_box_mm": {
+                "x": 4.749800000000054,
+                "y": 26.987499999991023,
+                "z": 88.899999999998,
+                "diagonal": 93.02739250505283
+            }
+        },
+        "change": null
+    },
+    "ground_truth": {
+        "status": "NOT_EVALUATED",
+        "reason": "ground_truth_report.json not found.",
+        "geometry": null
+    },
+    "gt_metrics": {
+        "chamfer_distance": null,
+        "voxel_iou": null,
+        "volumetric_precision": null,
+        "volumetric_recall": null,
+        "volumetric_f1": null,
+        "difference_precision": null,
+        "difference_recall": null,
+        "difference_f1": null,
+        "added_f1": null,
+        "removed_f1": null,
+        "note": "Ground Truth is not confirmed; GT-dependent metrics are N/A."
+    },
+    "success": true,
+    "metrics_module_runtime_s": 0.14358799997717142
+}

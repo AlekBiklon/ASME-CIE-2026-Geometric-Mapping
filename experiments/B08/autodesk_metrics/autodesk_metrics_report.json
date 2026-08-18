@@ -1,0 +1,64 @@
+{
+    "experiment_id": "B08",
+    "request_id": "B7A2N74ZJBF9MZHU_1770169445.8914912",
+    "method": "AUTODESK",
+    "baseline": "neuralCAD-Edit",
+    "model": "gpt-5.2",
+    "harness": "cadquery_script",
+    "status": "SUCCESS",
+    "runtime": {
+        "sec": 1636.1207609176636,
+        "min": 27.268679348627725
+    },
+    "agent": {
+        "vlm_responses": 10,
+        "visual_feedback_renders": 8,
+        "input_tokens": null,
+        "output_tokens": null,
+        "total_tokens": null,
+        "cost_estimate_usd": null
+    },
+    "step": {
+        "success": true,
+        "path": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B08\\autodesk_output\\cadquery_script\\gpt-5.2_cadquery-script\\val_edit_B08\\gpt-5.2_cadquery-script_1786992365.1159885\\brep_end\\1786992365.1159885\\tmp.step",
+        "valid_brep": true,
+        "solid_count_preserved": null
+    },
+    "geometry": {
+        "start": null,
+        "result": {
+            "valid": true,
+            "solids": 9,
+            "faces": 1279,
+            "edges": 3515,
+            "volume_mm3": 33916.664300414915,
+            "bounding_box_mm": {
+                "x": 113.0000001,
+                "y": 72.04145208432699,
+                "z": 36.0000001,
+                "diagonal": 138.7622817923458
+            }
+        },
+        "change": null
+    },
+    "ground_truth": {
+        "status": "NOT_EVALUATED",
+        "reason": "ground_truth_report.json not found.",
+        "geometry": null
+    },
+    "gt_metrics": {
+        "chamfer_distance": null,
+        "voxel_iou": null,
+        "volumetric_precision": null,
+        "volumetric_recall": null,
+        "volumetric_f1": null,
+        "difference_precision": null,
+        "difference_recall": null,
+        "difference_f1": null,
+        "added_f1": null,
+        "removed_f1": null,
+        "note": "Ground Truth is not confirmed; GT-dependent metrics are N/A."
+    },
+    "success": true,
+    "metrics_module_runtime_s": 40.302291100029834
+}

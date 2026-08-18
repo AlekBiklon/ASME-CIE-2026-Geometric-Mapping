@@ -1,0 +1,123 @@
+{
+    "experiment_id": "B03",
+    "request_id": "B7A2N74ZJBF9MZHU_1770156927.436414",
+    "method": "GEOMETRIC_MAPPING",
+    "operation": "CHAMFER",
+    "operation_status": "ADAPTIVE_SUCCESS",
+    "cad_edit": {
+        "runtime_s": 156.20189240004402,
+        "step_success": true,
+        "result_valid_report": true,
+        "valid_brep": true,
+        "reimport_valid": true,
+        "export_reimport_success": true,
+        "reimport_volume_delta_mm3": 0.9970185058191419
+    },
+    "geometry": {
+        "start": {
+            "valid": true,
+            "solids": 1,
+            "faces": 118,
+            "edges": 322,
+            "volume_mm3": 4886543.576109433,
+            "bounding_box_mm": {
+                "x": 253.8456439235599,
+                "y": 450.0,
+                "z": 452.9008423144482,
+                "diagonal": 687.0638863367099
+            }
+        },
+        "result": {
+            "valid": true,
+            "solids": 1,
+            "faces": 124,
+            "edges": 338,
+            "volume_mm3": 4886502.778095089,
+            "bounding_box_mm": {
+                "x": 253.84564392355063,
+                "y": 450.0,
+                "z": 452.90084231441824,
+                "diagonal": 687.0638863366868
+            }
+        },
+        "change": {
+            "solids_delta": 0,
+            "faces_delta": 6,
+            "edges_delta": 16,
+            "volume_delta_mm3": -40.798014343716204,
+            "absolute_volume_change_mm3": 40.798014343716204,
+            "relative_volume_change": 8.349053622110284e-06
+        }
+    },
+    "operation_details": {
+        "operation": "CHAMFER",
+        "operation_status": "ADAPTIVE_SUCCESS",
+        "chamfer": {
+            "requested_distance_mm": 1.0,
+            "contours_total": 2,
+            "full_success_contours": 1,
+            "adaptive_success_contours": 1,
+            "partial_success_contours": 0,
+            "failed_contours": 0,
+            "skipped_edges": [],
+            "contours": [
+                {
+                    "solid_index": 0,
+                    "contour_index": 1,
+                    "edge_ids": [
+                        "E0011",
+                        "E0009",
+                        "E0010"
+                    ],
+                    "edge_count": 3,
+                    "requested_distance_mm": 1.0,
+                    "applied_distance_mm": 1.0,
+                    "status": "FULL_SUCCESS",
+                    "skipped_edges": [],
+                    "volume_change_mm3": -27.402513252571225
+                },
+                {
+                    "solid_index": 0,
+                    "contour_index": 2,
+                    "edge_ids": [
+                        "E0007",
+                        "E0013",
+                        "E0012"
+                    ],
+                    "edge_count": 3,
+                    "requested_distance_mm": 1.0,
+                    "applied_distance_mm": 0.65,
+                    "status": "ADAPTIVE_SUCCESS",
+                    "skipped_edges": [],
+                    "volume_change_mm3": -14.39251959696412
+                }
+            ],
+            "minimum_applied_distance_mm": 0.65,
+            "maximum_applied_distance_mm": 1.0,
+            "mean_applied_distance_mm": 0.825,
+            "minimum_distance_retention": 0.65,
+            "mean_distance_retention": 0.825
+        }
+    },
+    "ground_truth": {
+        "status": "NOT_CONFIRMED",
+        "reason": "The next available B-Rep state for the same CAD model is geometrically identical to the experiment START STEP.",
+        "step": null,
+        "geometry": null
+    },
+    "gt_metrics": {
+        "available": false,
+        "chamfer_distance": null,
+        "voxel_iou": null,
+        "difference_f1": null,
+        "note": "Ground Truth is not confirmed; GT-dependent metrics are N/A."
+    },
+    "success": {
+        "operation_success": true,
+        "strict_operation_success": true,
+        "valid_brep": true,
+        "solid_count_preserved": true,
+        "export_reimport_success": true
+    },
+    "metrics_module_runtime_s": 6.118106399953831
+}

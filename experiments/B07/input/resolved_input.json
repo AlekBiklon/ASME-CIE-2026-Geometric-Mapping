@@ -1,0 +1,410 @@
+{
+    "experiment_id": "B07",
+    "dataset_index": 54,
+    "request_id": "SUJ2G2UMJQR7PMBX_1757575242.90517",
+    "request_type": "edit",
+    "file_name": "20229_fusion-360-151130-4481-877ac05a-projec_v1",
+    "instruction": "I add a fillet of 2 mm to the four outer edges and fillet of 1 mm to all the four inner edges to improve aesthetics.",
+    "instruction_source": "request_transcript",
+    "source_start_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\SUJ2G2UMJQR7PMBX_1757575268.303395.step",
+    "local_start_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B07\\input\\B07_start.step",
+    "video_path": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\videos\\SUJ2G2UMJQR7PMBX_1757575242.90517_30_720_audio.mp4",
+    "request_events": [
+        {
+            "event": "commandStarting",
+            "commandId": "FreeOrbitCommand",
+            "commandName": "Free Orbit",
+            "timestamp": 1757575249.4885929,
+            "timestamp_relative_to_vid_start": 1.6351978778839111
+        },
+        {
+            "event": "activeSelectionChanged",
+            "entityType": "adsk::fusion::BRepEdge",
+            "bboxMin": [
+                0.41000000000000003,
+                -0.965,
+                -0.45500000000000007
+            ],
+            "bboxMax": [
+                0.51,
+                -0.46499999999999997,
+                -0.3550000000000001
+            ],
+            "area": null,
+            "centroid": null,
+            "timestamp": 1757575252.8972669,
+            "timestamp_relative_to_vid_start": 5.043871879577637
+        },
+        {
+            "event": "activeSelectionChanged",
+            "entityType": "adsk::fusion::BRepEdge",
+            "bboxMin": [
+                0.41000000000000003,
+                -0.965,
+                -0.45500000000000007
+            ],
+            "bboxMax": [
+                0.51,
+                -0.46499999999999997,
+                -0.3550000000000001
+            ],
+            "area": null,
+            "centroid": null,
+            "timestamp": 1757575254.96475,
+            "timestamp_relative_to_vid_start": 7.1113550662994385
+        },
+        {
+            "event": "activeSelectionChanged",
+            "entityType": "adsk::fusion::BRepEdge",
+            "bboxMin": [
+                0.41000000000000003,
+                -0.965,
+                0.3550000000000001
+            ],
+            "bboxMax": [
+                0.51,
+                -0.46499999999999997,
+                0.45500000000000007
+            ],
+            "area": null,
+            "centroid": null,
+            "timestamp": 1757575254.96475,
+            "timestamp_relative_to_vid_start": 7.1113550662994385
+        },
+        {
+            "event": "commandStarting",
+            "commandId": "FreeOrbitCommand",
+            "commandName": "Free Orbit",
+            "timestamp": 1757575255.388046,
+            "timestamp_relative_to_vid_start": 7.534651041030884
+        },
+        {
+            "event": "activeSelectionChanged",
+            "entityType": "adsk::fusion::BRepEdge",
+            "bboxMin": [
+                0.41000000000000003,
+                -0.965,
+                -0.45500000000000007
+            ],
+            "bboxMax": [
+                0.51,
+                -0.46499999999999997,
+                -0.3550000000000001
+            ],
+            "area": null,
+            "centroid": null,
+            "timestamp": 1757575256.6305652,
+            "timestamp_relative_to_vid_start": 8.777170181274414
+        },
+        {
+            "event": "activeSelectionChanged",
+            "entityType": "adsk::fusion::BRepEdge",
+            "bboxMin": [
+                0.41000000000000003,
+                -0.965,
+                0.3550000000000001
+            ],
+            "bboxMax": [
+                0.51,
+                -0.46499999999999997,
+                0.45500000000000007
+            ],
+            "area": null,
+            "centroid": null,
+            "timestamp": 1757575256.6305652,
+            "timestamp_relative_to_vid_start": 8.777170181274414
+        },
+        {
+            "event": "activeSelectionChanged",
+            "entityType": "adsk::fusion::BRepEdge",
+            "bboxMin": [
+                -0.51,
+                -0.965,
+                -0.45500000000000007
+            ],
+            "bboxMax": [
+                -0.41000000000000003,
+                -0.46499999999999997,
+                -0.3550000000000001
+            ],
+            "area": null,
+            "centroid": null,
+            "timestamp": 1757575256.6305652,
+            "timestamp_relative_to_vid_start": 8.777170181274414
+        },
+        {
+            "event": "activeSelectionChanged",
+            "entityType": "adsk::fusion::BRepEdge",
+            "bboxMin": [
+                0.41000000000000003,
+                -0.965,
+                -0.45500000000000007
+            ],
+            "bboxMax": [
+                0.51,
+                -0.46499999999999997,
+                -0.3550000000000001
+            ],
+            "area": null,
+            "centroid": null,
+            "timestamp": 1757575257.392931,
+            "timestamp_relative_to_vid_start": 9.539535999298096
+        },
+        {
+            "event": "activeSelectionChanged",
+            "entityType": "adsk::fusion::BRepEdge",
+            "bboxMin": [
+                0.41000000000000003,
+                -0.965,
+                0.3550000000000001
+            ],
+            "bboxMax": [
+                0.51,
+                -0.46499999999999997,
+                0.45500000000000007
+            ],
+            "area": null,
+            "centroid": null,
+            "timestamp": 1757575257.392931,
+            "timestamp_relative_to_vid_start": 9.539535999298096
+        },
+        {
+            "event": "activeSelectionChanged",
+            "entityType": "adsk::fusion::BRepEdge",
+            "bboxMin": [
+                -0.51,
+                -0.965,
+                -0.45500000000000007
+            ],
+            "bboxMax": [
+                -0.41000000000000003,
+                -0.46499999999999997,
+                -0.3550000000000001
+            ],
+            "area": null,
+            "centroid": null,
+            "timestamp": 1757575257.392931,
+            "timestamp_relative_to_vid_start": 9.539535999298096
+        },
+        {
+            "event": "activeSelectionChanged",
+            "entityType": "adsk::fusion::BRepEdge",
+            "bboxMin": [
+                -0.51,
+                -0.965,
+                0.3550000000000001
+            ],
+            "bboxMax": [
+                -0.41000000000000003,
+                -0.46499999999999997,
+                0.45500000000000007
+            ],
+            "area": null,
+            "centroid": null,
+            "timestamp": 1757575257.392931,
+            "timestamp_relative_to_vid_start": 9.539535999298096
+        },
+        {
+            "event": "activeSelectionChanged",
+            "entityType": "adsk::fusion::BRepEdge",
+            "bboxMin": [
+                0.30000000000000004,
+                -0.965,
+                0.22499999999999998
+            ],
+            "bboxMax": [
+                0.30000000000000004,
+                -0.275,
+                0.22499999999999998
+            ],
+            "area": null,
+            "centroid": null,
+            "timestamp": 1757575259.578242,
+            "timestamp_relative_to_vid_start": 11.724847078323364
+        },
+        {
+            "event": "commandStarting",
+            "commandId": "FreeOrbitCommand",
+            "commandName": "Free Orbit",
+            "timestamp": 1757575260.180207,
+            "timestamp_relative_to_vid_start": 12.326812028884888
+        },
+        {
+            "event": "activeSelectionChanged",
+            "entityType": "adsk::fusion::BRepEdge",
+            "bboxMin": [
+                0.30000000000000004,
+                -0.965,
+                0.22499999999999998
+            ],
+            "bboxMax": [
+                0.30000000000000004,
+                -0.275,
+                0.22499999999999998
+            ],
+            "area": null,
+            "centroid": null,
+            "timestamp": 1757575261.881682,
+            "timestamp_relative_to_vid_start": 14.028286933898926
+        },
+        {
+            "event": "activeSelectionChanged",
+            "entityType": "adsk::fusion::BRepEdge",
+            "bboxMin": [
+                0.30000000000000004,
+                -0.965,
+                -0.22499999999999998
+            ],
+            "bboxMax": [
+                0.30000000000000004,
+                -0.275,
+                -0.22499999999999998
+            ],
+            "area": null,
+            "centroid": null,
+            "timestamp": 1757575261.881682,
+            "timestamp_relative_to_vid_start": 14.028286933898926
+        },
+        {
+            "event": "commandStarting",
+            "commandId": "FreeOrbitCommand",
+            "commandName": "Free Orbit",
+            "timestamp": 1757575262.402556,
+            "timestamp_relative_to_vid_start": 14.549160957336426
+        },
+        {
+            "event": "activeSelectionChanged",
+            "entityType": "adsk::fusion::BRepEdge",
+            "bboxMin": [
+                0.30000000000000004,
+                -0.965,
+                0.22499999999999998
+            ],
+            "bboxMax": [
+                0.30000000000000004,
+                -0.275,
+                0.22499999999999998
+            ],
+            "area": null,
+            "centroid": null,
+            "timestamp": 1757575264.4499671,
+            "timestamp_relative_to_vid_start": 16.596572160720825
+        },
+        {
+            "event": "activeSelectionChanged",
+            "entityType": "adsk::fusion::BRepEdge",
+            "bboxMin": [
+                0.30000000000000004,
+                -0.965,
+                -0.22499999999999998
+            ],
+            "bboxMax": [
+                0.30000000000000004,
+                -0.275,
+                -0.22499999999999998
+            ],
+            "area": null,
+            "centroid": null,
+            "timestamp": 1757575264.4499671,
+            "timestamp_relative_to_vid_start": 16.596572160720825
+        },
+        {
+            "event": "activeSelectionChanged",
+            "entityType": "adsk::fusion::BRepEdge",
+            "bboxMin": [
+                -0.30000000000000004,
+                -0.965,
+                0.22499999999999992
+            ],
+            "bboxMax": [
+                -0.30000000000000004,
+                -0.275,
+                0.22499999999999992
+            ],
+            "area": null,
+            "centroid": null,
+            "timestamp": 1757575264.4499671,
+            "timestamp_relative_to_vid_start": 16.596572160720825
+        },
+        {
+            "event": "commandStarting",
+            "commandId": "FreeOrbitCommand",
+            "commandName": "Free Orbit",
+            "timestamp": 1757575264.835159,
+            "timestamp_relative_to_vid_start": 16.98176407814026
+        },
+        {
+            "event": "activeSelectionChanged",
+            "entityType": "adsk::fusion::BRepEdge",
+            "bboxMin": [
+                0.30000000000000004,
+                -0.965,
+                0.22499999999999998
+            ],
+            "bboxMax": [
+                0.30000000000000004,
+                -0.275,
+                0.22499999999999998
+            ],
+            "area": null,
+            "centroid": null,
+            "timestamp": 1757575266.110189,
+            "timestamp_relative_to_vid_start": 18.256793975830078
+        },
+        {
+            "event": "activeSelectionChanged",
+            "entityType": "adsk::fusion::BRepEdge",
+            "bboxMin": [
+                0.30000000000000004,
+                -0.965,
+                -0.22499999999999998
+            ],
+            "bboxMax": [
+                0.30000000000000004,
+                -0.275,
+                -0.22499999999999998
+            ],
+            "area": null,
+            "centroid": null,
+            "timestamp": 1757575266.110189,
+            "timestamp_relative_to_vid_start": 18.256793975830078
+        },
+        {
+            "event": "activeSelectionChanged",
+            "entityType": "adsk::fusion::BRepEdge",
+            "bboxMin": [
+                -0.30000000000000004,
+                -0.965,
+                0.22499999999999992
+            ],
+            "bboxMax": [
+                -0.30000000000000004,
+                -0.275,
+                0.22499999999999992
+            ],
+            "area": null,
+            "centroid": null,
+            "timestamp": 1757575266.110189,
+            "timestamp_relative_to_vid_start": 18.256793975830078
+        },
+        {
+            "event": "activeSelectionChanged",
+            "entityType": "adsk::fusion::BRepEdge",
+            "bboxMin": [
+                -0.30000000000000004,
+                -0.965,
+                -0.22499999999999998
+            ],
+            "bboxMax": [
+                -0.30000000000000004,
+                -0.275,
+                -0.22499999999999998
+            ],
+            "area": null,
+            "centroid": null,
+            "timestamp": 1757575266.110189,
+            "timestamp_relative_to_vid_start": 18.256793975830078
+        }
+    ],
+    "request_event_count": 25
+}

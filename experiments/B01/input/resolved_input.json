@@ -1,0 +1,37 @@
+{
+    "experiment_id": "B01",
+    "dataset_index": 51,
+    "request_id": "SUJ2G2UMJQR7PMBX_1757677048.372038",
+    "request_type": "edit",
+    "file_name": "20393_fusion-360-151130-1325-f67c6b30-pebble v1",
+    "instruction": "Please add a hole of 2 mm here for reset button.",
+    "instruction_source": "request_transcript",
+    "source_start_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\SUJ2G2UMJQR7PMBX_1757677066.6712623.step",
+    "local_start_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B01\\input\\B01_start.step",
+    "video_path": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\videos\\SUJ2G2UMJQR7PMBX_1757677048.372038_30_720_audio.mp4",
+    "request_events": [
+        {
+            "event": "activeSelectionChanged",
+            "entityType": "adsk::fusion::BRepFace",
+            "bboxMin": [
+                -2.482424775596438,
+                -0.7862687893833129,
+                1.75
+            ],
+            "bboxMax": [
+                2.8536368331806803,
+                0.5764789969440081,
+                1.75
+            ],
+            "area": 2.5201549772318073,
+            "centroid": [
+                -0.9689042506737217,
+                -0.040016009795494537,
+                1.75
+            ],
+            "timestamp": 1757677057.819338,
+            "timestamp_relative_to_vid_start": 1.948075771331787
+        }
+    ],
+    "request_event_count": 1
+}

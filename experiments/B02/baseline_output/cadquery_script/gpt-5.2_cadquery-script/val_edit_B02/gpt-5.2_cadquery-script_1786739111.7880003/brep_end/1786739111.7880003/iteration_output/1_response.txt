@@ -1,0 +1,109 @@
+Thinking text:
+
+
+Generated script:
+def my_cad_function(args):
+    import os
+    import cadquery as cq
+
+    # --- Resolve input STEP path (edit tasks may not pass it as "input_file")
+    step_path = None
+    for k in [
+        "input_file",
+        "brep_start_path_step",
+        "brep_start_path",
+        "step_path",
+        "path",
+    ]:
+        if k in args and args[k]:
+            step_path = os.path.expanduser(str(args[k]))
+            break
+
+    if not step_path:
+        print("ERROR: No STEP path found in args. Available keys:")
+        print(sorted(list(args.keys())))
+        raise ValueError("No STEP path found (expected one of: input_file, brep_start_path_step, brep_start_path, step_path)")
+
+    if not os.path.exists(step_path):
+        print(f"ERROR: STEP path does not exist: {step_path}")
+        raise ValueError(f"STEP path does not exist: {step_path}")
+
+    model = cq.importers.importStep(step_path)
+    shape = model.val() if hasattr(model, "val") else model
+
+    # --- Debug info (keep for first iteration)
+    try:
+        bb = shape.BoundingBox()
+        c = bb.center
+        solids = []
+        try:
+            solids = shape.Solids()
+        except Exception:
+            solids = []
+        print(f"Loaded STEP: {step_path}")
+        try:
+            print(f"Is Valid: {shape.isValid()}")
+        except Exception:
+            pass
+        print(f"Faces: {len(shape.Faces())}")
+        print(f"Edges: {len(shape.Edges())}")
+        print(f"Solids: {len(solids)}")
+        print(f"BBox: x=[{bb.xmin:.3f},{bb.xmax:.3f}] y=[{bb.ymin:.3f},{bb.ymax:.3f}] z=[{bb.zmin:.3f},{bb.zmax:.3f}]")
+        print(f"BBox Center: ({c.x:.3f}, {c.y:.3f}, {c.z:.3f})")
+    except Exception as e:
+        print(f"Debug info failed: {e}")
+
+    radius = 0.2  # mm
+
+    def _fillet_solid_edges(solid, min_len):
+        """Fillet edges on a solid, filtering tiny edges to improve robustness."""
+        edges = list(solid.Edges())
+        if min_len is not None:
+            edges = [e for e in edges if e.Length() > float(min_len)]
+        if not edges:
+            return solid
+        return solid.fillet(radius, edges)
+
+    # --- Preferred approach: fillet each solid's edges (more robust than Workplane selection)
+    try:
+        solids = list(shape.Solids())
+        if solids:
+            filleted = []
+            # progressively more selective if needed
+            for s in solids:
+                try:
+                    filleted.append(_fillet_solid_edges(s, min_len=0.0))
+                except Exception:
+                    try:
+                        filleted.append(_fillet_solid_edges(s, min_len=0.5))
+                    except Exception:
+                        filleted.append(_fillet_solid_edges(s, min_len=1.5))
+
+            if len(filleted) == 1:
+                print("Applied 0.2 mm fillet to (filtered) edges on the solid.")
+                return cq.Workplane(obj=filleted[0])
+            else:
+                comp = cq.Compound.makeCompound(filleted)
+                print("Applied 0.2 mm fillet to (filtered) edges on all solids; returning compound.")
+                return cq.Workplane(obj=comp)
+    except Exception as e:
+        print(f"Per-solid fillet attempt failed: {e}")
+
+    # --- Fallback: try CadQuery Workplane edge selection (may fail on complex geometry)
+    try:
+        result = model.edges().fillet(radius)
+        print("Fallback succeeded: Applied 0.2 mm fillet to all selectable edges (Workplane).")
+        return result
+    except Exception as e:
+        print(f"Fallback Workplane fillet failed: {e}")
+
+    print("Returning original model (no fillet applied due to errors).")
+    return model
+
+
+Program output:
+stdout: Loading function from: C:\PROGRAMING_PYTHON\2026-08-14_ASME_Hackathon_2026\experiments\B02\baseline_output\cadquery_script\gpt-5.2_cadquery-script\val_edit_B02\gpt-5.2_cadquery-script_1786739111.7880003\brep_end\1786739111.7880003\temp_script.py
+ERROR: No STEP path found in args. Available keys:
+['function_file', 'output_dir']
+Error executing LLM-provided function: No STEP path found (expected one of: input_file, brep_start_path_step, brep_start_path, step_path)
+Script completed.

@@ -1,0 +1,54 @@
+{
+    "experiment_id": "B06",
+    "request_id": "ZK22J6VYRKQ2RTFD_1758875163.609787",
+    "dataset_index": 33,
+    "file_name": "24537_fusion-360-151130-8363-cb10a4e7-bracke_v1 v1",
+    "instruction": "null",
+    "status": "NOT_CONFIRMED",
+    "reason": "No later B-Rep state exists for the same CAD model.",
+    "start_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B06\\input\\B06_start.step",
+    "dataset_start_step": "breps/ZK22J6VYRKQ2RTFD_1758875194.249227.step",
+    "dataset_start_timestamp": 1758875194.249227,
+    "start_geometry": {
+        "valid": true,
+        "solids": 1,
+        "faces": 266,
+        "edges": 625,
+        "volume": 67.08982065469982,
+        "bbox_x": 13.280000199999968,
+        "bbox_y": 4.9200002000000005,
+        "bbox_z": 8.249649654213902
+    },
+    "history": [
+        {
+            "dataset_index": 35,
+            "request_id": "ZK22J6VYRKQ2RTFD_1758873912.731081",
+            "instruction": "null",
+            "step_relative": "breps/ZK22J6VYRKQ2RTFD_1758873955.818716.step",
+            "step_absolute": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\ZK22J6VYRKQ2RTFD_1758873955.818716.step",
+            "step_timestamp": 1758873955.818716,
+            "step_exists": true
+        },
+        {
+            "dataset_index": 34,
+            "request_id": "ZK22J6VYRKQ2RTFD_1758874422.1403751",
+            "instruction": "null",
+            "step_relative": "breps/ZK22J6VYRKQ2RTFD_1758874483.146758.step",
+            "step_absolute": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\ZK22J6VYRKQ2RTFD_1758874483.146758.step",
+            "step_timestamp": 1758874483.146758,
+            "step_exists": true
+        },
+        {
+            "dataset_index": 33,
+            "request_id": "ZK22J6VYRKQ2RTFD_1758875163.609787",
+            "instruction": "null",
+            "step_relative": "breps/ZK22J6VYRKQ2RTFD_1758875194.249227.step",
+            "step_absolute": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\neuralCAD-Edit-data\\edit_192_external\\breps\\ZK22J6VYRKQ2RTFD_1758875194.249227.step",
+            "step_timestamp": 1758875194.249227,
+            "step_exists": true
+        }
+    ],
+    "candidates": [],
+    "confirmed_ground_truth": null,
+    "ground_truth_step": null
+}

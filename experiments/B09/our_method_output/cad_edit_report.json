@@ -1,0 +1,44 @@
+{
+    "experiment_id": "B09",
+    "method": "GEOMETRIC_MAPPING",
+    "module": "CAD_EDIT",
+    "operation": "ADD_HOLE",
+    "parameters": {
+        "geometry_source": "REFERENCE_HOLES",
+        "position_rule": "MIDPOINT",
+        "setup_rule": "COPY_EXISTING_HOLE_SETUP"
+    },
+    "target": {
+        "entity_type": "DERIVED_HOLE",
+        "selection_semantics": "MIDPOINT_BETWEEN_REFERENCE_HOLES",
+        "source": "GEOMETRIC_DERIVATION",
+        "selection_count": 0
+    },
+    "reference": {
+        "entity_type": "REFERENCE_HOLE_PAIR",
+        "hole_1_edge_ids": [
+            "E0020"
+        ],
+        "hole_2_edge_ids": [
+            "E0022"
+        ],
+        "selection_count": 2,
+        "source": "USER_3D_SELECTION"
+    },
+    "input_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B09\\input\\B09_start.step",
+    "edit_request": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B09\\input\\edit_request.json",
+    "output_step": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B09\\our_method_output\\B09_result.step",
+    "engine_report": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B09\\our_method_output\\B09_edit_report.json",
+    "status": "SUCCESS",
+    "runtime_seconds": 1.5553719999734312,
+    "output_exists": true,
+    "engine_report_exists": true,
+    "step_success": true,
+    "input_valid": true,
+    "result_valid": true,
+    "reimport_valid": true,
+    "input_solids": 1,
+    "output_solids": 1,
+    "volume_change": -114.3788234707481,
+    "error": null
+}

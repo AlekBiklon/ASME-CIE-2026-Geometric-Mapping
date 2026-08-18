@@ -1,0 +1,64 @@
+{
+    "experiment_id": "B05",
+    "request_id": "4S7JQK6ZQMAD25GL_1758863141.735564",
+    "method": "AUTODESK",
+    "baseline": "neuralCAD-Edit",
+    "model": "gpt-5.2",
+    "harness": "cadquery_script",
+    "status": "SUCCESS",
+    "runtime": {
+        "sec": 999.7213187217712,
+        "min": 16.66202197869619
+    },
+    "agent": {
+        "vlm_responses": 9,
+        "visual_feedback_renders": 7,
+        "input_tokens": null,
+        "output_tokens": null,
+        "total_tokens": null,
+        "cost_estimate_usd": null
+    },
+    "step": {
+        "success": true,
+        "path": "c:\\PROGRAMING_PYTHON\\2026-08-14_ASME_Hackathon_2026\\experiments\\B05\\autodesk_output\\cadquery_script\\gpt-5.2_cadquery-script\\val_edit_B05\\gpt-5.2_cadquery-script_1786989193.7681894\\brep_end\\1786989193.7681894\\tmp.step",
+        "valid_brep": true,
+        "solid_count_preserved": null
+    },
+    "geometry": {
+        "start": null,
+        "result": {
+            "valid": true,
+            "solids": 2,
+            "faces": 19,
+            "edges": 42,
+            "volume_mm3": 127138.3284052827,
+            "bounding_box_mm": {
+                "x": 65.54486002996673,
+                "y": 31.899565555772742,
+                "z": 102.51873302878349,
+                "diagonal": 125.79269287530956
+            }
+        },
+        "change": null
+    },
+    "ground_truth": {
+        "status": "NOT_EVALUATED",
+        "reason": "ground_truth_report.json not found.",
+        "geometry": null
+    },
+    "gt_metrics": {
+        "chamfer_distance": null,
+        "voxel_iou": null,
+        "volumetric_precision": null,
+        "volumetric_recall": null,
+        "volumetric_f1": null,
+        "difference_precision": null,
+        "difference_recall": null,
+        "difference_f1": null,
+        "added_f1": null,
+        "removed_f1": null,
+        "note": "Ground Truth is not confirmed; GT-dependent metrics are N/A."
+    },
+    "success": true,
+    "metrics_module_runtime_s": 0.9979415999841876
+}

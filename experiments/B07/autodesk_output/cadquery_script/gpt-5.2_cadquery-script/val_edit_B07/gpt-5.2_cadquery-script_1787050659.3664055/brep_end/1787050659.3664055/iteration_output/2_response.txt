@@ -1,0 +1,196 @@
+Thinking text:
+**Clarifying measurement units**
+
+I'm working through an algorithm that identifies vertical line edges along the Y-axis, clustering them by radial distance in the XZ plane. I'm determining the largest and next largest radius clusters based on the edge coordinates provided. Initially, it seemed the outer edges might be in centimeters, but the bounding box dimensions suggest they could be in inches or meters, making it tricky. Ultimately, I'm leaning towards millimeters since the dataset references specific measurements.
+**Improving edge selection**
+
+I encountered an issue where the earlier function didn't run due to a missing input file. I plan to update the file-locating process to be more robust and then implement a more reliable selection method. I'll use edge tangent direction and length, focusing on vertical edges along the Y-axis. I’ll compute edge directions using their start and end points. The goal is to pick LINE edges with directions close to Y, maybe greater than 0.9, and calculate their distances from the model's center. I'll then categorize them into bins based on their radii.
+**Defining edge constraints**
+
+I'm focusing on restricting to central features, specifically edges with a Y-range between approximately -0.965 and -0.275. While other vertical edges could fit, the outer and inner edges should exist within a central funnel or hole and have similar Y extents. I think outer edges should have Y values between -0.965 and -0.465 and inner edges extending up to -0.275. To select these edges, I'll consider their bounding box positions, ensuring they are close to center and adhere to a moderate radius compared to the maximum dimension, which might be around 2 units.
+**Determining units and scaling**
+
+I'm aiming to detect the central hole region by selecting edges that are not too large in both X and Z dimensions. My approach involves several steps: first, loading the shape, then figuring out the appropriate unit scaling. If max_dim is around 2, it might be in inches, which would give a conversion rate of 1/25.4 for millimeters. Alternatively, if it's in centimeters, it would convert to 0.1. Based on the model’s size, likely around 50-60mm, I lean towards using inches for units.
+**Implementing edge selection**
+
+I'm considering the use of the `fillet(radius, edgeList)` function, where we can apply it to our shape using the `.fillet(r, edgeList)` feature. I think it might be better just to create a Workplane object around the shape, but using `shape.fillet()` seems more straightforward. I'll start by implementing edge selection with a function that collects vertical line edges from the shape. 
+
+I'll apply filters based on their length and positions, define bin sizes for clustering, and ensure we gather edges with radii closeness, keeping an eye on debug outputs for candidate bins. After applying the outer fillet, I'll ensure that we can still find the inner line edges as they should remain unchanged.
+
+Generated script:
+def my_cad_function(args):
+    import cadquery as cq
+    import os, math, glob
+
+    def find_step_path():
+        # Preferred: passed by runner
+        p = args.get("input_file", None)
+        if p:
+            p2 = os.path.expanduser(p)
+            if os.path.exists(p2):
+                return p2
+
+        # Fallback: try to locate a STEP near known folders
+        search_dirs = []
+        for k in ("output_dir",):
+            if args.get(k):
+                search_dirs.append(os.path.expanduser(args.get(k)))
+        if args.get("function_file"):
+            search_dirs.append(os.path.dirname(os.path.expanduser(args.get("function_file"))))
+        search_dirs.append(os.getcwd())
+
+        # Also common subfolder names
+        extra = []
+        for d in list(search_dirs):
+            if not d or not os.path.isdir(d):
+                continue
+            for sub in ("breps", "brep", "input", "inputs"):
+                sd = os.path.join(d, sub)
+                if os.path.isdir(sd):
+                    extra.append(sd)
+        search_dirs.extend(extra)
+
+        cands = []
+        exts = ("*.step", "*.STEP", "*.stp", "*.STP")
+        for d in search_dirs:
+            if not d or not os.path.isdir(d):
+                continue
+            for ext in exts:
+                cands.extend(glob.glob(os.path.join(d, ext)))
+
+        if not cands:
+            return None
+        cands = sorted(set(cands), key=lambda fp: os.path.getmtime(fp), reverse=True)
+        return cands[0]
+
+    step_path = find_step_path()
+    if not step_path:
+        print("ERROR: Could not find input STEP file. Args keys:", sorted(list(args.keys())))
+        return None
+
+    wp = cq.importers.importStep(step_path)
+    shape = wp.val() if hasattr(wp, "val") else wp
+
+    bb = shape.BoundingBox()
+    center = bb.center
+    plan_dim = max(bb.xlen, bb.zlen)
+    max_dim = max(bb.xlen, bb.ylen, bb.zlen)
+
+    print(f"Loaded STEP: {step_path}")
+    print(f"BBox lens: x={bb.xlen:.6f}, y={bb.ylen:.6f}, z={bb.zlen:.6f}  plan_dim={plan_dim:.6f}")
+    print(f"Faces={len(shape.Faces())}, Edges={len(shape.Edges())}")
+
+    # Heuristic: Fusion->STEP in this dataset is commonly in centimeters.
+    # If the part is under 50 units across, treat units as cm.
+    if max_dim < 50:
+        unit = "cm"
+        mm_to_u = 0.1
+    else:
+        unit = "mm"
+        mm_to_u = 1.0
+
+    r_outer = 2.0 * mm_to_u  # 2 mm
+    r_inner = 1.0 * mm_to_u  # 1 mm
+    print(f"Assumed units: {unit} (mm_to_u={mm_to_u}) -> fillets outer={r_outer}, inner={r_inner}")
+
+    def edge_dir(edge):
+        vs = edge.Vertices()
+        if len(vs) < 2:
+            return None, 0.0
+        p1 = cq.Vector(*vs[0].toTuple())
+        p2 = cq.Vector(*vs[-1].toTuple())
+        d = p2 - p1
+        L = d.Length
+        if L < 1e-9:
+            return None, 0.0
+        return d / L, L
+
+    def collect_vertical_line_edges(s, y_bias=0.85):
+        infos = []
+        for e in s.Edges():
+            try:
+                if e.geomType() != "LINE":
+                    continue
+            except Exception:
+                continue
+            d, L = edge_dir(e)
+            if d is None:
+                continue
+            # "Vertical" in this model is along global Y
+            if abs(d.y) < y_bias:
+                continue
+            c = e.Center()
+            r = math.hypot(c.x - center.x, c.z - center.z)
+            infos.append((e, r, L, c))
+        return infos
+
+    def pick_central_4edge_bins(edge_infos):
+        # Filter to central region (avoid corner posts / perimeter features)
+        r_max = 0.45 * plan_dim
+        r_min = 0.02 * plan_dim
+
+        filtered = [(e, r, L, c) for (e, r, L, c) in edge_infos if (r_min <= r <= r_max)]
+        if not filtered:
+            filtered = edge_infos[:]  # fallback
+
+        bin_size = max(1e-6, 0.01 * plan_dim)
+        bins = {}
+        for (e, r, L, c) in filtered:
+            k = round(r / bin_size) * bin_size
+            bins.setdefault(k, []).append((e, r, L, c))
+
+        cands = []
+        for k, v in bins.items():
+            if len(v) == 4:
+                mr = sum(t[1] for t in v) / 4.0
+                mL = sum(t[2] for t in v) / 4.0
+                cands.append((mr, mL, v))
+
+        cands.sort(key=lambda t: t[0])  # by mean radius
+        print("Candidate 4-edge vertical LINE bins (mean_r, mean_L):", [(round(mr, 6), round(mL, 6)) for (mr, mL, _) in cands])
+        return cands
+
+    def apply_fillet_on_bin(s, bin_edges, radius, label):
+        if not bin_edges:
+            print(f"{label}: No edges selected")
+            return s
+        try:
+            s2 = s.fillet(radius, bin_edges)
+            print(f"{label}: Fillet applied (r={radius}) on {len(bin_edges)} edges")
+            return s2
+        except Exception as e:
+            print(f"{label}: Fillet FAILED (r={radius}) on {len(bin_edges)} edges -> {e}")
+            return s
+
+    # --- OUTER fillet: pick the second-smallest central 4-edge radius bin as "outer" ---
+    v0 = collect_vertical_line_edges(shape)
+    bins0 = pick_central_4edge_bins(v0)
+
+    inner_edges0, outer_edges0 = [], []
+    if len(bins0) >= 2:
+        # smallest radius -> inner, next -> outer
+        inner_edges0 = [t[0] for t in bins0[0][2]]
+        outer_edges0 = [t[0] for t in bins0[1][2]]
+    elif len(bins0) == 1:
+        # only one 4-edge bin: treat it as outer (best effort)
+        outer_edges0 = [t[0] for t in bins0[0][2]]
+
+    shape1 = apply_fillet_on_bin(shape, outer_edges0, r_outer, "OUTER")
+
+    # --- INNER fillet: re-pick bins after outer fillet and use smallest-radius 4-edge bin as inner ---
+    v1 = collect_vertical_line_edges(shape1)
+    bins1 = pick_central_4edge_bins(v1)
+
+    inner_edges1 = []
+    if len(bins1) >= 1:
+        inner_edges1 = [t[0] for t in bins1[0][2]]
+
+    shape2 = apply_fillet_on_bin(shape1, inner_edges1, r_inner, "INNER")
+
+    return shape2
+
+
+Program output:
+stdout: Loading function from: c:\PROGRAMING_PYTHON\2026-08-14_ASME_Hackathon_2026\experiments\B07\autodesk_output\cadquery_script\gpt-5.2_cadquery-script\val_edit_B07\gpt-5.2_cadquery-script_1787050659.3664055\brep_end\1787050659.3664055\temp_script.py
+ERROR: Could not find input STEP file. Args keys: ['function_file', 'output_dir']
+Script completed.

@@ -1,0 +1,98 @@
+Thinking text:
+**Considering edge filleting strategy**
+
+I'm thinking about the outer edges and how to fillet them. The plan is to import the shape and fillet all external convex edges with a radius of 5, while excluding edges belonging to cylindrical holes. I can use geometric criteria to filter edges, but it’s tricky since hole edges are also circular. External edges are convex, while holes are concave. If I fillet all edges, it might mistakenly fillet concave edges too, which could mess up the design.
+**Selecting convex edges**
+
+I need to select only convex edges, but CadQuery doesn’t have a direct convex selector. One idea is to compute the dihedral angle using face normals, but that seems complex. A simpler approach is to fillet all edges with a radius of 5. However, it doesn't seem the holes are chamfered. Based on the request, it seems they want only the outer edges, not the inside holes. 
+
+I could consider selecting edges based on their length or distance from the center, or perhaps using outer perimeter selection for the top face. I'll explore the outermost boundary through CadQuery’s face and edge selection methods!
+**Filtering outer perimeter edges**
+
+The outer perimeter consists of arcs and lines, while hole edges are typically circular. I need to consider that the outer boundary edges include larger arcs, possibly with a radius greater than the holes, which I estimate around 5 for hole edges and maybe 15 for the outer arcs. I probably don’t want to fillet the edges of lug holes since they’re around 6. 
+
+An easier approach might be to select edges using their bounding box, focusing on edges where the center point has extreme x or y values. However, vertical lugs might complicate that. I'll compute the shape’s bounding box and select any edges with vertices near the global extremes!
+**Clarifying edge selection**
+
+Alright, it seems the outer perimeter edges are indeed at the extremes, while hole edges are more interior and not extreme. I can select external edges based on their proximity to the bounding box extremes in the x or y direction. However, the lug edges might not be at the extremes either, as they could be centered. 
+
+If the lug is centered along the y=0 line, it doesn’t reach the maxY, so the bounding box extremes would reflect the base width. I need to ensure I include the lug edges for completeness!
+**Filleting convex edges**
+
+I’m considering filleting all convex external edges using the Shell method, and I want to avoid edges that belong to cylindrical holes. Those edges are circular, with cylindrical axes across different orientations. I think I can identify edges by checking adjacent face types. If both adjacent faces are cylindrical, the edge is part of a hole; otherwise, it's external.
+
+I might use an auxiliary method to determine if the cylinder faces are inward or outward. Hole edges should generally not be filleted, as they seem to be less highlighted. The goal is to implement filleting only on external boundary edges while ensuring I exclude inner wires. To do that, iterating over faces to collect outer wire edges seems like the best option. This will capture external edges while excluding inner hole edges.
+
+I’ll also handle potential duplicate edges by using a hashCode method to ensure I’m only working with unique edges. Finally, I'll create a robust function to handle input file loading, shape identification, and edge selection for filleting!
+**Evaluating the filleting approach**
+
+I’m thinking about how to handle filleting, especially since the specification says to use a radius of 5. I need to be cautious about excluding edges that are already rounded, as applying fillets on existing filleted edges might cause issues. The outer boundary includes edges along already filleted areas, such as those between the base and the lug, which could also be tangent or blend edges.
+
+I think I’ll focus on filleting edges with a dihedral angle close to 90 degrees where both adjacent faces are planar. However, since there's a possibility that the model already has some small fillets, I need to be careful. If needed, I can split the selection into two fillet operations. I’ll implement this with error handling, just in case those complex edges cause a failure!
+
+Generated script:
+def my_cad_function(args):
+    import os
+    import cadquery as cq
+
+    step_path = None
+    if "input_file" in args and args["input_file"]:
+        step_path = os.path.expanduser(args["input_file"])
+
+    if not step_path or not os.path.exists(step_path):
+        print(f"STEP input_file not found: {step_path}")
+        return None
+
+    model = cq.importers.importStep(step_path)
+    solid = model.val() if hasattr(model, "val") else model
+
+    # Debug info (useful on first iteration)
+    try:
+        bb = solid.BoundingBox()
+        c = bb.center
+        print(f"Loaded STEP: {os.path.basename(step_path)}")
+        print(f"Valid: {solid.isValid()}")
+        print(f"Faces: {len(solid.Faces())}, Edges: {len(solid.Edges())}")
+        print(
+            f"BBox: x[{bb.xmin:.3f},{bb.xmax:.3f}] y[{bb.ymin:.3f},{bb.ymax:.3f}] z[{bb.zmin:.3f},{bb.zmax:.3f}] center=({c.x:.3f},{c.y:.3f},{c.z:.3f})"
+        )
+    except Exception as e:
+        print(f"Debug bbox failed: {e}")
+
+    # Collect ONLY outer-boundary edges (outer wires) of all faces.
+    # This generally excludes hole-mouth edges (which are inner wires) and targets the visible/external edges.
+    edge_map = {}
+    for f in solid.Faces():
+        try:
+            ow = f.outerWire()
+            for e in ow.Edges():
+                try:
+                    key = e.hashCode()
+                except Exception:
+                    # Fallback: hash wrapped shape
+                    key = e.wrapped.HashCode(1000003)
+                edge_map[key] = e
+        except Exception:
+            continue
+
+    outer_edges = list(edge_map.values())
+    print(f"Outer-wire unique edges selected for fillet: {len(outer_edges)}")
+
+    wp = cq.Workplane("XY").add(solid)
+
+    # Apply fillet radius 5 mm to selected (visible/external) edges
+    try:
+        result = wp.newObject(outer_edges).fillet(5.0)
+        return result
+    except Exception as e:
+        print(f"Fillet(5.0) failed: {e}")
+        import traceback
+        traceback.print_exc()
+        # Return original if fillet fails
+        return wp
+
+
+Program output:
+stdout: Loading function from: c:\PROGRAMING_PYTHON\2026-08-14_ASME_Hackathon_2026\experiments\B10\autodesk_output\cadquery_script\gpt-5.2_cadquery-script\val_edit_B10\gpt-5.2_cadquery-script_1786994739.9357026\brep_end\1786994739.9357026\temp_script.py
+STEP input_file not found: None
+Script completed.
