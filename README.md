@@ -1,3 +1,8 @@
+<p align="center">
+  <img src="assets/logo.png" alt="ASME CIE 2026 Student Hackathon" width="500">
+</p>
+
+
 # ASME CIE 2026 — Geometric Mapping for Deterministic 3D CAD Editing
 This repository contains the **Geometric Mapping** method developed for the
 
