@@ -1,20 +1,11 @@
-\# ASME CIE 2026 — Geometric Mapping for Deterministic 3D CAD Editing
+# ASME CIE 2026 — Geometric Mapping for Deterministic 3D CAD Editing
+This repository contains the **Geometric Mapping** method developed for the
 
+**ASME CIE 2026 Student Hackathon — Autodesk Challenge: 3D CAD Model Editing with Visual Language Models**.
 
-
-This repository contains the \*\*Geometric Mapping\*\* method developed for the
-
-\*\*ASME CIE 2026 Student Hackathon — Autodesk Challenge: 3D CAD Model Editing with Visual Language Models\*\*.
-
-
-
-\## Overview
-
-
+## Overview
 
 The project investigates an alternative approach to iterative VLM-based CAD editing.
-
-
 
 Instead of repeatedly asking a vision-language model to generate and refine CAD code,
 
@@ -24,185 +15,125 @@ operation and uses minimal user-provided geometric grounding to identify the rel
 
 B-Rep geometry.
 
-
-
 The CAD modification is then performed deterministically.
-
-
 
 The general pipeline is:
 
+**Natural-language instruction → Engineering intent → Geometric grounding → B-Rep feature recognition → Deterministic CAD edit → Geometry validation**
 
-
-\*\*Natural-language instruction → Engineering intent → Geometric grounding → B-Rep feature recognition → Deterministic CAD edit → Geometry validation\*\*
-
-
-
-\## Motivation
-
-
+## Motivation
 
 VLM-based CAD editing can require multiple inference iterations, visual renders,
 
 and repeated code generation before producing a valid result.
 
-
-
 The proposed Geometric Mapping approach separates:
 
+- semantic understanding of the requested operation;
 
+- geometric identification of the target;
 
-\- semantic understanding of the requested operation;
-
-\- geometric identification of the target;
-
-\- deterministic execution of the CAD modification.
-
-
+- deterministic execution of the CAD modification.
 
 This allows the geometry modification itself to be performed without iterative
 
 VLM inference.
 
-
-
-\## Supported Operations
-
-
+## Supported Operations
 
 The experimental implementation currently supports several common CAD editing operations:
 
+- `ADD_HOLE`
 
+- `FILLET`
 
-\- `ADD\_HOLE`
-
-\- `FILLET`
-
-\- `CHAMFER`
-
-
+- `CHAMFER`
 
 Different grounding strategies are used depending on the instruction, including:
 
+- point-based grounding;
 
+- edge selection;
 
-\- point-based grounding;
+- multiple-edge selection;
 
-\- edge selection;
+- reference-feature selection;
 
-\- multiple-edge selection;
+- geometric parameter extraction from existing B-Rep features.
 
-\- reference-feature selection;
-
-\- geometric parameter extraction from existing B-Rep features.
-
-
-
-\## Experimental Evaluation
-
-
+## Experimental Evaluation
 
 Ten paired experiments (`B01`–`B10`) were conducted using editing requests from
 
 the neuralCAD-Edit experimental data.
 
-
-
-For each task, the proposed \*\*Geometric Mapping\*\* method was compared with the
+For each task, the proposed **Geometric Mapping** method was compared with the
 
 Autodesk/neuralCAD-Edit VLM-based baseline.
 
-
-
 The evaluation records include:
 
+- runtime;
 
+- STEP generation success;
 
-\- runtime;
+- B-Rep validity;
 
-\- STEP generation success;
+- STEP re-import validity;
 
-\- B-Rep validity;
+- solid preservation;
 
-\- STEP re-import validity;
+- face and edge counts;
 
-\- solid preservation;
+- volume change;
 
-\- face and edge counts;
+- VLM response count;
 
-\- volume change;
+- visual render count;
 
-\- VLM response count;
-
-\- visual render count;
-
-\- estimated inference cost where available.
-
-
+- estimated inference cost where available.
 
 The proposed method performs the CAD edit with:
 
+- **0 VLM responses during deterministic editing**
 
+- **0 iterative visual renders**
 
-\- \*\*0 VLM responses during deterministic editing\*\*
+- **0 inference tokens**
 
-\- \*\*0 iterative visual renders\*\*
-
-\- \*\*0 inference tokens\*\*
-
-\- \*\*$0 inference cost during deterministic editing\*\*
-
-
+- **$0 inference cost during deterministic editing**
 
 Runtime improvements vary by task and are reported individually in the experimental results.
 
-
-
-\## Ground-Truth Limitation
-
-
+## Ground-Truth Limitation
 
 The experiments contain the original CAD models and editing instructions.
-
-
 
 However, an official human-created target STEP model was not available for the
 
 evaluated cases in the local experimental data.
 
-
-
 Therefore, ground-truth-dependent metrics such as:
 
+- Voxel IoU
 
+- Volumetric F1
 
-\- Voxel IoU
+- Difference F1
 
-\- Volumetric F1
+- Added F1
 
-\- Difference F1
+- Removed F1
 
-\- Added F1
-
-\- Removed F1
-
-\- Chamfer Distance to target geometry
-
-
+- Chamfer Distance to target geometry
 
 are not reported as confirmed accuracy metrics.
-
-
 
 The comparison therefore focuses on directly measurable properties of the generated
 
 CAD models and execution process.
 
-
-
-\## Repository Structure
-
-
+## Repository Structure
 
 ```text
 
@@ -210,27 +141,27 @@ ASME-CIE-2026-Geometric-Mapping/
 
 │
 
-├── 1\_MAIN.py
+├── 1_MAIN.py
 
-├── 2\_COMPARE\_EXPERIMENTS.py
+├── 2_COMPARE_EXPERIMENTS.py
 
 ├── main.json
 
 │
 
-├── geometry\_map/
+├── geometry_map/
 
-│   ├── deterministic\_edit.py
+│   ├── deterministic_edit.py
 
-│   ├── feature\_recognition.py
+│   ├── feature_recognition.py
 
-│   ├── geometry\_picker.py
+│   ├── geometry_picker.py
 
-│   ├── instruction\_grounding.py
+│   ├── instruction_grounding.py
 
-│   ├── point\_grounding.py
+│   ├── point_grounding.py
 
-│   └── step\_geometry\_map.py
+│   └── step_geometry_map.py
 
 │
 
@@ -238,15 +169,15 @@ ASME-CIE-2026-Geometric-Mapping/
 
 │   ├── autodesk.py
 
-│   ├── autodesk\_metrics.py
+│   ├── autodesk_metrics.py
 
-│   ├── cad\_edit.py
+│   ├── cad_edit.py
 
-│   ├── geometry\_benchmark.py
+│   ├── geometry_benchmark.py
 
-│   ├── ground\_truth.py
+│   ├── ground_truth.py
 
-│   ├── input\_viewer.py
+│   ├── input_viewer.py
 
 │   └── metrics.py
 
@@ -266,7 +197,7 @@ ASME-CIE-2026-Geometric-Mapping/
 
 ├── comparison/
 
-│   └── ASME\_method\_comparison.xlsx
+│   └── ASME_method_comparison.xlsx
 
 │
 
