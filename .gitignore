@@ -62,3 +62,7 @@ neuralCAD-Edit-data/
 # Upstream Autodesk / neuralCAD-Edit baseline
 # Not redistributed here; referenced in README.
 neuralCAD-Edit/
+
+# Local visualization scripts and generated figures
+figures/
+visualization/

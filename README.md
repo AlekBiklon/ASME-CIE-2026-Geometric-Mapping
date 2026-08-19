@@ -6,7 +6,7 @@
 # ASME CIE 2026 — Geometric Mapping for Deterministic 3D CAD Editing
 This repository contains the **Geometric Mapping** method developed for the
 
-**ASME CIE 2026 Student Hackathon — Autodesk Challenge: 3D CAD Model Editing with Visual Language Models**.
+**Student Hackathon Submission — Autodesk Challenge: 3D CAD Model Editing with Visual Language Models**
 
 ## Overview
 
