@@ -139,7 +139,8 @@ If you use the neuralCAD-Edit benchmark or framework, please cite the original w
   author={Perrett, Toby and Bouchard, Matthew and McCarthy, William},
   booktitle={arXiv preprint arXiv:2604.16170},
   year={2026}
-}```
+}
+```
 
 ## Ground-Truth Limitation
 
