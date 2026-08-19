@@ -8,6 +8,19 @@ This repository contains the **Geometric Mapping** method developed for the
 
 **Student Hackathon Submission — Autodesk Challenge: 3D CAD Model Editing with Visual Language Models**
 
+## Novelty
+
+A **Geometric Mapping** method for editing 3D CAD models is proposed, featuring
+deterministic and geometrically controlled execution of CAD operations based on
+semi-automatic geometric grounding.
+
+The proposed approach provides four key advantages:
+
+1. **Faster execution** compared with neuralCAD-Edit.
+2. **No additional VLM inference cost.**
+3. **Geometric controllability** of CAD operations.
+4. **Robustness to topological issues.**
+
 ## Overview
 
 The project investigates an alternative approach to iterative VLM-based CAD editing.
@@ -70,11 +83,8 @@ Different grounding strategies are used depending on the instruction, including:
 ## Experimental Evaluation
 
 Ten paired experiments (`B01`–`B10`) were conducted using editing requests from
-
 the neuralCAD-Edit experimental data.
-
 For each task, the proposed **Geometric Mapping** method was compared with the
-
 Autodesk/neuralCAD-Edit VLM-based baseline.
 
 The evaluation records include:
