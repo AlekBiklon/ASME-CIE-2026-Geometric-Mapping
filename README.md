@@ -111,6 +111,21 @@ The proposed method performs the CAD edit with:
 
 Runtime improvements vary by task and are reported individually in the experimental results.
 
+## Installation
+
+This repository contains the custom `geometry_map` harness developed for the
+Geometric Mapping method.
+
+To integrate the method with the original neuralCAD-Edit framework, copy the
+`geometry_map` directory into:
+
+```text
+neuralCAD-Edit/
+└── src/
+    └── harnesses/
+        └── geometry_map/
+```
+
 ## Upstream Project and Attribution
 
 This project builds upon the **neuralCAD-Edit** benchmark and experimental
@@ -141,74 +156,3 @@ If you use the neuralCAD-Edit benchmark or framework, please cite the original w
   year={2026}
 }
 ```
-
-## Repository Structure
-
-```text
-
-ASME-CIE-2026-Geometric-Mapping/
-
-│
-
-├── 1_MAIN.py
-
-├── 2_COMPARE_EXPERIMENTS.py
-
-├── main.json
-
-│
-
-├── geometry_map/
-
-│   ├── deterministic_edit.py
-
-│   ├── feature_recognition.py
-
-│   ├── geometry_picker.py
-
-│   ├── instruction_grounding.py
-
-│   ├── point_grounding.py
-
-│   └── step_geometry_map.py
-
-│
-
-├── pipeline/
-
-│   ├── autodesk.py
-
-│   ├── autodesk_metrics.py
-
-│   ├── cad_edit.py
-
-│   ├── geometry_benchmark.py
-
-│   ├── ground_truth.py
-
-│   ├── input_viewer.py
-
-│   └── metrics.py
-
-│
-
-├── experiments/
-
-│   ├── B01/
-
-│   ├── B02/
-
-│   ├── ...
-
-│   └── B10/
-
-│
-
-├── comparison/
-
-│   └── ASME_method_comparison.xlsx
-
-│
-
-└── tools/
-
