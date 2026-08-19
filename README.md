@@ -142,34 +142,6 @@ If you use the neuralCAD-Edit benchmark or framework, please cite the original w
 }
 ```
 
-## Ground-Truth Limitation
-
-The experiments contain the original CAD models and editing instructions.
-
-However, an official human-created target STEP model was not available for the
-
-evaluated cases in the local experimental data.
-
-Therefore, ground-truth-dependent metrics such as:
-
-- Voxel IoU
-
-- Volumetric F1
-
-- Difference F1
-
-- Added F1
-
-- Removed F1
-
-- Chamfer Distance to target geometry
-
-are not reported as confirmed accuracy metrics.
-
-The comparison therefore focuses on directly measurable properties of the generated
-
-CAD models and execution process.
-
 ## Repository Structure
 
 ```text
