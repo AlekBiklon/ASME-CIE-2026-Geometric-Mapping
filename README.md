@@ -80,36 +80,15 @@ Autodesk/neuralCAD-Edit VLM-based baseline.
 The evaluation records include:
 
 - runtime;
-
 - STEP generation success;
-
 - B-Rep validity;
-
 - STEP re-import validity;
-
 - solid preservation;
-
 - face and edge counts;
-
 - volume change;
-
 - VLM response count;
-
 - visual render count;
-
 - estimated inference cost where available.
-
-The proposed method performs the CAD edit with:
-
-- **0 VLM responses during deterministic editing**
-
-- **0 iterative visual renders**
-
-- **0 inference tokens**
-
-- **$0 inference cost during deterministic editing**
-
-Runtime improvements vary by task and are reported individually in the experimental results.
 
 ## Installation
 
