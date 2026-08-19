@@ -110,6 +110,36 @@ The proposed method performs the CAD edit with:
 
 Runtime improvements vary by task and are reported individually in the experimental results.
 
+## Upstream Project and Attribution
+
+This project builds upon the **neuralCAD-Edit** benchmark and experimental
+framework developed by Toby Perrett, Matthew Bouchard, and William McCarthy.
+
+The original Autodesk Hackathon repository is available here:
+
+**[IDETC26-Hackathon-Autodesk-neuralCAD-Edit](https://github.com/grndnl/IDETC26-Hackathon-Autodesk-neuralCAD-Edit)**
+
+The neuralCAD-Edit framework was used as the VLM-based baseline and as part of
+the experimental infrastructure for the CAD editing tasks evaluated in this
+repository.
+
+The **Geometric Mapping** method presented in this repository is an alternative
+CAD-editing approach developed for the ASME CIE 2026 Student Hackathon. It uses
+geometric grounding, B-Rep feature recognition, and deterministic CAD operations
+instead of iterative VLM-based CAD code generation and refinement.
+
+### Citation
+
+If you use the neuralCAD-Edit benchmark or framework, please cite the original work:
+
+```bibtex
+@inproceedings{perrett2026neuralcadedit,
+  title={neuralCAD-Edit: An Expert Benchmark for Multimodal-Instructed 3D CAD Model Editing},
+  author={Perrett, Toby and Bouchard, Matthew and McCarthy, William},
+  booktitle={arXiv preprint arXiv:2604.16170},
+  year={2026}
+}
+
 ## Ground-Truth Limitation
 
 The experiments contain the original CAD models and editing instructions.
